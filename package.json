@@ -1,0 +1,29 @@
+{
+    "name": "senselogic-flow",
+    "description": "Stylable UI components.",
+    "version": "0.0.1",
+    "author": "Eric Pelzer <ecstatic.coder@gmail.com>",
+    "license": "LGPL-3.0-only",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/senselogic/FLOW.git"
+    },
+    "bugs": {
+        "url": "https://github.com/senselogic/FLOW/issues"
+    },
+    "homepage": "https://github.com/senselogic/FLOW",
+    "type": "module",
+    "main": "src/flow.styl",
+    "files": [
+        "src/",
+        "README.md"
+    ],
+    "devDependencies": {
+        "stylus": "^0.60.0"
+    },
+    "keywords": [
+        "svelte",
+        "ui",
+        "components"
+    ]
+}

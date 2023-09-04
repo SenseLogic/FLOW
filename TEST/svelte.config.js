@@ -1,0 +1,20 @@
+import adapter from '@sveltejs/adapter-auto';
+import { vitePreprocess } from '@sveltejs/kit/vite';
+
+/** @type {import('@sveltejs/kit').Config} */
+const config = {
+    preprocess: vitePreprocess({
+      stylus: {
+        stylus: {
+          // options for stylus compiler
+        },
+        // options for stylus plugin
+      },
+    }),
+
+    kit: {
+        adapter: adapter()
+    }
+};
+
+export default config;

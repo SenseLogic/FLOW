@@ -1,5 +1,59 @@
 // -- MIXINS
 
+defineDisplayClasses( valueArray )
+
+    for value in valueArray
+
+        .display-{ value }
+            display: value;
+
+// ~~
+
+defineFlexDirectionClasses( valueArray )
+
+    for value in valueArray
+
+        .flex-direction-{ value }
+            flex-direction: value;
+
+// ~~
+
+defineJustifyContentClasses( valueArray )
+
+    for value in valueArray
+
+        .justify-content-{ value }
+            justify-content: value;
+
+// ~~
+
+defineJustifySelfClasses( valueArray )
+
+    for value in valueArray
+
+        .justify-self-{ value }
+            justify-self: value;
+
+// ~~
+
+defineAlignItemsClasses( valueArray )
+
+    for value in valueArray
+
+        .align-items-{ value }
+            align-items: value;
+
+// ~~
+
+defineAlignSelfClasses( valueArray )
+
+    for value in valueArray
+
+        .align-self-{ value }
+            align-self: value;
+
+// ~~
+
 defineMarginClasses( valueArray )
 
     for value in valueArray

@@ -3,7 +3,6 @@
 defineDisplayClasses( valueArray )
 
     for value in valueArray
-
         .display-{ value }
             display: unquote( value );
 
@@ -12,7 +11,6 @@ defineDisplayClasses( valueArray )
 defineFlexDirectionClasses( valueArray )
 
     for value in valueArray
-
         .flex-direction-{ value }
             flex-direction: unquote( value );
 
@@ -21,7 +19,6 @@ defineFlexDirectionClasses( valueArray )
 defineJustifyContentClasses( valueArray )
 
     for value in valueArray
-
         .justify-content-{ value }
             justify-content: unquote( value );
 
@@ -30,7 +27,6 @@ defineJustifyContentClasses( valueArray )
 defineJustifySelfClasses( valueArray )
 
     for value in valueArray
-
         .justify-self-{ value }
             justify-self: unquote( value );
 
@@ -39,7 +35,6 @@ defineJustifySelfClasses( valueArray )
 defineAlignItemsClasses( valueArray )
 
     for value in valueArray
-
         .align-items-{ value }
             align-items: unquote( value );
 
@@ -48,7 +43,6 @@ defineAlignItemsClasses( valueArray )
 defineAlignSelfClasses( valueArray )
 
     for value in valueArray
-
         .align-self-{ value }
             align-self: unquote( value );
 
@@ -57,7 +51,6 @@ defineAlignSelfClasses( valueArray )
 defineGapClasses( valueArray )
 
     for value in valueArray
-
         .gap-{ value }
             gap: value * 0.01rem;
 
@@ -66,7 +59,6 @@ defineGapClasses( valueArray )
 defineRowGapClasses( valueArray )
 
     for value in valueArray
-
         .row-gap-{ value }
             row-gap: value * 0.01rem;
 
@@ -75,7 +67,6 @@ defineRowGapClasses( valueArray )
 defineColumnGapClasses( valueArray )
 
     for value in valueArray
-
         .column-gap-{ value }
             column-gap: value * 0.01rem;
 
@@ -84,7 +75,6 @@ defineColumnGapClasses( valueArray )
 defineMarginClasses( valueArray )
 
     for value in valueArray
-
         .margin-{ value }
             margin: value * 0.01rem;
 
@@ -93,7 +83,6 @@ defineMarginClasses( valueArray )
 defineMarginTopClasses( valueArray )
 
     for value in valueArray
-
         .margin-top-{ value }
             margin-top: value * 0.01rem;
 
@@ -102,7 +91,6 @@ defineMarginTopClasses( valueArray )
 defineMarginBottomClasses( valueArray )
 
     for value in valueArray
-
         .margin-bottom-{ value }
             margin-bottom: value * 0.01rem;
 
@@ -111,7 +99,6 @@ defineMarginBottomClasses( valueArray )
 defineMarginLeftClasses( valueArray )
 
     for value in valueArray
-
         .margin-left-{ value }
             margin-left: value * 0.01rem;
 
@@ -120,7 +107,6 @@ defineMarginLeftClasses( valueArray )
 defineMarginRightClasses( valueArray )
 
     for value in valueArray
-
         .margin-right-{ value }
             margin-right: value * 0.01rem;
 
@@ -129,7 +115,6 @@ defineMarginRightClasses( valueArray )
 definePaddingClasses( valueArray )
 
     for value in valueArray
-
         .padding-{ value }
             padding: value * 0.01rem;
 
@@ -138,7 +123,6 @@ definePaddingClasses( valueArray )
 definePaddingTopClasses( valueArray )
 
     for value in valueArray
-
         .padding-top-{ value }
             padding-top: value * 0.01rem;
 
@@ -147,7 +131,6 @@ definePaddingTopClasses( valueArray )
 definePaddingBottomClasses( valueArray )
 
     for value in valueArray
-
         .padding-bottom-{ value }
             padding-bottom: value * 0.01rem;
 
@@ -156,7 +139,6 @@ definePaddingBottomClasses( valueArray )
 definePaddingLeftClasses( valueArray )
 
     for value in valueArray
-
         .padding-left-{ value }
             padding-left: value * 0.01rem;
 
@@ -165,7 +147,6 @@ definePaddingLeftClasses( valueArray )
 definePaddingRightClasses( valueArray )
 
     for value in valueArray
-
         .padding-right-{ value }
             padding-right: value * 0.01rem;
 
@@ -174,7 +155,6 @@ definePaddingRightClasses( valueArray )
 defineTextAlignClasses( valueArray )
 
     for value in valueArray
-
         .text-align-{ value }
             text-align: unquote( value );
 
@@ -183,7 +163,6 @@ defineTextAlignClasses( valueArray )
 defineFontSizeClasses( valueArray )
 
     for value in valueArray
-
         .font-size-{ value }
             font-size: value * 0.01rem;
 
@@ -192,22 +171,20 @@ defineFontSizeClasses( valueArray )
 defineFontWeightClasses( valueArray )
 
     for value in valueArray
-
         .font-weight-{ value }
             font-weight: value;
 
 // ~~
 
-defineColorClass( kebabColorName, camelColorName )
+defineColorClass( className, colorName )
 
-    .color-{ kebabColorName }
-        color: lookup( camelColorName + 'Color' );
+    .color-{ className }
+        color: lookup( colorName + 'Color' );
 
 // ~~
 
-defineColorClasses( kebabColorName, camelColorName, valueArray )
+defineColorClasses( className, colorName, valueArray )
 
     for value in valueArray
-
-        .color-{ kebabColorName }-{ value }
-            color: lookup( camelColorName + 'Color' + value );
+        .color-{ className }-{ value }
+            color: lookup( colorName + 'Color' + value );

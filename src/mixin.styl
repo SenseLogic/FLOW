@@ -1,0 +1,123 @@
+// -- MIXINS
+
+defineMarginClasses( valueArray )
+
+    for value in valueArray
+
+        .margin-{ value }
+            margin: value * 0.01rem;
+
+// ~~
+
+defineMarginTopClasses( valueArray )
+
+    for value in valueArray
+
+        .margin-top-{ value }
+            margin-top: value * 0.01rem;
+
+// ~~
+
+defineMarginBottomClasses( valueArray )
+
+    for value in valueArray
+
+        .margin-bottom-{ value }
+            margin-bottom: value * 0.01rem;
+
+// ~~
+
+defineMarginLeftClasses( valueArray )
+
+    for value in valueArray
+
+        .margin-left-{ value }
+            margin-left: value * 0.01rem;
+
+// ~~
+
+defineMarginRightClasses( valueArray )
+
+    for value in valueArray
+
+        .margin-right-{ value }
+            margin-right: value * 0.01rem;
+
+// ~~
+
+definePaddingClasses( valueArray )
+
+    for value in valueArray
+
+        .padding-{ value }
+            padding: value * 0.01rem;
+
+// ~~
+
+definePaddingTopClasses( valueArray )
+
+    for value in valueArray
+
+        .padding-top-{ value }
+            padding-top: value * 0.01rem;
+
+// ~~
+
+definePaddingBottomClasses( valueArray )
+
+    for value in valueArray
+
+        .padding-bottom-{ value }
+            padding-bottom: value * 0.01rem;
+
+// ~~
+
+definePaddingLeftClasses( valueArray )
+
+    for value in valueArray
+
+        .padding-left-{ value }
+            padding-left: value * 0.01rem;
+
+// ~~
+
+definePaddingRightClasses( valueArray )
+
+    for value in valueArray
+
+        .padding-right-{ value }
+            padding-right: value * 0.01rem;
+
+// ~~
+
+defineFontSizeClasses( valueArray )
+
+    for value in valueArray
+
+        .font-size-{ value }
+            font-size: value * 0.01rem;
+
+// ~~
+
+defineFontWeightClasses( valueArray )
+
+    for value in valueArray
+
+        .font-weight-{ value }
+            font-weight: value;
+
+// ~~
+
+defineColorClass( kebabColorName, camelColorName )
+
+    .color-{ kebabColorName }
+        color: lookup( camelColorName + 'Color' );
+
+// ~~
+
+defineColorClasses( kebabColorName, camelColorName, valueArray )
+
+    for value in valueArray
+
+        .color-{ kebabColorName }-{ value }
+            color: lookup( camelColorName + 'Color' + value );

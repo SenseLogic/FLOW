@@ -5,7 +5,7 @@ defineDisplayClasses( valueArray )
     for value in valueArray
 
         .display-{ value }
-            display: value;
+            display: unquote( value );
 
 // ~~
 
@@ -14,7 +14,7 @@ defineFlexDirectionClasses( valueArray )
     for value in valueArray
 
         .flex-direction-{ value }
-            flex-direction: value;
+            flex-direction: unquote( value );
 
 // ~~
 
@@ -23,7 +23,7 @@ defineJustifyContentClasses( valueArray )
     for value in valueArray
 
         .justify-content-{ value }
-            justify-content: value;
+            justify-content: unquote( value );
 
 // ~~
 
@@ -32,7 +32,7 @@ defineJustifySelfClasses( valueArray )
     for value in valueArray
 
         .justify-self-{ value }
-            justify-self: value;
+            justify-self: unquote( value );
 
 // ~~
 
@@ -41,7 +41,7 @@ defineAlignItemsClasses( valueArray )
     for value in valueArray
 
         .align-items-{ value }
-            align-items: value;
+            align-items: unquote( value );
 
 // ~~
 
@@ -50,7 +50,34 @@ defineAlignSelfClasses( valueArray )
     for value in valueArray
 
         .align-self-{ value }
-            align-self: value;
+            align-self: unquote( value );
+
+// ~~
+
+defineGapClasses( valueArray )
+
+    for value in valueArray
+
+        .gap-{ value }
+            gap: value * 0.01rem;
+
+// ~~
+
+defineRowGapClasses( valueArray )
+
+    for value in valueArray
+
+        .row-gap-{ value }
+            row-gap: value * 0.01rem;
+
+// ~~
+
+defineColumnGapClasses( valueArray )
+
+    for value in valueArray
+
+        .column-gap-{ value }
+            column-gap: value * 0.01rem;
 
 // ~~
 
@@ -141,6 +168,15 @@ definePaddingRightClasses( valueArray )
 
         .padding-right-{ value }
             padding-right: value * 0.01rem;
+
+// ~~
+
+defineTextAlignClasses( valueArray )
+
+    for value in valueArray
+
+        .text-align-{ value }
+            text-align: unquote( value );
 
 // ~~
 

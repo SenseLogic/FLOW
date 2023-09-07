@@ -188,3 +188,49 @@ defineColorClasses( className, colorName, valueArray )
     for value in valueArray
         .color-{ className }-{ value }
             color: lookup( colorName + 'Color' + value );
+// ~~
+
+defineBorderWidthClasses( valueArray )
+
+    for value in valueArray
+        .border-width-{ value }
+            border-width: value * 0.01rem;
+
+// ~~
+
+defineBorderStyleClasses( valueArray )
+
+    for value in valueArray
+        .border-style-{ value }
+            border-style: value;
+
+// ~~
+
+defineBorderColorClass( className, colorName )
+
+    .border-color-{ className }
+        border-color: lookup( colorName + 'Color' );
+
+// ~~
+
+defineBorderColorClasses( className, colorName, valueArray )
+
+    for value in valueArray
+        .border-color-{ className }-{ value }
+            border-color: lookup( colorName + 'Color' + value );
+// ~~
+
+defineBorderRadiusClasses( valueArray )
+
+    for value in valueArray
+        .border-radius-{ value }
+            border-radius: value * 0.01rem;
+// ~~
+
+defineCursorClasses( valueArray )
+
+    for value in valueArray
+        .cursor-{ value }
+            cursor: value;
+
+

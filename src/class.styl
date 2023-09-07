@@ -1,0 +1,265 @@
+// -- CLASSES
+
+.input,
+.text-input,
+.enumeration-input
+{
+    display: block;
+    width: 100%;
+    border: 1px solid inputBorderColor;
+    border-radius: inputBorderRadius;
+    padding: inputPadding;
+    background: whiteColor;
+
+    transition: border-color 0.3s;
+}
+
+.input:focus,
+.text-input:focus,
+.enumeration-input:focus
+{
+    border: 1px solid focusBorderColor;
+}
+
+.button,
+.primary-button,
+.primary-outline-button
+{
+    border-radius: buttonBorderRadius;
+    padding: buttonPadding;
+    cursor: pointer;
+}
+
+.primary-button
+{
+    color: WhiteColor;
+    background-color: primaryBackgroundColor;
+}
+
+.primary-outline-button
+{
+    background-color: WhiteColor;
+    border: 1px solid primaryBorderColor;
+}
+
+.dropdown
+{
+    background-color: whiteColor;
+    border: 1px solid inputBorderColor;
+}
+
+.dropdown-option
+{
+    padding: 0.5rem;
+    border-bottom: 1px solid inputBorderColor;
+}
+
+.input
+{
+    border: 1px solid inputBorderColor;
+    padding: 0.5rem;
+}
+
+.email-input
+{
+    border: 1px solid inputBorderColor;
+    padding: 0.5rem;
+}
+
+.search-input
+{
+    border: 1px solid inputBorderColor;
+    padding: 0.5rem;
+    position: relative;
+}
+
+.search-input-icon
+{
+    position: absolute;
+    right: 0.5rem;
+    top: 0.5rem;
+}
+
+.enumeration-input
+{
+}
+
+.enumeration-input-option
+{
+    padding: 0.5rem;
+}
+
+.range-slider
+{
+    -webkit-appearance: none;
+    width: 100%;
+    background: grayColor700;
+}
+
+.range-slider-handle
+{
+    -webkit-appearance: none;
+    background: #666;
+    height: 1rem;
+    width: 1rem;
+    border-radius: 50%;
+}
+
+.range-slider-handle-icon
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.date-input
+{
+    border: 1px solid inputBorderColor;
+    padding: 0.5rem;
+}
+
+.date-input-icon
+{
+    position: absolute;
+    right: 0.5rem;
+    top: 0.5rem;
+}
+
+.time-input
+{
+    border: 1px solid inputBorderColor;
+    padding: 0.5rem;
+}
+
+.checkbox-input
+{
+}
+
+.checkbox-input-icon
+{
+}
+
+.radio-button-input
+{
+}
+
+.radio-button-icon
+{
+}
+
+.switch-input
+{
+    position: relative;
+    display: inline-block;
+    width: switchInputSliderSize * 2 + switchInputPaddingSize * 2;
+    height: switchInputSliderSize + switchInputPaddingSize * 2;
+}
+
+.switch-input-checkbox
+{
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.switch-input-slider
+{
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: switchInputUncheckedColor;
+    transition: .4s;
+    border-radius: switchInputSliderSize;
+}
+
+.switch-input-slider:before
+{
+    position: absolute;
+    content: "";
+    height: switchInputSliderSize;
+    width: switchInputSliderSize;
+    left: switchInputPaddingSize;
+    bottom: switchInputPaddingSize;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+.switch-input-checkbox:checked + .switch-input-slider
+{
+    background-color: switchInputCheckedColor;
+}
+
+.switch-input-checkbox:checked + .switch-input-slider:before
+{
+    transform: translateX( switchInputSliderSize );
+}
+
+.accordeon
+{
+}
+
+.accordeon-content
+{
+}
+
+.card
+{
+    border: 1px solid grayBorderColor;
+    padding: 1rem;
+    border-radius: 0.5rem;
+}
+
+.progress-bar
+{
+    background: grayColor700;
+    height: 1rem;
+    width: 100%;
+}
+
+.bullet-point-list
+{
+}
+
+.bullet-point-element
+{
+}
+
+.button
+{
+    background: primaryColor;
+    color: whiteColor;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+}
+
+.outline-button
+{
+    background: transparent;
+    border: 1px solid primaryColor;
+    color: primaryColor;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+}
+
+.animated-loading-icon
+{
+    border: 0.25rem solid grayColor700;
+    border-top-color: primaryColor;
+    border-radius: 50%;
+    width: 3rem;
+    height: 3rem;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin
+{
+    100%
+    {
+        transform: rotate( 360deg );
+    }
+}

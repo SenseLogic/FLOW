@@ -17,10 +17,14 @@
     font-family: primaryFontFamily;
 }
 
-defineDisplayClasses( 'flex' );
-defineGapClasses( 100 );
+defineDisplayClasses( flex inline-block );
+defineFlexDirectionClasses( column );
+defineGapClasses( 50 100 );
 defineColorClass( 'red', 'red' );
 defineColorClasses( 'green', 'green', 300 500 );
+defineColorHoverClasses( 'green', 'green', 500 );
 defineMarginTopClasses( 100 );
+definePaddingClasses( 100 );
+definePaddingLateralMediaClasses( 200, small medium large xlarge xxlarge );
 defineFontSizeClasses( 200 );
 defineFontWeightClasses( 700 );

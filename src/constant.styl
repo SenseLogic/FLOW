@@ -262,20 +262,37 @@ secondaryBackgroundColor ?= secondaryColor;
 grayBorderColor ?= grayColor700;
 primaryBorderColor ?= primaryColor;
 secondaryBorderColor ?= secondaryColor;
-inputBorderColor ?= grayColor700;
-focusBorderColor ?= primaryColor;
 
 buttonBorderRadius ?= 0.5rem;
-inputBorderRadius ?= 0.5rem;
-
 buttonPadding ?= 0.5rem 1rem;
+
+inputBorderColor ?= grayColor700;
+inputBorderRadius ?= 0.5rem;
 inputPadding ?= 0.5rem;
+inputFocusBorderColor ?= blueColor;
+inputFocusOutlineColor ?= transparent;
 
 switchInputSliderSize ?= 1em;
 switchInputPaddingSize ?= 0.2em;
-switchInputUncheckedColor ?= grayColor700;
-switchInputCheckedColor ?= greenColor;
+switchInputUncheckedBackground ?= grayColor700;
+switchInputCheckedBackground ?= greenColor;
+switchInputUncheckedSliderBackground ?= whiteColor;
+switchInputCheckedSliderBackground ?= whiteColor;
 
 primaryFontFamily ?= sans-serif;
 secondaryFontFamily ?= serif;
 monospaceFontFamily ?= mono;
+
+mediaQuerySmallWidth ?= 40em;
+mediaQueryMediumWidth ?= 48em;
+mediaQueryLargeWidth ?= 64em;
+mediaQueryXlargeWidth ?= 80em;
+mediaQueryXxlargeWidth ?= 96em;
+
+mediaQueryMap = {
+    small: "(min-width: 40em)",
+    medium: "(min-width: 48em)",
+    large: "(min-width: 64em)",
+    xlarge: "(min-width: 80em)",
+    xxlarge: "(min-width: 96em)"
+};

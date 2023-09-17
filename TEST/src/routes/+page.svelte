@@ -21,8 +21,7 @@
 
         <input class="input" type="text"/>
 
-        <textarea class="text-input">
-        </textarea>
+        <textarea class="text-input"></textarea>
 
         <select class="enumeration-input">
             <option class="enumeration-input-option">

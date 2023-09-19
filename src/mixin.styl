@@ -1,5 +1,38 @@
 // -- MIXINS
 
+media()
+
+    mediaQueryExpressionArray = arguments
+    mediaQueryTextArray = ();
+
+    for mediaQueryExpression in mediaQueryExpressionArray
+    {
+        mediaQueryPartArray = ();
+        mediaQueryNameArray = split( " ", mediaQueryExpression );
+
+        for mediaQueryName in mediaQueryNameArray
+        {
+            if ( mediaQueryName in mediaQueryMap )
+            {
+                push( mediaQueryPartArray, mediaQueryMap[ mediaQueryName ] );
+            }
+            else
+            {
+                push( mediaQueryPartArray, mediaQueryName );
+            }
+        }
+
+        mediaQueryText = join( " ", mediaQueryPartArray );
+        push( mediaQueryTextArray, mediaQueryText );
+    }
+
+    mediaQueryText = join( ", ", mediaQueryTextArray );
+
+    @media mediaQueryText
+        {block}
+
+// ~~
+
 defineDisplayClasses( valueArray )
 
     for value in valueArray

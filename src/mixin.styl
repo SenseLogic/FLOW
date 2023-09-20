@@ -33,6 +33,26 @@ media()
 
 // ~~
 
+setRootFontSize( fontSize, fontSizeArray, mediaQueryWidthArray )
+
+    :root
+    {
+        font-size: fontSize;
+    }
+
+    for mediaQueryWidth, mediaQueryWidthIndex in mediaQueryWidthArray
+    {
+        @media ( min-width: mediaQueryWidth )
+        {
+            :root
+            {
+                font-size: fontSizeArray[ mediaQueryWidthIndex ];
+            }
+        }
+    }
+
+// ~~
+
 defineDisplayClasses( valueArray )
 
     for value in valueArray

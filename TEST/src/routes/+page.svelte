@@ -1,4 +1,7 @@
 <style lang="stylus">
+    // -- IMPORTS
+
+    @import '../constant.styl';
 </style>
 
 <div class="padding-100 padding-lateral-200-large">

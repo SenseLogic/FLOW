@@ -1,41 +1,7 @@
 // -- IMPORTS
 
-//@import 'senselogic-flow/src/reset.styl';
-//@import 'senselogic-flow/src/constant.styl';
-//@import 'senselogic-flow/src/mixin.styl';
-//@import 'senselogic-flow/src/class.styl';
-//@import 'senselogic-flow/src/element.styl';
-
-@import '../../src/reset.styl';
-@import '../../src/constant.styl';
-@import '../../src/mixin.styl';
-@import '../../src/class.styl';
-@import '../../src/element.styl';
-
-// -- CLASSES
-
-defineDisplayClasses( flex inline-block );
-defineFlexDirectionClasses( column );
-defineGapClasses( 50 100 );
-defineColorClass( 'red', 'red' );
-defineColorClasses( 'green', 'green', 300 500 );
-defineColorHoverClasses( 'green', 'green', 500 );
-defineMarginTopClasses( 100 );
-definePaddingClasses( 100 );
-definePaddingLateralMediaClasses( 200, small medium large xlarge xxlarge );
-defineFontSizeClasses( 200 );
-defineFontWeightClasses( 700 );
-
-// -- ELEMENTS
-
-:root
-{
-    font-family: primaryFontFamily;
-
-    +media( medium )
-    {
-        font-family: serif;
-    }
-}
-
-setRootFontSize( 1rem, 1.1rem 1.2rem 1.3rem 1.4rem, 90em 100em 110em 120em );
+@import 'reset.styl';
+@import 'constant.styl';
+@import 'mixin.styl';
+@import 'class.styl';
+@import 'element.styl';

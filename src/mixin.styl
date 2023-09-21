@@ -35,7 +35,7 @@ media()
 
 setRootFontSize( fontSize, fontSizeArray, mediaQueryWidthArray )
 
-    :root
+    html
     {
         font-size: fontSize;
     }
@@ -44,7 +44,7 @@ setRootFontSize( fontSize, fontSizeArray, mediaQueryWidthArray )
     {
         @media ( min-width: mediaQueryWidth )
         {
-            :root
+            html
             {
                 font-size: fontSizeArray[ mediaQueryWidthIndex ];
             }

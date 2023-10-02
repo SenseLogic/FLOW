@@ -69,22 +69,22 @@ defineDisplayHoverClasses( valueArray )
 
 // ~~
 
-defineDisplayMediaClasses( valueArray, media_query_name_array = {} )
+defineDisplayMediaClasses( valueArray, mediaQueryNameArray = {} )
 
-    for media_query_name in media_query_name_array
+    for mediaQueryName in mediaQueryNameArray
         for value in valueArray
-            @media mediaQueryMap[ media_query_name ]
-                .display-{ value }-{ media_query_name }
+            @media mediaQueryMap[ mediaQueryName ]
+                .display-{ value }-{ mediaQueryName }
                     display: unquote( value );
 
 // ~~
 
-defineDisplayHoverMediaClasses( valueArray, media_query_name_array = {} )
+defineDisplayHoverMediaClasses( valueArray, mediaQueryNameArray = {} )
 
-    for media_query_name in media_query_name_array
+    for mediaQueryName in mediaQueryNameArray
         for value in valueArray
-            @media mediaQueryMap[ media_query_name ]
-                .display-{ value }-hover-{ media_query_name }:hover
+            @media mediaQueryMap[ mediaQueryName ]
+                .display-{ value }-hover-{ mediaQueryName }:hover
                     display: unquote( value );
 
 // ~~
@@ -105,22 +105,22 @@ defineFlexDirectionHoverClasses( valueArray )
 
 // ~~
 
-defineFlexDirectionMediaClasses( valueArray, media_query_name_array = {} )
+defineFlexDirectionMediaClasses( valueArray, mediaQueryNameArray = {} )
 
-    for media_query_name in media_query_name_array
+    for mediaQueryName in mediaQueryNameArray
         for value in valueArray
-            @media mediaQueryMap[ media_query_name ]
-                .flex-direction-{ value }-{ media_query_name }
+            @media mediaQueryMap[ mediaQueryName ]
+                .flex-direction-{ value }-{ mediaQueryName }
                     flex-direction: unquote( value );
 
 // ~~
 
-defineFlexDirectionHoverMediaClasses( valueArray, media_query_name_array = {} )
+defineFlexDirectionHoverMediaClasses( valueArray, mediaQueryNameArray = {} )
 
-    for media_query_name in media_query_name_array
+    for mediaQueryName in mediaQueryNameArray
         for value in valueArray
-            @media mediaQueryMap[ media_query_name ]
-                .flex-direction-{ value }-hover-{ media_query_name }:hover
+            @media mediaQueryMap[ mediaQueryName ]
+                .flex-direction-{ value }-hover-{ mediaQueryName }:hover
                     flex-direction: unquote( value );
 
 // ~~
@@ -141,22 +141,22 @@ defineJustifyContentHoverClasses( valueArray )
 
 // ~~
 
-defineJustifyContentMediaClasses( valueArray, media_query_name_array = {} )
+defineJustifyContentMediaClasses( valueArray, mediaQueryNameArray = {} )
 
-    for media_query_name in media_query_name_array
+    for mediaQueryName in mediaQueryNameArray
         for value in valueArray
-            @media mediaQueryMap[ media_query_name ]
-                .justify-content-{ value }-{ media_query_name }
+            @media mediaQueryMap[ mediaQueryName ]
+                .justify-content-{ value }-{ mediaQueryName }
                     justify-content: unquote( value );
 
 // ~~
 
-defineJustifyContentHoverMediaClasses( valueArray, media_query_name_array = {} )
+defineJustifyContentHoverMediaClasses( valueArray, mediaQueryNameArray = {} )
 
-    for media_query_name in media_query_name_array
+    for mediaQueryName in mediaQueryNameArray
         for value in valueArray
-            @media mediaQueryMap[ media_query_name ]
-                .justify-content-{ value }-hover-{ media_query_name }:hover
+            @media mediaQueryMap[ mediaQueryName ]
+                .justify-content-{ value }-hover-{ mediaQueryName }:hover
                     justify-content: unquote( value );
 
 // ~~
@@ -177,22 +177,22 @@ defineJustifySelfHoverClasses( valueArray )
 
 // ~~
 
-defineJustifySelfMediaClasses( valueArray, media_query_name_array = {} )
+defineJustifySelfMediaClasses( valueArray, mediaQueryNameArray = {} )
 
-    for media_query_name in media_query_name_array
+    for mediaQueryName in mediaQueryNameArray
         for value in valueArray
-            @media mediaQueryMap[ media_query_name ]
-                .justify-self-{ value }-{ media_query_name }
+            @media mediaQueryMap[ mediaQueryName ]
+                .justify-self-{ value }-{ mediaQueryName }
                     justify-self: unquote( value );
 
 // ~~
 
-defineJustifySelfHoverMediaClasses( valueArray, media_query_name_array = {} )
+defineJustifySelfHoverMediaClasses( valueArray, mediaQueryNameArray = {} )
 
-    for media_query_name in media_query_name_array
+    for mediaQueryName in mediaQueryNameArray
         for value in valueArray
-            @media mediaQueryMap[ media_query_name ]
-                .justify-self-{ value }-hover-{ media_query_name }:hover
+            @media mediaQueryMap[ mediaQueryName ]
+                .justify-self-{ value }-hover-{ mediaQueryName }:hover
                     justify-self: unquote( value );
 
 // ~~
@@ -213,22 +213,22 @@ defineAlignItemsHoverClasses( valueArray )
 
 // ~~
 
-defineAlignItemsMediaClasses( valueArray, media_query_name_array = {} )
+defineAlignItemsMediaClasses( valueArray, mediaQueryNameArray = {} )
 
-    for media_query_name in media_query_name_array
+    for mediaQueryName in mediaQueryNameArray
         for value in valueArray
-            @media mediaQueryMap[ media_query_name ]
-                .align-items-{ value }-{ media_query_name }
+            @media mediaQueryMap[ mediaQueryName ]
+                .align-items-{ value }-{ mediaQueryName }
                     align-items: unquote( value );
 
 // ~~
 
-defineAlignItemsHoverMediaClasses( valueArray, media_query_name_array = {} )
+defineAlignItemsHoverMediaClasses( valueArray, mediaQueryNameArray = {} )
 
-    for media_query_name in media_query_name_array
+    for mediaQueryName in mediaQueryNameArray
         for value in valueArray
-            @media mediaQueryMap[ media_query_name ]
-                .align-items-{ value }-hover-{ media_query_name }:hover
+            @media mediaQueryMap[ mediaQueryName ]
+                .align-items-{ value }-hover-{ mediaQueryName }:hover
                     align-items: unquote( value );
 
 // ~~
@@ -249,22 +249,22 @@ defineAlignSelfHoverClasses( valueArray )
 
 // ~~
 
-defineAlignSelfMediaClasses( valueArray, media_query_name_array = {} )
+defineAlignSelfMediaClasses( valueArray, mediaQueryNameArray = {} )
 
-    for media_query_name in media_query_name_array
+    for mediaQueryName in mediaQueryNameArray
         for value in valueArray
-            @media mediaQueryMap[ media_query_name ]
-                .align-self-{ value }-{ media_query_name }
+            @media mediaQueryMap[ mediaQueryName ]
+                .align-self-{ value }-{ mediaQueryName }
                     align-self: unquote( value );
 
 // ~~
 
-defineAlignSelfHoverMediaClasses( valueArray, media_query_name_array = {} )
+defineAlignSelfHoverMediaClasses( valueArray, mediaQueryNameArray = {} )
 
-    for media_query_name in media_query_name_array
+    for mediaQueryName in mediaQueryNameArray
         for value in valueArray
-            @media mediaQueryMap[ media_query_name ]
-                .align-self-{ value }-hover-{ media_query_name }:hover
+            @media mediaQueryMap[ mediaQueryName ]
+                .align-self-{ value }-hover-{ mediaQueryName }:hover
                     align-self: unquote( value );
 
 // ~~
@@ -285,22 +285,22 @@ defineGapHoverClasses( valueArray )
 
 // ~~
 
-defineGapMediaClasses( valueArray, media_query_name_array = {} )
+defineGapMediaClasses( valueArray, mediaQueryNameArray = {} )
 
-    for media_query_name in media_query_name_array
+    for mediaQueryName in mediaQueryNameArray
         for value in valueArray
-            @media mediaQueryMap[ media_query_name ]
-                .gap-{ value }-{ media_query_name }
+            @media mediaQueryMap[ mediaQueryName ]
+                .gap-{ value }-{ mediaQueryName }
                     gap: value * 0.01rem;
 
 // ~~
 
-defineGapHoverMediaClasses( valueArray, media_query_name_array = {} )
+defineGapHoverMediaClasses( valueArray, mediaQueryNameArray = {} )
 
-    for media_query_name in media_query_name_array
+    for mediaQueryName in mediaQueryNameArray
         for value in valueArray
-            @media mediaQueryMap[ media_query_name ]
-                .gap-{ value }-hover-{ media_query_name }:hover
+            @media mediaQueryMap[ mediaQueryName ]
+                .gap-{ value }-hover-{ mediaQueryName }:hover
                     gap: value * 0.01rem;
 
 // ~~
@@ -321,22 +321,22 @@ defineRowGapHoverClasses( valueArray )
 
 // ~~
 
-defineRowGapMediaClasses( valueArray, media_query_name_array = {} )
+defineRowGapMediaClasses( valueArray, mediaQueryNameArray = {} )
 
-    for media_query_name in media_query_name_array
+    for mediaQueryName in mediaQueryNameArray
         for value in valueArray
-            @media mediaQueryMap[ media_query_name ]
-                .row-gap-{ value }-{ media_query_name }
+            @media mediaQueryMap[ mediaQueryName ]
+                .row-gap-{ value }-{ mediaQueryName }
                     row-gap: value * 0.01rem;
 
 // ~~
 
-defineRowGapHoverMediaClasses( valueArray, media_query_name_array = {} )
+defineRowGapHoverMediaClasses( valueArray, mediaQueryNameArray = {} )
 
-    for media_query_name in media_query_name_array
+    for mediaQueryName in mediaQueryNameArray
         for value in valueArray
-            @media mediaQueryMap[ media_query_name ]
-                .row-gap-{ value }-hover-{ media_query_name }:hover
+            @media mediaQueryMap[ mediaQueryName ]
+                .row-gap-{ value }-hover-{ mediaQueryName }:hover
                     row-gap: value * 0.01rem;
 
 // ~~
@@ -357,22 +357,22 @@ defineColumnGapHoverClasses( valueArray )
 
 // ~~
 
-defineColumnGapMediaClasses( valueArray, media_query_name_array = {} )
+defineColumnGapMediaClasses( valueArray, mediaQueryNameArray = {} )
 
-    for media_query_name in media_query_name_array
+    for mediaQueryName in mediaQueryNameArray
         for value in valueArray
-            @media mediaQueryMap[ media_query_name ]
-                .column-gap-{ value }-{ media_query_name }
+            @media mediaQueryMap[ mediaQueryName ]
+                .column-gap-{ value }-{ mediaQueryName }
                     column-gap: value * 0.01rem;
 
 // ~~
 
-defineColumnGapHoverMediaClasses( valueArray, media_query_name_array = {} )
+defineColumnGapHoverMediaClasses( valueArray, mediaQueryNameArray = {} )
 
-    for media_query_name in media_query_name_array
+    for mediaQueryName in mediaQueryNameArray
         for value in valueArray
-            @media mediaQueryMap[ media_query_name ]
-                .column-gap-{ value }-hover-{ media_query_name }:hover
+            @media mediaQueryMap[ mediaQueryName ]
+                .column-gap-{ value }-hover-{ mediaQueryName }:hover
                     column-gap: value * 0.01rem;
 
 // ~~
@@ -393,22 +393,22 @@ defineMarginHoverClasses( valueArray )
 
 // ~~
 
-defineMarginMediaClasses( valueArray, media_query_name_array = {} )
+defineMarginMediaClasses( valueArray, mediaQueryNameArray = {} )
 
-    for media_query_name in media_query_name_array
+    for mediaQueryName in mediaQueryNameArray
         for value in valueArray
-            @media mediaQueryMap[ media_query_name ]
-                .margin-{ value }-{ media_query_name }
+            @media mediaQueryMap[ mediaQueryName ]
+                .margin-{ value }-{ mediaQueryName }
                     margin: value * 0.01rem;
 
 // ~~
 
-defineMarginHoverMediaClasses( valueArray, media_query_name_array = {} )
+defineMarginHoverMediaClasses( valueArray, mediaQueryNameArray = {} )
 
-    for media_query_name in media_query_name_array
+    for mediaQueryName in mediaQueryNameArray
         for value in valueArray
-            @media mediaQueryMap[ media_query_name ]
-                .margin-{ value }-hover-{ media_query_name }:hover
+            @media mediaQueryMap[ mediaQueryName ]
+                .margin-{ value }-hover-{ mediaQueryName }:hover
                     margin: value * 0.01rem;
 
 // ~~
@@ -429,22 +429,22 @@ defineMarginTopHoverClasses( valueArray )
 
 // ~~
 
-defineMarginTopMediaClasses( valueArray, media_query_name_array = {} )
+defineMarginTopMediaClasses( valueArray, mediaQueryNameArray = {} )
 
-    for media_query_name in media_query_name_array
+    for mediaQueryName in mediaQueryNameArray
         for value in valueArray
-            @media mediaQueryMap[ media_query_name ]
-                .margin-top-{ value }-{ media_query_name }
+            @media mediaQueryMap[ mediaQueryName ]
+                .margin-top-{ value }-{ mediaQueryName }
                     margin-top: value * 0.01rem;
 
 // ~~
 
-defineMarginTopHoverMediaClasses( valueArray, media_query_name_array = {} )
+defineMarginTopHoverMediaClasses( valueArray, mediaQueryNameArray = {} )
 
-    for media_query_name in media_query_name_array
+    for mediaQueryName in mediaQueryNameArray
         for value in valueArray
-            @media mediaQueryMap[ media_query_name ]
-                .margin-top-{ value }-hover-{ media_query_name }:hover
+            @media mediaQueryMap[ mediaQueryName ]
+                .margin-top-{ value }-hover-{ mediaQueryName }:hover
                     margin-top: value * 0.01rem;
 
 // ~~
@@ -465,22 +465,22 @@ defineMarginBottomHoverClasses( valueArray )
 
 // ~~
 
-defineMarginBottomMediaClasses( valueArray, media_query_name_array = {} )
+defineMarginBottomMediaClasses( valueArray, mediaQueryNameArray = {} )
 
-    for media_query_name in media_query_name_array
+    for mediaQueryName in mediaQueryNameArray
         for value in valueArray
-            @media mediaQueryMap[ media_query_name ]
-                .margin-bottom-{ value }-{ media_query_name }
+            @media mediaQueryMap[ mediaQueryName ]
+                .margin-bottom-{ value }-{ mediaQueryName }
                     margin-bottom: value * 0.01rem;
 
 // ~~
 
-defineMarginBottomHoverMediaClasses( valueArray, media_query_name_array = {} )
+defineMarginBottomHoverMediaClasses( valueArray, mediaQueryNameArray = {} )
 
-    for media_query_name in media_query_name_array
+    for mediaQueryName in mediaQueryNameArray
         for value in valueArray
-            @media mediaQueryMap[ media_query_name ]
-                .margin-bottom-{ value }-hover-{ media_query_name }:hover
+            @media mediaQueryMap[ mediaQueryName ]
+                .margin-bottom-{ value }-hover-{ mediaQueryName }:hover
                     margin-bottom: value * 0.01rem;
 
 // ~~
@@ -501,22 +501,22 @@ defineMarginLeftHoverClasses( valueArray )
 
 // ~~
 
-defineMarginLeftMediaClasses( valueArray, media_query_name_array = {} )
+defineMarginLeftMediaClasses( valueArray, mediaQueryNameArray = {} )
 
-    for media_query_name in media_query_name_array
+    for mediaQueryName in mediaQueryNameArray
         for value in valueArray
-            @media mediaQueryMap[ media_query_name ]
-                .margin-left-{ value }-{ media_query_name }
+            @media mediaQueryMap[ mediaQueryName ]
+                .margin-left-{ value }-{ mediaQueryName }
                     margin-left: value * 0.01rem;
 
 // ~~
 
-defineMarginLeftHoverMediaClasses( valueArray, media_query_name_array = {} )
+defineMarginLeftHoverMediaClasses( valueArray, mediaQueryNameArray = {} )
 
-    for media_query_name in media_query_name_array
+    for mediaQueryName in mediaQueryNameArray
         for value in valueArray
-            @media mediaQueryMap[ media_query_name ]
-                .margin-left-{ value }-hover-{ media_query_name }:hover
+            @media mediaQueryMap[ mediaQueryName ]
+                .margin-left-{ value }-hover-{ mediaQueryName }:hover
                     margin-left: value * 0.01rem;
 
 // ~~
@@ -537,22 +537,22 @@ defineMarginRightHoverClasses( valueArray )
 
 // ~~
 
-defineMarginRightMediaClasses( valueArray, media_query_name_array = {} )
+defineMarginRightMediaClasses( valueArray, mediaQueryNameArray = {} )
 
-    for media_query_name in media_query_name_array
+    for mediaQueryName in mediaQueryNameArray
         for value in valueArray
-            @media mediaQueryMap[ media_query_name ]
-                .margin-right-{ value }-{ media_query_name }
+            @media mediaQueryMap[ mediaQueryName ]
+                .margin-right-{ value }-{ mediaQueryName }
                     margin-right: value * 0.01rem;
 
 // ~~
 
-defineMarginRightHoverMediaClasses( valueArray, media_query_name_array = {} )
+defineMarginRightHoverMediaClasses( valueArray, mediaQueryNameArray = {} )
 
-    for media_query_name in media_query_name_array
+    for mediaQueryName in mediaQueryNameArray
         for value in valueArray
-            @media mediaQueryMap[ media_query_name ]
-                .margin-right-{ value }-hover-{ media_query_name }:hover
+            @media mediaQueryMap[ mediaQueryName ]
+                .margin-right-{ value }-hover-{ mediaQueryName }:hover
                     margin-right: value * 0.01rem;
 
 // ~~
@@ -575,23 +575,23 @@ defineMarginVerticalClasses( valueArray )
 
 // ~~
 
-defineMarginVerticalMediaClasses( valueArray, media_query_name_array = {} )
+defineMarginVerticalMediaClasses( valueArray, mediaQueryNameArray = {} )
 
-    for media_query_name in media_query_name_array
+    for mediaQueryName in mediaQueryNameArray
         for value in valueArray
-            @media mediaQueryMap[ media_query_name ]
-                .margin-vertical-{ value }-{ media_query_name }
+            @media mediaQueryMap[ mediaQueryName ]
+                .margin-vertical-{ value }-{ mediaQueryName }
                     margin-top: value * 0.01rem;
                     margin-bottom: value * 0.01rem;
 
 // ~~
 
-defineMarginVerticalHoverMediaClasses( valueArray, media_query_name_array = {} )
+defineMarginVerticalHoverMediaClasses( valueArray, mediaQueryNameArray = {} )
 
-    for media_query_name in media_query_name_array
+    for mediaQueryName in mediaQueryNameArray
         for value in valueArray
-            @media mediaQueryMap[ media_query_name ]
-                .margin-vertical-{ value }-hover-{ media_query_name }:hover
+            @media mediaQueryMap[ mediaQueryName ]
+                .margin-vertical-{ value }-hover-{ mediaQueryName }:hover
                     margin-top: value * 0.01rem;
                     margin-bottom: value * 0.01rem;
 
@@ -615,25 +615,456 @@ defineMarginLateralHoverClasses( valueArray )
 
 // ~~
 
-defineMarginLateralMediaClasses( valueArray, media_query_name_array = {} )
+defineMarginLateralMediaClasses( valueArray, mediaQueryNameArray = {} )
 
-    for media_query_name in media_query_name_array
+    for mediaQueryName in mediaQueryNameArray
         for value in valueArray
-            @media mediaQueryMap[ media_query_name ]
-                .margin-lateral-{ value }-{ media_query_name }
+            @media mediaQueryMap[ mediaQueryName ]
+                .margin-lateral-{ value }-{ mediaQueryName }
                     margin-left: value * 0.01rem;
                     margin-right: value * 0.01rem;
 
 // ~~
 
-defineMarginLateralHoverMediaClasses( valueArray, media_query_name_array = {} )
+defineMarginLateralHoverMediaClasses( valueArray, mediaQueryNameArray = {} )
 
-    for media_query_name in media_query_name_array
+    for mediaQueryName in mediaQueryNameArray
         for value in valueArray
-            @media mediaQueryMap[ media_query_name ]
-                .margin-lateral-{ value }-hover-{ media_query_name }:hover
+            @media mediaQueryMap[ mediaQueryName ]
+                .margin-lateral-{ value }-hover-{ mediaQueryName }:hover
                     margin-left: value * 0.01rem;
                     margin-right: value * 0.01rem;
+
+// ~~
+
+defineSizeClasses( valueArray )
+
+    for value in valueArray
+        .size-{ value }
+            height: value * 0.01rem;
+            width: value * 0.01rem;
+
+// ~~
+
+defineSizeHoverClasses( valueArray )
+
+    for value in valueArray
+        .size-{ value }-hover:hover
+            height: value * 0.01rem;
+            width: value * 0.01rem;
+
+// ~~
+
+defineSizeMediaClasses( valueArray, mediaQueryNameArray = {} )
+
+    for mediaQueryName in mediaQueryNameArray
+        for value in valueArray
+            @media mediaQueryMap[ mediaQueryName ]
+                .size-{ value }-{ mediaQueryName }
+                    height: value * 0.01rem;
+                    width: value * 0.01rem;
+
+// ~~
+
+defineSizeHoverMediaClasses( valueArray, mediaQueryNameArray = {} )
+
+    for mediaQueryName in mediaQueryNameArray
+        for value in valueArray
+            @media mediaQueryMap[ mediaQueryName ]
+                .size-{ value }-hover-{ mediaQueryName }:hover
+                    height: value * 0.01rem;
+                    width: value * 0.01rem;
+
+// ~~
+
+defineHeightClasses( valueArray )
+
+    for value in valueArray
+        .height-{ value }
+            height: value * 0.01rem;
+
+// ~~
+
+defineHeightHoverClasses( valueArray )
+
+    for value in valueArray
+        .height-{ value }-hover:hover
+            height: value * 0.01rem;
+
+// ~~
+
+defineHeightMediaClasses( valueArray, mediaQueryNameArray = {} )
+
+    for mediaQueryName in mediaQueryNameArray
+        for value in valueArray
+            @media mediaQueryMap[ mediaQueryName ]
+                .height-{ value }-{ mediaQueryName }
+                    height: value * 0.01rem;
+
+// ~~
+
+defineHeightHoverMediaClasses( valueArray, mediaQueryNameArray = {} )
+
+    for mediaQueryName in mediaQueryNameArray
+        for value in valueArray
+            @media mediaQueryMap[ mediaQueryName ]
+                .height-{ value }-hover-{ mediaQueryName }:hover
+                    height: value * 0.01rem;
+
+// ~~
+
+defineMinHeightClasses( valueArray )
+
+    for value in valueArray
+        .min-height-{ value }
+            min-height: value * 0.01rem;
+
+// ~~
+
+defineMinHeightHoverClasses( valueArray )
+
+    for value in valueArray
+        .min-height-{ value }-hover:hover
+            min-height: value * 0.01rem;
+
+// ~~
+
+defineMinHeightMediaClasses( valueArray, mediaQueryNameArray = {} )
+
+    for mediaQueryName in mediaQueryNameArray
+        for value in valueArray
+            @media mediaQueryMap[ mediaQueryName ]
+                .min-height-{ value }-{ mediaQueryName }
+                    min-height: value * 0.01rem;
+
+// ~~
+
+defineMinHeightHoverMediaClasses( valueArray, mediaQueryNameArray = {} )
+
+    for mediaQueryName in mediaQueryNameArray
+        for value in valueArray
+            @media mediaQueryMap[ mediaQueryName ]
+                .min-height-{ value }-hover-{ mediaQueryName }:hover
+                    min-height: value * 0.01rem;
+
+// ~~
+
+defineMaxHeightClasses( valueArray )
+
+    for value in valueArray
+        .max-height-{ value }
+            max-height: value * 0.01rem;
+
+// ~~
+
+defineMaxHeightHoverClasses( valueArray )
+
+    for value in valueArray
+        .max-height-{ value }-hover:hover
+            max-height: value * 0.01rem;
+
+// ~~
+
+defineMaxHeightMediaClasses( valueArray, mediaQueryNameArray = {} )
+
+    for mediaQueryName in mediaQueryNameArray
+        for value in valueArray
+            @media mediaQueryMap[ mediaQueryName ]
+                .max-height-{ value }-{ mediaQueryName }
+                    max-height: value * 0.01rem;
+
+// ~~
+
+defineMaxHeightHoverMediaClasses( valueArray, mediaQueryNameArray = {} )
+
+    for mediaQueryName in mediaQueryNameArray
+        for value in valueArray
+            @media mediaQueryMap[ mediaQueryName ]
+                .max-height-{ value }-hover-{ mediaQueryName }:hover
+                    max-height: value * 0.01rem;
+
+// ~~
+
+defineWidthClasses( valueArray )
+
+    for value in valueArray
+        .width-{ value }
+            width: value * 0.01rem;
+
+// ~~
+
+defineWidthHoverClasses( valueArray )
+
+    for value in valueArray
+        .width-{ value }-hover:hover
+            width: value * 0.01rem;
+
+// ~~
+
+defineWidthMediaClasses( valueArray, mediaQueryNameArray = {} )
+
+    for mediaQueryName in mediaQueryNameArray
+        for value in valueArray
+            @media mediaQueryMap[ mediaQueryName ]
+                .width-{ value }-{ mediaQueryName }
+                    width: value * 0.01rem;
+
+// ~~
+
+defineWidthHoverMediaClasses( valueArray, mediaQueryNameArray = {} )
+
+    for mediaQueryName in mediaQueryNameArray
+        for value in valueArray
+            @media mediaQueryMap[ mediaQueryName ]
+                .width-{ value }-hover-{ mediaQueryName }:hover
+                    width: value * 0.01rem;
+
+// ~~
+
+defineMinWidthClasses( valueArray )
+
+    for value in valueArray
+        .min-width-{ value }
+            min-width: value * 0.01rem;
+
+// ~~
+
+defineMinWidthHoverClasses( valueArray )
+
+    for value in valueArray
+        .min-width-{ value }-hover:hover
+            min-width: value * 0.01rem;
+
+// ~~
+
+defineMinWidthMediaClasses( valueArray, mediaQueryNameArray = {} )
+
+    for mediaQueryName in mediaQueryNameArray
+        for value in valueArray
+            @media mediaQueryMap[ mediaQueryName ]
+                .min-width-{ value }-{ mediaQueryName }
+                    min-width: value * 0.01rem;
+
+// ~~
+
+defineMinWidthHoverMediaClasses( valueArray, mediaQueryNameArray = {} )
+
+    for mediaQueryName in mediaQueryNameArray
+        for value in valueArray
+            @media mediaQueryMap[ mediaQueryName ]
+                .min-width-{ value }-hover-{ mediaQueryName }:hover
+                    min-width: value * 0.01rem;
+
+// ~~
+
+defineMaxWidthClasses( valueArray )
+
+    for value in valueArray
+        .max-width-{ value }
+            max-width: value * 0.01rem;
+
+// ~~
+
+defineMaxWidthHoverClasses( valueArray )
+
+    for value in valueArray
+        .max-width-{ value }-hover:hover
+            max-width: value * 0.01rem;
+
+// ~~
+
+defineMaxWidthMediaClasses( valueArray, mediaQueryNameArray = {} )
+
+    for mediaQueryName in mediaQueryNameArray
+        for value in valueArray
+            @media mediaQueryMap[ mediaQueryName ]
+                .max-width-{ value }-{ mediaQueryName }
+                    max-width: value * 0.01rem;
+
+// ~~
+
+defineMaxWidthHoverMediaClasses( valueArray, mediaQueryNameArray = {} )
+
+    for mediaQueryName in mediaQueryNameArray
+        for value in valueArray
+            @media mediaQueryMap[ mediaQueryName ]
+                .max-width-{ value }-hover-{ mediaQueryName }:hover
+                    max-width: value * 0.01rem;
+
+// ~~
+
+defineBorderWidthClasses( valueArray )
+
+    for value in valueArray
+        .border-width-{ value }
+            border-width: value * 0.01rem;
+
+// ~~
+
+defineBorderWidthHoverClasses( valueArray )
+
+    for value in valueArray
+        .border-width-{ value }-hover:hover
+            border-width: value * 0.01rem;
+
+// ~~
+
+defineBorderWidthMediaClasses( valueArray, mediaQueryNameArray = {} )
+
+    for mediaQueryName in mediaQueryNameArray
+        for value in valueArray
+            @media mediaQueryMap[ mediaQueryName ]
+                .border-width-{ value }-{ mediaQueryName }
+                    border-width: value * 0.01rem;
+
+// ~~
+
+defineBorderWidthHoverMediaClasses( valueArray, mediaQueryNameArray = {} )
+
+    for mediaQueryName in mediaQueryNameArray
+        for value in valueArray
+            @media mediaQueryMap[ mediaQueryName ]
+                .border-width-{ value }-hover-{ mediaQueryName }:hover
+                    border-width: value * 0.01rem;
+
+// ~~
+
+defineBorderStyleClasses( valueArray )
+
+    for value in valueArray
+        .border-style-{ value }
+            border-style: value;
+
+// ~~
+
+defineBorderStyleHoverClasses( valueArray )
+
+    for value in valueArray
+        .border-style-{ value }-hover:hover
+            border-style: value;
+
+// ~~
+
+defineBorderStyleMediaClasses( valueArray, mediaQueryNameArray = {} )
+
+    for mediaQueryName in mediaQueryNameArray
+        for value in valueArray
+            @media mediaQueryMap[ mediaQueryName ]
+                .border-style-{ value }-{ mediaQueryName }
+                    border-style: value;
+
+// ~~
+
+defineBorderStyleHoverMediaClasses( valueArray, mediaQueryNameArray = {} )
+
+    for mediaQueryName in mediaQueryNameArray
+        for value in valueArray
+            @media mediaQueryMap[ mediaQueryName ]
+                .border-style-{ value }-hover-{ mediaQueryName }:hover
+                    border-style: value;
+
+// ~~
+
+defineBorderColorClass( className, colorName )
+
+    .border-color-{ className }
+        border-color: lookup( colorName + 'Color' );
+
+// ~~
+
+defineBorderColorHoverClass( className, colorName )
+
+    .border-color-{ className }-hover:hover
+        border-color: lookup( colorName + 'Color' );
+
+// ~~
+
+defineBorderColorMediaClass( className, colorName, mediaQueryNameArray = {} )
+
+    for mediaQueryName in mediaQueryNameArray
+        @media mediaQueryMap[ mediaQueryName ]
+            .border-color-{ className }-{mediaQueryName}
+                border-color: lookup( colorName + 'Color' );
+
+// ~~
+
+defineBorderColorHoverMediaClass( className, colorName, mediaQueryNameArray = {} )
+
+    for mediaQueryName in mediaQueryNameArray
+        @media mediaQueryMap[ mediaQueryName ]
+            .border-color-{ className }-hover-{mediaQueryName}:hover
+                border-color: lookup( colorName + 'Color' );
+
+// ~~
+
+defineBorderColorClasses( className, colorName, valueArray )
+
+    for value in valueArray
+        .border-color-{ className }-{ value }
+            border-color: lookup( colorName + 'Color' + value );
+
+// ~~
+
+defineBorderColorHoverClasses( className, colorName, valueArray )
+
+    for value in valueArray
+        .border-color-{ className }-{ value }-hover:hover
+            border-color: lookup( colorName + 'Color' + value );
+
+// ~~
+
+defineBorderColorMediaClasses( className, colorName, valueArray, mediaQueryNameArray = {} )
+
+    for mediaQueryName in mediaQueryNameArray
+        for value in valueArray
+            @media mediaQueryMap[ mediaQueryName ]
+                .border-color-{ className }-{ value }-{ mediaQueryName }
+                    border-color: lookup( colorName + 'Color' + value );
+
+// ~~
+
+defineBorderColorHoverMediaClasses( className, colorName, valueArray, mediaQueryNameArray = {} )
+
+    for mediaQueryName in mediaQueryNameArray
+        for value in valueArray
+            @media mediaQueryMap[ mediaQueryName ]
+                .border-color-{ className }-{ value }-hover-{ mediaQueryName }:hover
+                    border-color: lookup( colorName + 'Color' + value );
+
+// ~~
+
+defineBorderRadiusClasses( valueArray )
+
+    for value in valueArray
+        .border-radius-{ value }
+            border-radius: value * 0.01rem;
+
+// ~~
+
+defineBorderRadiusHoverClasses( valueArray )
+
+    for value in valueArray
+        .border-radius-{ value }-hover:hover
+            border-radius: value * 0.01rem;
+
+// ~~
+
+defineBorderRadiusMediaClasses( valueArray, mediaQueryNameArray = {} )
+
+    for mediaQueryName in mediaQueryNameArray
+        for value in valueArray
+            @media mediaQueryMap[ mediaQueryName ]
+                .border-radius-{ value }-{ mediaQueryName }
+                    border-radius: value * 0.01rem;
+// ~~
+
+defineBorderRadiusHoverMediaClasses( valueArray, mediaQueryNameArray = {} )
+
+    for mediaQueryName in mediaQueryNameArray
+        for value in valueArray
+            @media mediaQueryMap[ mediaQueryName ]
+                .border-radius-{ value }-hover-{ mediaQueryName }:hover
+                    border-radius: value * 0.01rem;
 
 // ~~
 
@@ -653,22 +1084,22 @@ definePaddingHoverClasses( valueArray )
 
 // ~~
 
-definePaddingMediaClasses( valueArray, media_query_name_array = {} )
+definePaddingMediaClasses( valueArray, mediaQueryNameArray = {} )
 
-    for media_query_name in media_query_name_array
+    for mediaQueryName in mediaQueryNameArray
         for value in valueArray
-            @media mediaQueryMap[ media_query_name ]
-                .padding-{ value }-{ media_query_name }
+            @media mediaQueryMap[ mediaQueryName ]
+                .padding-{ value }-{ mediaQueryName }
                     padding: value * 0.01rem;
 
 // ~~
 
-definePaddingHoverMediaClasses( valueArray, media_query_name_array = {} )
+definePaddingHoverMediaClasses( valueArray, mediaQueryNameArray = {} )
 
-    for media_query_name in media_query_name_array
+    for mediaQueryName in mediaQueryNameArray
         for value in valueArray
-            @media mediaQueryMap[ media_query_name ]
-                .padding-{ value }-hover-{ media_query_name }:hover
+            @media mediaQueryMap[ mediaQueryName ]
+                .padding-{ value }-hover-{ mediaQueryName }:hover
                     padding: value * 0.01rem;
 
 // ~~
@@ -689,22 +1120,22 @@ definePaddingTopHoverClasses( valueArray )
 
 // ~~
 
-definePaddingTopMediaClasses( valueArray, media_query_name_array = {} )
+definePaddingTopMediaClasses( valueArray, mediaQueryNameArray = {} )
 
-    for media_query_name in media_query_name_array
+    for mediaQueryName in mediaQueryNameArray
         for value in valueArray
-            @media mediaQueryMap[ media_query_name ]
-                .padding-top-{ value }-{ media_query_name }
+            @media mediaQueryMap[ mediaQueryName ]
+                .padding-top-{ value }-{ mediaQueryName }
                     padding-top: value * 0.01rem;
 
 // ~~
 
-definePaddingTopHoverMediaClasses( valueArray, media_query_name_array = {} )
+definePaddingTopHoverMediaClasses( valueArray, mediaQueryNameArray = {} )
 
-    for media_query_name in media_query_name_array
+    for mediaQueryName in mediaQueryNameArray
         for value in valueArray
-            @media mediaQueryMap[ media_query_name ]
-                .padding-top-{ value }-hover-{ media_query_name }:hover
+            @media mediaQueryMap[ mediaQueryName ]
+                .padding-top-{ value }-hover-{ mediaQueryName }:hover
                     padding-top: value * 0.01rem;
 
 // ~~
@@ -725,22 +1156,22 @@ definePaddingBottomHoverClasses( valueArray )
 
 // ~~
 
-definePaddingBottomMediaClasses( valueArray, media_query_name_array = {} )
+definePaddingBottomMediaClasses( valueArray, mediaQueryNameArray = {} )
 
-    for media_query_name in media_query_name_array
+    for mediaQueryName in mediaQueryNameArray
         for value in valueArray
-            @media mediaQueryMap[ media_query_name ]
-                .padding-bottom-{ value }-{ media_query_name }
+            @media mediaQueryMap[ mediaQueryName ]
+                .padding-bottom-{ value }-{ mediaQueryName }
                     padding-bottom: value * 0.01rem;
 
 // ~~
 
-definePaddingBottomHoverMediaClasses( valueArray, media_query_name_array = {} )
+definePaddingBottomHoverMediaClasses( valueArray, mediaQueryNameArray = {} )
 
-    for media_query_name in media_query_name_array
+    for mediaQueryName in mediaQueryNameArray
         for value in valueArray
-            @media mediaQueryMap[ media_query_name ]
-                .padding-bottom-{ value }-hover-{ media_query_name }:hover
+            @media mediaQueryMap[ mediaQueryName ]
+                .padding-bottom-{ value }-hover-{ mediaQueryName }:hover
                     padding-bottom: value * 0.01rem;
 
 // ~~
@@ -761,22 +1192,22 @@ definePaddingLeftHoverClasses( valueArray )
 
 // ~~
 
-definePaddingLeftMediaClasses( valueArray, media_query_name_array = {} )
+definePaddingLeftMediaClasses( valueArray, mediaQueryNameArray = {} )
 
-    for media_query_name in media_query_name_array
+    for mediaQueryName in mediaQueryNameArray
         for value in valueArray
-            @media mediaQueryMap[ media_query_name ]
-                .padding-left-{ value }-{ media_query_name }
+            @media mediaQueryMap[ mediaQueryName ]
+                .padding-left-{ value }-{ mediaQueryName }
                     padding-left: value * 0.01rem;
 
 // ~~
 
-definePaddingLeftHoverMediaClasses( valueArray, media_query_name_array = {} )
+definePaddingLeftHoverMediaClasses( valueArray, mediaQueryNameArray = {} )
 
-    for media_query_name in media_query_name_array
+    for mediaQueryName in mediaQueryNameArray
         for value in valueArray
-            @media mediaQueryMap[ media_query_name ]
-                .padding-left-{ value }-hover-{ media_query_name }:hover
+            @media mediaQueryMap[ mediaQueryName ]
+                .padding-left-{ value }-hover-{ mediaQueryName }:hover
                     padding-left: value * 0.01rem;
 
 // ~~
@@ -797,22 +1228,22 @@ definePaddingRightHoverClasses( valueArray )
 
 // ~~
 
-definePaddingRightMediaClasses( valueArray, media_query_name_array = {} )
+definePaddingRightMediaClasses( valueArray, mediaQueryNameArray = {} )
 
-    for media_query_name in media_query_name_array
+    for mediaQueryName in mediaQueryNameArray
         for value in valueArray
-            @media mediaQueryMap[ media_query_name ]
-                .padding-right-{ value }-{ media_query_name }
+            @media mediaQueryMap[ mediaQueryName ]
+                .padding-right-{ value }-{ mediaQueryName }
                     padding-right: value * 0.01rem;
 
 // ~~
 
-definePaddingRightHoverMediaClasses( valueArray, media_query_name_array = {} )
+definePaddingRightHoverMediaClasses( valueArray, mediaQueryNameArray = {} )
 
-    for media_query_name in media_query_name_array
+    for mediaQueryName in mediaQueryNameArray
         for value in valueArray
-            @media mediaQueryMap[ media_query_name ]
-                .padding-right-{ value }-hover-{ media_query_name }:hover
+            @media mediaQueryMap[ mediaQueryName ]
+                .padding-right-{ value }-hover-{ mediaQueryName }:hover
                     padding-right: value * 0.01rem;
 
 // ~~
@@ -835,23 +1266,23 @@ definePaddingVerticalHoverClasses( valueArray )
 
 // ~~
 
-definePaddingVerticalMediaClasses( valueArray, media_query_name_array = {} )
+definePaddingVerticalMediaClasses( valueArray, mediaQueryNameArray = {} )
 
-    for media_query_name in media_query_name_array
+    for mediaQueryName in mediaQueryNameArray
         for value in valueArray
-            @media mediaQueryMap[ media_query_name ]
-                .padding-vertical-{ value }-{ media_query_name }
+            @media mediaQueryMap[ mediaQueryName ]
+                .padding-vertical-{ value }-{ mediaQueryName }
                     padding-top: value * 0.01rem;
                     padding-bottom: value * 0.01rem;
 
 // ~~
 
-definePaddingVerticalHoverMediaClasses( valueArray, media_query_name_array = {} )
+definePaddingVerticalHoverMediaClasses( valueArray, mediaQueryNameArray = {} )
 
-    for media_query_name in media_query_name_array
+    for mediaQueryName in mediaQueryNameArray
         for value in valueArray
-            @media mediaQueryMap[ media_query_name ]
-                .padding-vertical-{ value }-hover-{ media_query_name }:hover
+            @media mediaQueryMap[ mediaQueryName ]
+                .padding-vertical-{ value }-hover-{ mediaQueryName }:hover
                     padding-top: value * 0.01rem;
                     padding-bottom: value * 0.01rem;
 
@@ -875,23 +1306,23 @@ definePaddingLateralHoverClasses( valueArray )
 
 // ~~
 
-definePaddingLateralMediaClasses( valueArray, media_query_name_array = {} )
+definePaddingLateralMediaClasses( valueArray, mediaQueryNameArray = {} )
 
-    for media_query_name in media_query_name_array
+    for mediaQueryName in mediaQueryNameArray
         for value in valueArray
-            @media mediaQueryMap[ media_query_name ]
-                .padding-lateral-{ value }-{ media_query_name }
+            @media mediaQueryMap[ mediaQueryName ]
+                .padding-lateral-{ value }-{ mediaQueryName }
                     padding-left: value * 0.01rem;
                     padding-right: value * 0.01rem;
 
 // ~~
 
-definePaddingLateralHoverMediaClasses( valueArray, media_query_name_array = {} )
+definePaddingLateralHoverMediaClasses( valueArray, mediaQueryNameArray = {} )
 
-    for media_query_name in media_query_name_array
+    for mediaQueryName in mediaQueryNameArray
         for value in valueArray
-            @media mediaQueryMap[ media_query_name ]
-                .padding-lateral-{ value }-hover-{ media_query_name }:hover
+            @media mediaQueryMap[ mediaQueryName ]
+                .padding-lateral-{ value }-hover-{ mediaQueryName }:hover
                     padding-left: value * 0.01rem;
                     padding-right: value * 0.01rem;
 
@@ -913,22 +1344,22 @@ defineTextAlignHoverClasses( valueArray )
 
 // ~~
 
-defineTextAlignMediaClasses( valueArray, media_query_name_array = {} )
+defineTextAlignMediaClasses( valueArray, mediaQueryNameArray = {} )
 
-    for media_query_name in media_query_name_array
+    for mediaQueryName in mediaQueryNameArray
         for value in valueArray
-            @media mediaQueryMap[ media_query_name ]
-                .text-align-{ value }-{ media_query_name }
+            @media mediaQueryMap[ mediaQueryName ]
+                .text-align-{ value }-{ mediaQueryName }
                     text-align: unquote( value );
 
 // ~~
 
-defineTextAlignHoverMediaClasses( valueArray, media_query_name_array = {} )
+defineTextAlignHoverMediaClasses( valueArray, mediaQueryNameArray = {} )
 
-    for media_query_name in media_query_name_array
+    for mediaQueryName in mediaQueryNameArray
         for value in valueArray
-            @media mediaQueryMap[ media_query_name ]
-                .text-align-{ value }-hover-{ media_query_name }:hover
+            @media mediaQueryMap[ mediaQueryName ]
+                .text-align-{ value }-hover-{ mediaQueryName }:hover
                     text-align: unquote( value );
 
 // ~~
@@ -949,22 +1380,22 @@ defineFontSizeHoverClasses( valueArray )
 
 // ~~
 
-defineFontSizeMediaClasses( valueArray, media_query_name_array = {} )
+defineFontSizeMediaClasses( valueArray, mediaQueryNameArray = {} )
 
-    for media_query_name in media_query_name_array
+    for mediaQueryName in mediaQueryNameArray
         for value in valueArray
-            @media mediaQueryMap[ media_query_name ]
-                .font-size-{ value }-{ media_query_name }
+            @media mediaQueryMap[ mediaQueryName ]
+                .font-size-{ value }-{ mediaQueryName }
                     font-size: value * 0.01rem;
 
 // ~~
 
-defineFontSizeHoverMediaClasses( valueArray, media_query_name_array = {} )
+defineFontSizeHoverMediaClasses( valueArray, mediaQueryNameArray = {} )
 
-    for media_query_name in media_query_name_array
+    for mediaQueryName in mediaQueryNameArray
         for value in valueArray
-            @media mediaQueryMap[ media_query_name ]
-                .font-size-{ value }-hover-{ media_query_name }:hover
+            @media mediaQueryMap[ mediaQueryName ]
+                .font-size-{ value }-hover-{ mediaQueryName }:hover
                     font-size: value * 0.01rem;
 
 // ~~
@@ -985,22 +1416,22 @@ defineFontWeightHoverClasses( valueArray )
 
 // ~~
 
-defineFontWeightMediaClasses( valueArray, media_query_name_array = {} )
+defineFontWeightMediaClasses( valueArray, mediaQueryNameArray = {} )
 
-    for media_query_name in media_query_name_array
+    for mediaQueryName in mediaQueryNameArray
         for value in valueArray
-            @media mediaQueryMap[ media_query_name ]
-                .font-weight-{ value }-{ media_query_name }
+            @media mediaQueryMap[ mediaQueryName ]
+                .font-weight-{ value }-{ mediaQueryName }
                     font-weight: value;
 
 // ~~
 
-defineFontWeightHoverMediaClasses( valueArray, media_query_name_array = {} )
+defineFontWeightHoverMediaClasses( valueArray, mediaQueryNameArray = {} )
 
-    for media_query_name in media_query_name_array
+    for mediaQueryName in mediaQueryNameArray
         for value in valueArray
-            @media mediaQueryMap[ media_query_name ]
-                .font-weight-{ value }-hover-{ media_query_name }:hover
+            @media mediaQueryMap[ mediaQueryName ]
+                .font-weight-{ value }-hover-{ mediaQueryName }:hover
                     font-weight: value;
 
 // ~~
@@ -1019,21 +1450,21 @@ defineColorHoverClass( className, colorName )
 
 // ~~
 
-defineColorMediaClass( className, colorName, media_query_name_array = {} )
+defineColorMediaClass( className, colorName, mediaQueryNameArray = {} )
 
-    for media_query_name in media_query_name_array
-        @media mediaQueryMap[ media_query_name ]
-            .color-{ className }-{media_query_name}
-                color: lookup( colorName + 'Color' );-{ media_query_name }
+    for mediaQueryName in mediaQueryNameArray
+        @media mediaQueryMap[ mediaQueryName ]
+            .color-{ className }-{mediaQueryName}
+                color: lookup( colorName + 'Color' );
 
 // ~~
 
-defineColorHoverMediaClass( className, colorName, media_query_name_array = {} )
+defineColorHoverMediaClass( className, colorName, mediaQueryNameArray = {} )
 
-    for media_query_name in media_query_name_array
-        @media mediaQueryMap[ media_query_name ]
-            .color-{ className }-{media_query_name}-hover:hover
-                color: lookup( colorName + 'Color' );-{ media_query_name }
+    for mediaQueryName in mediaQueryNameArray
+        @media mediaQueryMap[ mediaQueryName ]
+            .color-{ className }-{mediaQueryName}-hover:hover
+                color: lookup( colorName + 'Color' );
 
 // ~~
 
@@ -1053,197 +1484,157 @@ defineColorHoverClasses( className, colorName, valueArray )
 
 // ~~
 
-defineColorMediaClasses( className, colorName, valueArray, media_query_name_array = {} )
+defineColorMediaClasses( className, colorName, valueArray, mediaQueryNameArray = {} )
 
-    for media_query_name in media_query_name_array
+    for mediaQueryName in mediaQueryNameArray
         for value in valueArray
-            @media mediaQueryMap[ media_query_name ]
-                .color-{ className }-{ value }-{ media_query_name }
+            @media mediaQueryMap[ mediaQueryName ]
+                .color-{ className }-{ value }-{ mediaQueryName }
                     color: lookup( colorName + 'Color' + value );
 // ~~
 
-defineColorHoverMediaClasses( className, colorName, valueArray, media_query_name_array = {} )
+defineColorHoverMediaClasses( className, colorName, valueArray, mediaQueryNameArray = {} )
 
-    for media_query_name in media_query_name_array
+    for mediaQueryName in mediaQueryNameArray
         for value in valueArray
-            @media mediaQueryMap[ media_query_name ]
-                .color-{ className }-{ value }-hover-{ media_query_name }:hover
+            @media mediaQueryMap[ mediaQueryName ]
+                .color-{ className }-{ value }-hover-{ mediaQueryName }:hover
                     color: lookup( colorName + 'Color' + value );
 // ~~
 
-defineBorderWidthClasses( valueArray )
+defineBackgroundColorClass( className, colorName )
+
+    .background-color-{ className }
+        background-color: lookup( colorName + 'Color' );
+
+// ~~
+
+defineBackgroundColorHoverClass( className, colorName )
+
+    .background-color-{ className }-hover:hover
+        background-color: lookup( colorName + 'Color' );
+
+// ~~
+
+defineBackgroundColorMediaClass( className, colorName, mediaQueryNameArray = {} )
+
+    for mediaQueryName in mediaQueryNameArray
+        @media mediaQueryMap[ mediaQueryName ]
+            .background-color-{ className }-{mediaQueryName}
+                background-color: lookup( colorName + 'Color' );
+
+// ~~
+
+defineBackgroundColorHoverMediaClass( className, colorName, mediaQueryNameArray = {} )
+
+    for mediaQueryName in mediaQueryNameArray
+        @media mediaQueryMap[ mediaQueryName ]
+            .background-color-{ className }-{mediaQueryName}-hover:hover
+                background-color: lookup( colorName + 'Color' );
+
+// ~~
+
+defineBackgroundColorClasses( className, colorName, valueArray )
 
     for value in valueArray
-        .border-width-{ value }
-            border-width: value * 0.01rem;
+        .background-color-{ className }-{ value }
+            background-color: lookup( colorName + 'Color' + value );
 
 // ~~
 
-defineBorderWidthHoverClasses( valueArray )
+defineBackgroundColorHoverClasses( className, colorName, valueArray )
 
     for value in valueArray
-        .border-width-{ value }-hover:hover
-            border-width: value * 0.01rem;
+        .background-color-{ className }-{ value }-hover:hover
+            background-color: lookup( colorName + 'Color' + value );
 
 // ~~
 
-defineBorderWidthMediaClasses( valueArray, media_query_name_array = {} )
+defineBackgroundColorMediaClasses( className, colorName, valueArray, mediaQueryNameArray = {} )
 
-    for media_query_name in media_query_name_array
+    for mediaQueryName in mediaQueryNameArray
         for value in valueArray
-            @media mediaQueryMap[ media_query_name ]
-                .border-width-{ value }-{ media_query_name }
-                    border-width: value * 0.01rem;
-
+            @media mediaQueryMap[ mediaQueryName ]
+                .background-color-{ className }-{ value }-{ mediaQueryName }
+                    background-color: lookup( colorName + 'Color' + value );
 // ~~
 
-defineBorderWidthHoverMediaClasses( valueArray, media_query_name_array = {} )
+defineBackgroundColorHoverMediaClasses( className, colorName, valueArray, mediaQueryNameArray = {} )
 
-    for media_query_name in media_query_name_array
+    for mediaQueryName in mediaQueryNameArray
         for value in valueArray
-            @media mediaQueryMap[ media_query_name ]
-                .border-width-{ value }-hover-{ media_query_name }:hover
-                    border-width: value * 0.01rem;
+            @media mediaQueryMap[ mediaQueryName ]
+                .background-color-{ className }-{ value }-hover-{ mediaQueryName }:hover
+                    background-color: lookup( colorName + 'Color' + value );
 
 // ~~
 
-defineBorderStyleClasses( valueArray )
+defineIconClass( className, imageUrl )
 
-    for value in valueArray
-        .border-style-{ value }
-            border-style: value;
-
-// ~~
-
-defineBorderStyleHoverClasses( valueArray )
-
-    for value in valueArray
-        .border-style-{ value }-hover:hover
-            border-style: value;
+    .{ className }-icon
+        background: url( imageUrl ) no-repeat center center / contain;
 
 // ~~
 
-defineBorderStyleMediaClasses( valueArray, media_query_name_array = {} )
+defineIconHoverClass( className, imageUrl )
 
-    for media_query_name in media_query_name_array
-        for value in valueArray
-            @media mediaQueryMap[ media_query_name ]
-                .border-style-{ value }-{ media_query_name }
-                    border-style: value;
+    .{ className }-icon-hover:hover
+        background: url( imageUrl ) no-repeat center center / contain;
 
 // ~~
 
-defineBorderStyleHoverMediaClasses( valueArray, media_query_name_array = {} )
+defineIconMediaClass( className, imageUrl, mediaQueryNameArray = {} )
 
-    for media_query_name in media_query_name_array
-        for value in valueArray
-            @media mediaQueryMap[ media_query_name ]
-                .border-style-{ value }-hover-{ media_query_name }:hover
-                    border-style: value;
-
-// ~~
-
-defineBorderColorClass( className, colorName )
-
-    .border-color-{ className }
-        border-color: lookup( colorName + 'Color' );
+    for mediaQueryName in mediaQueryNameArray
+        @media mediaQueryMap[ mediaQueryName ]
+            .{ className }-icon-{mediaQueryName}
+                background: url( imageUrl ) no-repeat center center / contain;
 
 // ~~
 
-defineBorderColorHoverClass( className, colorName )
+defineIconHoverMediaClass( className, imageUrl, mediaQueryNameArray = {} )
 
-    .border-color-{ className }-hover:hover
-        border-color: lookup( colorName + 'Color' );
-
-// ~~
-
-defineBorderColorMediaClass( className, colorName, media_query_name_array = {} )
-
-    for media_query_name in media_query_name_array
-        @media mediaQueryMap[ media_query_name ]
-            .border-color-{ className }-{media_query_name}
-                border-color: lookup( colorName + 'Color' );-{ media_query_name }
+    for mediaQueryName in mediaQueryNameArray
+        @media mediaQueryMap[ mediaQueryName ]
+            .{ className }-icon-{mediaQueryName}-hover:hover
+                background: url( imageUrl ) no-repeat center center / contain;
 
 // ~~
 
-defineBorderColorHoverMediaClass( className, colorName, media_query_name_array = {} )
+defineColorIconClass( className, color, imageUrl )
 
-    for media_query_name in media_query_name_array
-        @media mediaQueryMap[ media_query_name ]
-            .border-color-{ className }-hover-{media_query_name}:hover
-                border-color: lookup( colorName + 'Color' );-{ media_query_name }
-
-// ~~
-
-defineBorderColorClasses( className, colorName, valueArray )
-
-    for value in valueArray
-        .border-color-{ className }-{ value }
-            border-color: lookup( colorName + 'Color' + value );
+    .{ className }-icon
+        background-color: color;
+        mask: url( imageUrl ) no-repeat center center / contain;
 
 // ~~
 
-defineBorderColorHoverClasses( className, colorName, valueArray )
+defineColorIconHoverClass( className, color, imageUrl )
 
-    for value in valueArray
-        .border-color-{ className }-{ value }-hover:hover
-            border-color: lookup( colorName + 'Color' + value );
-
-// ~~
-
-defineBorderColorMediaClasses( className, colorName, valueArray, media_query_name_array = {} )
-
-    for media_query_name in media_query_name_array
-        for value in valueArray
-            @media mediaQueryMap[ media_query_name ]
-                .border-color-{ className }-{ value }-{ media_query_name }
-                    border-color: lookup( colorName + 'Color' + value );
+    .{ className }-icon-hover:hover
+        background-color: color;
+        mask: url( imageUrl ) no-repeat center center / contain;
 
 // ~~
 
-defineBorderColorHoverMediaClasses( className, colorName, valueArray, media_query_name_array = {} )
+defineColorIconMediaClass( className, color, imageUrl, mediaQueryNameArray = {} )
 
-    for media_query_name in media_query_name_array
-        for value in valueArray
-            @media mediaQueryMap[ media_query_name ]
-                .border-color-{ className }-{ value }-hover-{ media_query_name }:hover
-                    border-color: lookup( colorName + 'Color' + value );
-
-// ~~
-
-defineBorderRadiusClasses( valueArray )
-
-    for value in valueArray
-        .border-radius-{ value }
-            border-radius: value * 0.01rem;
+    for mediaQueryName in mediaQueryNameArray
+        @media mediaQueryMap[ mediaQueryName ]
+            .{ className }-icon-{mediaQueryName}
+                background-color: color;
+                mask: url( imageUrl ) no-repeat center center / contain;
 
 // ~~
 
-defineBorderRadiusHoverClasses( valueArray )
+defineColorIconHoverMediaClass( className, color, imageUrl, mediaQueryNameArray = {} )
 
-    for value in valueArray
-        .border-radius-{ value }-hover:hover
-            border-radius: value * 0.01rem;
+    for mediaQueryName in mediaQueryNameArray
+        @media mediaQueryMap[ mediaQueryName ]
+            .{ className }-icon-{mediaQueryName}-hover:hover
+                background-color: color;
+                mask: url( imageUrl ) no-repeat center center / contain;
 
-// ~~
-
-defineBorderRadiusMediaClasses( valueArray, media_query_name_array = {} )
-
-    for media_query_name in media_query_name_array
-        for value in valueArray
-            @media mediaQueryMap[ media_query_name ]
-                .border-radius-{ value }-{ media_query_name }
-                    border-radius: value * 0.01rem;
-// ~~
-
-defineCursorClasses( valueArray )
-defineBorderRadiusHoverMediaClasses( valueArray, media_query_name_array = {} )
-
-    for media_query_name in media_query_name_array
-        for value in valueArray
-            @media mediaQueryMap[ media_query_name ]
-                .border-radius-{ value }-hover-{ media_query_name }:hover
-                    border-radius: value * 0.01rem;
 // ~~
 
 defineCursorClasses( valueArray )
@@ -1262,20 +1653,20 @@ defineCursorHoverClasses( valueArray )
 
 // ~~
 
-defineCursorMediaClasses( valueArray, media_query_name_array = {} )
+defineCursorMediaClasses( valueArray, mediaQueryNameArray = {} )
 
-    for media_query_name in media_query_name_array
+    for mediaQueryName in mediaQueryNameArray
         for value in valueArray
-            @media mediaQueryMap[ media_query_name ]
-                .cursor-{ value }-{ media_query_name }
+            @media mediaQueryMap[ mediaQueryName ]
+                .cursor-{ value }-{ mediaQueryName }
                     cursor: value;
 
 // ~~
 
-defineCursorHoverMediaClasses( valueArray, media_query_name_array = {} )
+defineCursorHoverMediaClasses( valueArray, mediaQueryNameArray = {} )
 
-    for media_query_name in media_query_name_array
+    for mediaQueryName in mediaQueryNameArray
         for value in valueArray
-            @media mediaQueryMap[ media_query_name ]
-                .cursor-{ value }-hover-{ media_query_name }:hover
+            @media mediaQueryMap[ mediaQueryName ]
+                .cursor-{ value }-hover-{ mediaQueryName }:hover
                     cursor: value;

@@ -1328,6 +1328,145 @@ definePaddingLateralHoverMediaClasses( valueArray, mediaQueryNameArray = {} )
 
 // ~~
 
+defineBackgroundColorClass( className, colorName )
+
+    .background-color-{ className }
+        background-color: lookup( colorName + 'Color' );
+
+// ~~
+
+defineBackgroundColorHoverClass( className, colorName )
+
+    .background-color-{ className }-hover:hover
+        background-color: lookup( colorName + 'Color' );
+
+// ~~
+
+defineBackgroundColorMediaClass( className, colorName, mediaQueryNameArray = {} )
+
+    for mediaQueryName in mediaQueryNameArray
+        @media mediaQueryMap[ mediaQueryName ]
+            .background-color-{ className }-{mediaQueryName}
+                background-color: lookup( colorName + 'Color' );
+
+// ~~
+
+defineBackgroundColorHoverMediaClass( className, colorName, mediaQueryNameArray = {} )
+
+    for mediaQueryName in mediaQueryNameArray
+        @media mediaQueryMap[ mediaQueryName ]
+            .background-color-{ className }-{mediaQueryName}-hover:hover
+                background-color: lookup( colorName + 'Color' );
+
+// ~~
+
+defineBackgroundColorClasses( className, colorName, valueArray )
+
+    for value in valueArray
+        .background-color-{ className }-{ value }
+            background-color: lookup( colorName + 'Color' + value );
+
+// ~~
+
+defineBackgroundColorHoverClasses( className, colorName, valueArray )
+
+    for value in valueArray
+        .background-color-{ className }-{ value }-hover:hover
+            background-color: lookup( colorName + 'Color' + value );
+
+// ~~
+
+defineBackgroundColorMediaClasses( className, colorName, valueArray, mediaQueryNameArray = {} )
+
+    for mediaQueryName in mediaQueryNameArray
+        for value in valueArray
+            @media mediaQueryMap[ mediaQueryName ]
+                .background-color-{ className }-{ value }-{ mediaQueryName }
+                    background-color: lookup( colorName + 'Color' + value );
+// ~~
+
+defineBackgroundColorHoverMediaClasses( className, colorName, valueArray, mediaQueryNameArray = {} )
+
+    for mediaQueryName in mediaQueryNameArray
+        for value in valueArray
+            @media mediaQueryMap[ mediaQueryName ]
+                .background-color-{ className }-{ value }-hover-{ mediaQueryName }:hover
+                    background-color: lookup( colorName + 'Color' + value );
+
+// ~~
+
+defineIconClass( className, imageUrl )
+
+    .{ className }-icon
+        background: url( imageUrl ) no-repeat center center / contain;
+
+// ~~
+
+defineIconHoverClass( className, imageUrl )
+
+    .{ className }-icon-hover:hover
+        background: url( imageUrl ) no-repeat center center / contain;
+
+// ~~
+
+defineIconMediaClass( className, imageUrl, mediaQueryNameArray = {} )
+
+    for mediaQueryName in mediaQueryNameArray
+        @media mediaQueryMap[ mediaQueryName ]
+            .{ className }-icon-{mediaQueryName}
+                background: url( imageUrl ) no-repeat center center / contain;
+
+// ~~
+
+defineIconHoverMediaClass( className, imageUrl, mediaQueryNameArray = {} )
+
+    for mediaQueryName in mediaQueryNameArray
+        @media mediaQueryMap[ mediaQueryName ]
+            .{ className }-icon-{mediaQueryName}-hover:hover
+                background: url( imageUrl ) no-repeat center center / contain;
+
+// ~~
+
+defineColorIconClass( className, color, imageUrl )
+
+    .{ className }-icon
+        background-color: color;
+        mask: url( imageUrl ) no-repeat center center / contain;
+        -webkit-mask: url( imageUrl ) no-repeat center center / contain;
+
+// ~~
+
+defineColorIconHoverClass( className, color, imageUrl )
+
+    .{ className }-icon-hover:hover
+        background-color: color;
+        mask: url( imageUrl ) no-repeat center center / contain;
+        -webkit-mask: url( imageUrl ) no-repeat center center / contain;
+
+// ~~
+
+defineColorIconMediaClass( className, color, imageUrl, mediaQueryNameArray = {} )
+
+    for mediaQueryName in mediaQueryNameArray
+        @media mediaQueryMap[ mediaQueryName ]
+            .{ className }-icon-{mediaQueryName}
+                background-color: color;
+                mask: url( imageUrl ) no-repeat center center / contain;
+                -webkit-mask: url( imageUrl ) no-repeat center center / contain;
+
+// ~~
+
+defineColorIconHoverMediaClass( className, color, imageUrl, mediaQueryNameArray = {} )
+
+    for mediaQueryName in mediaQueryNameArray
+        @media mediaQueryMap[ mediaQueryName ]
+            .{ className }-icon-{mediaQueryName}-hover:hover
+                background-color: color;
+                mask: url( imageUrl ) no-repeat center center / contain;
+                -webkit-mask: url( imageUrl ) no-repeat center center / contain;
+
+// ~~
+
 defineTextAlignClasses( valueArray )
 
     for value in valueArray
@@ -1500,141 +1639,6 @@ defineColorHoverMediaClasses( className, colorName, valueArray, mediaQueryNameAr
             @media mediaQueryMap[ mediaQueryName ]
                 .color-{ className }-{ value }-hover-{ mediaQueryName }:hover
                     color: lookup( colorName + 'Color' + value );
-// ~~
-
-defineBackgroundColorClass( className, colorName )
-
-    .background-color-{ className }
-        background-color: lookup( colorName + 'Color' );
-
-// ~~
-
-defineBackgroundColorHoverClass( className, colorName )
-
-    .background-color-{ className }-hover:hover
-        background-color: lookup( colorName + 'Color' );
-
-// ~~
-
-defineBackgroundColorMediaClass( className, colorName, mediaQueryNameArray = {} )
-
-    for mediaQueryName in mediaQueryNameArray
-        @media mediaQueryMap[ mediaQueryName ]
-            .background-color-{ className }-{mediaQueryName}
-                background-color: lookup( colorName + 'Color' );
-
-// ~~
-
-defineBackgroundColorHoverMediaClass( className, colorName, mediaQueryNameArray = {} )
-
-    for mediaQueryName in mediaQueryNameArray
-        @media mediaQueryMap[ mediaQueryName ]
-            .background-color-{ className }-{mediaQueryName}-hover:hover
-                background-color: lookup( colorName + 'Color' );
-
-// ~~
-
-defineBackgroundColorClasses( className, colorName, valueArray )
-
-    for value in valueArray
-        .background-color-{ className }-{ value }
-            background-color: lookup( colorName + 'Color' + value );
-
-// ~~
-
-defineBackgroundColorHoverClasses( className, colorName, valueArray )
-
-    for value in valueArray
-        .background-color-{ className }-{ value }-hover:hover
-            background-color: lookup( colorName + 'Color' + value );
-
-// ~~
-
-defineBackgroundColorMediaClasses( className, colorName, valueArray, mediaQueryNameArray = {} )
-
-    for mediaQueryName in mediaQueryNameArray
-        for value in valueArray
-            @media mediaQueryMap[ mediaQueryName ]
-                .background-color-{ className }-{ value }-{ mediaQueryName }
-                    background-color: lookup( colorName + 'Color' + value );
-// ~~
-
-defineBackgroundColorHoverMediaClasses( className, colorName, valueArray, mediaQueryNameArray = {} )
-
-    for mediaQueryName in mediaQueryNameArray
-        for value in valueArray
-            @media mediaQueryMap[ mediaQueryName ]
-                .background-color-{ className }-{ value }-hover-{ mediaQueryName }:hover
-                    background-color: lookup( colorName + 'Color' + value );
-
-// ~~
-
-defineIconClass( className, imageUrl )
-
-    .{ className }-icon
-        background: url( imageUrl ) no-repeat center center / contain;
-
-// ~~
-
-defineIconHoverClass( className, imageUrl )
-
-    .{ className }-icon-hover:hover
-        background: url( imageUrl ) no-repeat center center / contain;
-
-// ~~
-
-defineIconMediaClass( className, imageUrl, mediaQueryNameArray = {} )
-
-    for mediaQueryName in mediaQueryNameArray
-        @media mediaQueryMap[ mediaQueryName ]
-            .{ className }-icon-{mediaQueryName}
-                background: url( imageUrl ) no-repeat center center / contain;
-
-// ~~
-
-defineIconHoverMediaClass( className, imageUrl, mediaQueryNameArray = {} )
-
-    for mediaQueryName in mediaQueryNameArray
-        @media mediaQueryMap[ mediaQueryName ]
-            .{ className }-icon-{mediaQueryName}-hover:hover
-                background: url( imageUrl ) no-repeat center center / contain;
-
-// ~~
-
-defineColorIconClass( className, color, imageUrl )
-
-    .{ className }-icon
-        background-color: color;
-        mask: url( imageUrl ) no-repeat center center / contain;
-
-// ~~
-
-defineColorIconHoverClass( className, color, imageUrl )
-
-    .{ className }-icon-hover:hover
-        background-color: color;
-        mask: url( imageUrl ) no-repeat center center / contain;
-
-// ~~
-
-defineColorIconMediaClass( className, color, imageUrl, mediaQueryNameArray = {} )
-
-    for mediaQueryName in mediaQueryNameArray
-        @media mediaQueryMap[ mediaQueryName ]
-            .{ className }-icon-{mediaQueryName}
-                background-color: color;
-                mask: url( imageUrl ) no-repeat center center / contain;
-
-// ~~
-
-defineColorIconHoverMediaClass( className, color, imageUrl, mediaQueryNameArray = {} )
-
-    for mediaQueryName in mediaQueryNameArray
-        @media mediaQueryMap[ mediaQueryName ]
-            .{ className }-icon-{mediaQueryName}-hover:hover
-                background-color: color;
-                mask: url( imageUrl ) no-repeat center center / contain;
-
 // ~~
 
 defineCursorClasses( valueArray )

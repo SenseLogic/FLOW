@@ -1,0 +1,14 @@
+name: senselogic_flow
+description: Stylable UI components.
+homepage: https://github.com/senselogic/FLOW
+repository: https://github.com/senselogic/FLOW
+version: 0.0.1
+
+environment:
+  sdk: '>=2.14.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:

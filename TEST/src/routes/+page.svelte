@@ -12,6 +12,9 @@
         Visit <a class="color-green-300 color-green-500-hover" href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation
     </p>
 
+    <div class="size-200 green-map-pin-icon">
+    </div>
+
     <div class="margin-top-100 display-flex flex-direction-column gap-100">
         <div class="display-flex gap-50">
             <span class="switch-input-container">

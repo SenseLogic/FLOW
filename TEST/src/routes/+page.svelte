@@ -1,3 +1,8 @@
+<script>
+    //import DateRangePicker from 'senselogic-flow/DateRagePicker.svelte';
+    import DateRangePicker from '../../../CODE/JAVASCRIPT/DateRangePicker.svelte';
+</script>
+
 <style lang="stylus">
     // -- IMPORTS
 
@@ -41,4 +46,6 @@
             </option>
         </select>
     </div>
+
+    <DateRangePicker onChange={ ( dateArray ) => console.log( dateArray ) }/>
 </div>

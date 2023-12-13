@@ -6,6 +6,8 @@
     // -- EXPORTS
 
     export let dateArray = [ null ];
+    export let dateIndex = 0;
+    export let monthCount = 1;
     export let weekdayNameArray = [ 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun' ];
     export let monthNameArray = [ 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December' ];
     export let onChange = () => {};
@@ -13,30 +15,132 @@
     // -- VARIABLES
 
     let dateCount = dateArray.length;
+    let todayDate = new Date();
     let monthDateArray;
 
-    if ( dateCount === 2 )
+    if ( dateArray[ 0 ] === null )
     {
-        monthDateArray = [ new Date(), new Date() ];
-        monthDateArray[ 1 ].setMonth( monthDateArray[ 1 ].getMonth() + 1 );
+        monthDateArray = [ new Date( todayDate ) ];
     }
     else
     {
-        monthDateArray = [ new Date() ];
+        monthDateArray = [ new Date( dateArray[ 0 ] ) ];
     }
 
-    if ( dateArray[ 0 ] !== null )
+    for ( let monthIndex = 1;
+          monthIndex < monthCount;
+          ++monthIndex )
     {
-        monthDateArray[ 0 ] = dateArray[ 0 ];
-    }
-
-    if ( dateCount === 2
-         && dateArray[ 1 ] !== null )
-    {
-        monthDateArray[ 1 ] = dateArray[ 1 ];
+        monthDateArray.push( getMonthDate( monthDateArray[ monthIndex - 1 ], 1 ) );
     }
 
     // -- FUNCTIONS
+
+    function getMonthDate(
+        date,
+        monthOffset
+        )
+    {
+        if ( monthOffset === -1 )
+        {
+            if ( date.getMonth() === 0 )
+            {
+                return new Date( date.getFullYear() - 1, 11, 1 );
+            }
+            else
+            {
+                return new Date( date.getFullYear(), date.getMonth() - 1, 1 );
+            }
+        }
+        else if ( monthOffset === 1 )
+        {
+            if ( date.getMonth() === 11 )
+            {
+                return new Date( date.getFullYear() + 1, 0, 1 );
+            }
+            else
+            {
+                return new Date( date.getFullYear(), date.getMonth() + 1, 1 );
+            }
+        }
+        else
+        {
+            return new Date( date );
+        }
+    }
+
+    // ~~
+
+    function isSameDate(
+        date,
+        otherDate
+        )
+    {
+        return (
+            date !== null
+            && otherDate !== null
+            && date.getDate() === otherDate.getDate()
+            && date.getMonth() === otherDate.getMonth()
+            && date.getFullYear() === otherDate.getFullYear()
+            );
+    }
+
+    // ~~
+
+    function isTodayDate(
+        date
+        )
+    {
+        return isSameDate( date, todayDate );
+    }
+
+    // ~~
+
+    function isFirstDate(
+        date
+        )
+    {
+        return isSameDate( date, dateArray[ 0 ] );
+    }
+
+    // ~~
+
+    function isLastDate(
+        date
+        )
+    {
+        return isSameDate( date, dateArray[ dateCount - 1 ] );
+    }
+
+    // ~~
+
+    function isSelectedDate(
+        date
+        )
+    {
+        return (
+            date.getTime() === dateArray[ 0 ]?.getTime()
+            || ( dateCount === 2
+                 && date.getTime() === dateArray[ 1 ]?.getTime() )
+            );
+    }
+
+    // ~~
+
+    function isInsideDate(
+        date
+        )
+    {
+        return (
+            dateCount === 2
+            && dateArray[ 0 ] !== null
+            && dateArray[ 1 ] !== null
+            && date >= dateArray[ 0 ]
+            && date <= dateArray[ 1 ]
+            );
+    }
+
+    // ~~
 
     function getWeekdayIndex(
         date
@@ -57,7 +161,12 @@
                 date: new Date( date ),
                 text: date.getDate(),
                 weekdayIndex: getWeekdayIndex( date ),
-                isGrayed
+                isGrayed,
+                isToday: isTodayDate( date ),
+                isFirst: isFirstDate( date ),
+                isLast: isLastDate( date ),
+                isSelected: isSelectedDate( date ),
+                isInside: isInsideDate( date )
             }
             );
     }
@@ -110,20 +219,50 @@
 
     // ~~
 
+    function updateMonth(
+        monthOffset
+        )
+    {
+        monthDateArray[ 0 ] = getMonthDate( monthDateArray[ 0 ], monthOffset );
+
+        for ( let monthIndex = 1;
+              monthIndex < monthCount;
+              ++monthIndex )
+        {
+            monthDateArray[ monthIndex ] = getMonthDate( monthDateArray[ monthIndex - 1 ], 1 );
+        }
+
+        monthDateArray = monthDateArray;
+    }
+
+    // ~~
+
     function selectDate(
-        date,
-        dateIndex
+        date
         )
     {
         dateArray[ dateIndex ] = date;
+
+        if ( dateCount === 2
+             && dateArray[ 0 ] !== null
+             && dateArray[ 1 ] !== null
+             && dateArray[ 0 ].getTime() > dateArray[ 1 ].getTime() )
+        {
+            dateArray.reverse();
+        }
+        else
+        {
+            dateIndex = dateCount - 1 - dateIndex;
+        }
+
         dateArray = dateArray;
+        monthDateArray = monthDateArray;
     }
 
     // ~~
 
     function selectDay(
-        day,
-        dateIndex
+        day
         )
     {
         if ( !day.isGrayed )
@@ -132,67 +271,36 @@
             onChange( dateArray );
         }
     }
-
-    // ~~
-
-    function setPriorMonth(
-        dateIndex
-        )
-    {
-        monthDateArray[ dateIndex ].setMonth( monthDateArray[ dateIndex ].getMonth() - 1 );
-        monthDateArray = [ ...monthDateArray ];
-    }
-
-    // ~~
-
-    function setNextMonth(
-        dateIndex
-        )
-    {
-        monthDateArray[ dateIndex ].setMonth( monthDateArray[ dateIndex ].getMonth() + 1 );
-        monthDateArray = [ ...monthDateArray ];
-    }
-
-    // ~~
-
-    function isDateInRange(
-        date,
-        firstDate,
-        lastDate
-        )
-    {
-        return (
-            firstDate
-            && lastDate
-            && date >= firstDate
-            && date <= lastDate
-            );
-    };
 </script>
 
 <div class="date-picker">
-    { #each monthDateArray as monthDate, dateIndex }
-        <div class="calendar">
-            <div class="month-grid">
-                <div class="month-button" on:click={ () => setPriorMonth( dateIndex ) }>&lt;</div>
-                <div>{ monthNameArray[ monthDate.getMonth() ] } { monthDate.getFullYear() }</div>
-                <div class="month-button" on:click={ () => setNextMonth( dateIndex ) }>&gt;</div>
+    <div class="calendar-grid">
+        { #each monthDateArray as monthDate, monthIndex }
+            <div class="calendar">
+                <div class="month-grid">
+                    <div class="month-button" on:click={ () => updateMonth( -1 ) }>&lt;</div>
+                    <div>{ monthNameArray[ monthDate.getMonth() ] } { monthDate.getFullYear() }</div>
+                    <div class="month-button" on:click={ () => updateMonth( 1 ) }>&gt;</div>
+                </div>
+                <div class="day-grid">
+                    { #each weekdayNameArray as weekdayName }
+                        <div class="weekday">{ weekdayName }</div>
+                    { /each }
+                    { #each getDayArray( monthDate.getFullYear(), monthDate.getMonth() ) as day }
+                        <div class="day"
+                            class:is-grayed={ day.isGrayed }
+                            class:is-today={ day.isToday }
+                            class:is-first={ day.isFirst }
+                            class:is-last={ day.isLast }
+                            class:is-selected={ day.isSelected }
+                            class:is-inside={ day.isInside }
+                            on:click={ () => selectDay( day ) }
+                        >
+                            { day.text }
+                        </div>
+                    { /each }
+                </div>
             </div>
-            <div class="day-grid">
-                { #each weekdayNameArray as weekdayName }
-                    <div class="weekday">{ weekdayName }</div>
-                { /each }
-                { #each getDayArray( monthDate.getFullYear(), monthDate.getMonth() ) as day }
-                    <div class="day"
-                        class:in-range={ dateCount === 2 && isDateInRange( day.date, dateArray[ 0 ], dateArray[ 1 ] ) }
-                        class:selected={ day.date.getTime() === dateArray[ dateIndex ]?.getTime() }
-                        class:is-grayed={ day.isGrayed }
-                        on:click={ () => selectDay( day, dateIndex ) }
-                    >
-                        { day.text }
-                    </div>
-                { /each }
-            </div>
-        </div>
-    {/each}
+        {/each}
+    </div>
 </div>

@@ -3,8 +3,24 @@
 .date-picker
 {
     display: flex;
+    container-type: inline-size;
+}
+
+.date-picker .calendar-grid
+{
+    display: flex;
     gap: 0.5rem;
+    border: 1px solid inputBorderColor;
+    padding: 0.5rem;
+    border-radius: inputBorderRadius;
+    gap: 2rem;
     user-select: none;
+
+    +media( smaller-32em )
+    {
+        flex-direction: column;
+        gap: 1rem;
+    }
 }
 
 .date-picker .calendar
@@ -12,10 +28,6 @@
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
-    border: 1px solid inputBorderColor;
-    padding: 0.5rem;
-    border-radius: inputBorderRadius;
-    background-color: white;
 }
 
 .date-picker .month-grid
@@ -28,6 +40,7 @@
     gap: 0.5rem;
     text-align: center;
     font-weight: datePickerMonthFontWeight;
+    color: datePickerMonthColor;
 }
 
 .date-picker .month-button
@@ -40,7 +53,7 @@
 
 .date-picker .month-button:hover
 {
-    color: #007bff;
+    color: datePickerMonthHoverColor;
 }
 
 .date-picker .day-grid
@@ -57,6 +70,7 @@
 .date-picker .weekday
 {
     font-weight: datePickerWeekdayFontWeight;
+    color: datePickerWeekdayColor;
 }
 
 .date-picker .day
@@ -69,13 +83,20 @@
     font-weight: datePickerDayFontWeight;
 }
 
-.date-picker .day.in-range
+.date-picker .day.is-grayed
 {
-    font-weight: datePickerInRangeDayFontWeight;
-    color: datePickerInRangeDayColor;
+    font-weight: datePickerGrayedDayFontWeight;
+    color: datePickerGrayedDayColor;
+    cursor: auto;
 }
 
-.date-picker .day.selected
+.date-picker .day.is-inside:not(.is-grayed)
+{
+    font-weight: datePickerInsideDayFontWeight;
+    color: datePickerInsideDayColor;
+}
+
+.date-picker .day.is-selected:not(.is-grayed)
 {
     border: 2px solid datePickerSelectedDayBorderColor;
     border-radius: 50%;
@@ -83,8 +104,15 @@
     color: datePickerSelectedDayColor;
 }
 
-.date-picker .day.is-grayed
+.date-picker .day.is-first:not(.is-grayed)
 {
-    font-weight: datePickerGrayedDayFontWeight;
-    color: datePickerGrayedDayColor;
+}
+
+.date-picker .day.is-last:not(.is-grayed)
+{
+}
+
+.date-picker .day:hover:not(.is-grayed)
+{
+    color: datePickerDayHovercolor;
 }

@@ -1,6 +1,8 @@
 <script>
     //import DatePicker from 'senselogic-flow/DatePicker.svelte';
     import DatePicker from '../../../CODE/JAVASCRIPT/DatePicker.svelte';
+    //import ValuePicker from 'senselogic-flow/ValuePicker.svelte';
+    import ValuePicker from '../../../CODE/JAVASCRIPT/ValuePicker.svelte';
 </script>
 
 <style lang="stylus">
@@ -47,6 +49,11 @@
         </select>
     </div>
 
+    <ValuePicker valueSuffix=" €" onChange={ ( valueArray ) => console.log( valueArray ) }/>
     <DatePicker dateArray={ [ null ] } onChange={ ( dateArray ) => console.log( dateArray ) }/>
     <DatePicker dateArray={ [ null, null ] } onChange={ ( dateArray ) => console.log( dateArray ) }/>
+    <DatePicker dateArray={ [ null ] } monthCount={ 2 } onChange={ ( dateArray ) => console.log( dateArray ) }/>
+    <DatePicker dateArray={ [ null, null ] } monthCount={ 2 } onChange={ ( dateArray ) => console.log( dateArray ) }/>
+    <DatePicker dateArray={ [ null ] } monthCount={ 3 } onChange={ ( dateArray ) => console.log( dateArray ) }/>
+    <DatePicker dateArray={ [ null, null ] } monthCount={ 3 } onChange={ ( dateArray ) => console.log( dateArray ) }/>
 </div>

@@ -3,6 +3,7 @@
 .value-picker
 {
     position: relative;
+
     user-select: none;
 }
 
@@ -11,15 +12,18 @@
     position: absolute;
     top: 0.5rem;
     transform: translateY( -50% );
-    width: 100%;
+
     height: 0.5rem;
-    background: valuePickerTrackBackgroundColor;
+    width: 100%;
     border-radius: 0.25rem;
+
+    background: valuePickerTrackBackgroundColor;
 }
 
 .value-picker .frame
 {
     position: relative;
+
     margin-right: 1rem;
     height: 1rem;
 }
@@ -29,9 +33,11 @@
     position: absolute;
     top: 0.5rem;
     transform: translate( 0.5rem, -50% );
+
     height: 0.5rem;
-    background: valuePickerRangeBackgroundColor;
     border-radius: 0.25rem;
+
+    background: valuePickerRangeBackgroundColor;
 }
 
 .value-picker .slider
@@ -39,19 +45,23 @@
     position: absolute;
     top: 0.5rem;
     transform: translateY( -50% );
-    width: 1rem;
+
     height: 1rem;
-    border-radius: 50%;
-    background: valuePickerSliderBackgroundColor;
+    width: 1rem;
     border: 2px solid valuePickerSliderBorderColor;
+    border-radius: 50%;
+
+    background: valuePickerSliderBackgroundColor;
+
     cursor: pointer;
 }
 
 .value-picker .legend
 {
     width: 100%;
+
     display: flex;
     justify-content: space-between;
+
     color: valuePickerLegendColor;
 }
-

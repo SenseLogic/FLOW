@@ -4,11 +4,13 @@
 .text-input,
 .enumeration-input
 {
-    display: block;
     width: 100%;
     border: 1px solid inputBorderColor;
     border-radius: inputBorderRadius;
     padding: inputPadding;
+
+    display: block;
+
     background: whiteColor;
 
     transition: border 0.4s, outline 0.4s;
@@ -18,8 +20,8 @@
 .text-input:focus,
 .enumeration-input:focus
 {
-    border: 1px solid inputFocusBorderColor;
     outline: 1px solid inputFocusOutlineColor;
+    border: 1px solid inputFocusBorderColor;
 }
 
 .button,
@@ -28,31 +30,35 @@
 {
     border-radius: buttonBorderRadius;
     padding: buttonPadding;
+
     cursor: pointer;
 }
 
 .primary-button
 {
-    color: whiteColor;
     background-color: primaryBackgroundColor;
+
+    color: whiteColor;
 }
 
 .primary-outline-button
 {
-    background-color: whiteColor;
     border: 1px solid primaryBorderColor;
+
+    background-color: whiteColor;
 }
 
 .dropdown
 {
-    background-color: whiteColor;
     border: 1px solid inputBorderColor;
+
+    background-color: whiteColor;
 }
 
 .dropdown-option
 {
-    padding: 0.5rem;
     border-bottom: 1px solid inputBorderColor;
+    padding: 0.5rem;
 }
 
 .input
@@ -69,16 +75,17 @@
 
 .search-input
 {
+    position: relative;
+
     border: 1px solid inputBorderColor;
     padding: 0.5rem;
-    position: relative;
 }
 
 .search-input-icon
 {
     position: absolute;
-    right: 0.5rem;
     top: 0.5rem;
+    right: 0.5rem;
 }
 
 .enumeration-input
@@ -94,16 +101,18 @@
 {
     -webkit-appearance: none;
     width: 100%;
+
     background: grayColor700;
 }
 
 .range-slider-handle
 {
     -webkit-appearance: none;
-    background: #666;
     height: 1rem;
     width: 1rem;
     border-radius: 50%;
+
+    background: #666;
 }
 
 .range-slider-handle-icon
@@ -122,8 +131,8 @@
 .date-input-icon
 {
     position: absolute;
-    right: 0.5rem;
     top: 0.5rem;
+    right: 0.5rem;
 }
 
 .time-input
@@ -151,45 +160,56 @@
 .switch-input-container
 {
     position: relative;
-    display: inline-block;
-    width: switchInputSliderSize * 2 + switchInputPaddingSize * 2;
+
     height: switchInputSliderSize + switchInputPaddingSize * 2;
+    width: switchInputSliderSize * 2 + switchInputPaddingSize * 2;
+
+    display: inline-block;
 }
 
 .switch-input
 {
     z-index: 1;
-    display: block;
     position: relative;
-    opacity: 0;
-    width: 100%;
+
     height: 100%;
+    width: 100%;
+
+    display: block;
+
+    opacity: 0;
 }
 
 .switch-input-slider
 {
     position: absolute;
-    cursor: pointer;
     top: 0;
+    bottom: 0;
     left: 0;
     right: 0;
-    bottom: 0;
-    background: switchInputUncheckedBackground;
-    transition: .4s;
+
     border-radius: switchInputSliderSize;
+
+    background: switchInputUncheckedBackground;
+
+    cursor: pointer;
+    transition: .4s;
 }
 
 .switch-input-slider:before
 {
     position: absolute;
-    content: "";
+    bottom: switchInputPaddingSize;
+    left: switchInputPaddingSize;
+
     height: switchInputSliderSize;
     width: switchInputSliderSize;
-    left: switchInputPaddingSize;
-    bottom: switchInputPaddingSize;
-    background: switchInputUncheckedSliderBackground;
-    transition: .4s;
     border-radius: 50%;
+
+    content: "";
+    background: switchInputUncheckedSliderBackground;
+
+    transition: .4s;
 }
 
 .switch-input:checked + .switch-input-slider
@@ -200,6 +220,7 @@
 .switch-input:checked + .switch-input-slider:before
 {
     transform: translateX( switchInputSliderSize );
+
     background: switchInputCheckedSliderBackground;
 }
 
@@ -214,15 +235,16 @@
 .card
 {
     border: 1px solid grayBorderColor;
-    padding: 1rem;
     border-radius: 0.5rem;
+    padding: 1rem;
 }
 
 .progress-bar
 {
-    background: grayColor700;
     height: 1rem;
     width: 100%;
+
+    background: grayColor700;
 }
 
 .bullet-point-list
@@ -235,29 +257,34 @@
 
 .button
 {
-    background: primaryColor;
-    color: whiteColor;
     border: none;
-    padding: 0.5rem 1rem;
     border-radius: 0.25rem;
+    padding: 0.5rem 1rem;
+
+    background: primaryColor;
+
+    color: whiteColor;
 }
 
 .outline-button
 {
-    background: transparent;
     border: 1px solid primaryColor;
-    color: primaryColor;
-    padding: 0.5rem 1rem;
     border-radius: 0.25rem;
+    padding: 0.5rem 1rem;
+
+    background: transparent;
+
+    color: primaryColor;
 }
 
 .animated-loading-icon
 {
     border: 0.25rem solid grayColor700;
     border-top-color: primaryColor;
-    border-radius: 50%;
-    width: 3rem;
     height: 3rem;
+    width: 3rem;
+    border-radius: 50%;
+
     animation: spin 1s linear infinite;
 }
 

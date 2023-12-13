@@ -5,15 +5,36 @@
 
     // -- EXPORTS
 
-    export let dateArray = writable( [ null, null ] );
+    export let dateArray = [ null ];
     export let weekdayNameArray = [ 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun' ];
     export let monthNameArray = [ 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December' ];
     export let onChange = () => {};
 
     // -- VARIABLES
 
-    let monthDateArray = [ new Date(), new Date() ];
-    monthDateArray[ 1 ].setMonth( monthDateArray[ 1 ].getMonth() + 1 );
+    let dateCount = dateArray.length;
+    let monthDateArray;
+
+    if ( dateCount === 2 )
+    {
+        monthDateArray = [ new Date(), new Date() ];
+        monthDateArray[ 1 ].setMonth( monthDateArray[ 1 ].getMonth() + 1 );
+    }
+    else
+    {
+        monthDateArray = [ new Date() ];
+    }
+
+    if ( dateArray[ 0 ] !== null )
+    {
+        monthDateArray[ 0 ] = dateArray[ 0 ];
+    }
+
+    if ( dateCount === 2
+         && dateArray[ 1 ] !== null )
+    {
+        monthDateArray[ 1 ] = dateArray[ 1 ];
+    }
 
     // -- FUNCTIONS
 
@@ -94,14 +115,8 @@
         dateIndex
         )
     {
-        dateArray.update(
-            dateArray =>
-            {
-                dateArray[ dateIndex ] = date;
-
-                return dateArray;
-            }
-            );
+        dateArray[ dateIndex ] = date;
+        dateArray = dateArray;
     }
 
     // ~~
@@ -155,115 +170,22 @@
     };
 </script>
 
-<style>
-    .date-range-picker
-    {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-family: 'Arial', sans-serif;
-    }
-
-    .calendar
-    {
-        border: 1px solid #ddd;
-        padding: 0.5rem;
-        margin: 0.5rem;
-        border-radius: 0.5rem;
-        background-color: white;
-    }
-
-    .calendar button
-    {
-        border: none;
-        background: none;
-        cursor: pointer;
-    }
-
-    .calendar button:hover
-    {
-        background-color: #f0f0f0;
-    }
-
-    .calendar span
-    {
-        font-weight: bold;
-        margin: 0 0.5rem;
-    }
-
-    .month-button
-    {
-        background-color: transparent;
-        border: none;
-        cursor: pointer;
-        font-size: 1rem;
-    }
-
-    .month-button:hover
-    {
-        color: #007bff;
-    }
-
-    .day-button
-    {
-        cursor: pointer;
-        text-align: center;
-    }
-
-    .day-button.in-range
-    {
-        font-weight: bold;
-        color: green;
-    }
-
-    .day-button.selected
-    {
-        border: 2px solid blue;
-        border-radius: 50%;
-    }
-
-    .day-button.is-grayed
-    {
-        color: lightgray;
-    }
-
-    .calendar-header
-    {
-        display: flex;
-        justify-content: space-between;
-        gap: 0.5rem;
-    }
-
-    .calendar-grid
-    {
-        display: grid;
-        grid-template-columns: repeat( 7, 1fr );
-        gap: 0.5rem;
-    }
-
-    .weekday
-    {
-        text-align: center;
-        font-weight: bold;
-    }
-</style>
-
-<div class="date-range-picker">
+<div class="date-picker">
     { #each monthDateArray as monthDate, dateIndex }
         <div class="calendar">
-            <div class="calendar-header">
+            <div class="month-grid">
                 <div class="month-button" on:click={ () => setPriorMonth( dateIndex ) }>&lt;</div>
                 <div>{ monthNameArray[ monthDate.getMonth() ] } { monthDate.getFullYear() }</div>
                 <div class="month-button" on:click={ () => setNextMonth( dateIndex ) }>&gt;</div>
             </div>
-            <div class="calendar-grid">
+            <div class="day-grid">
                 { #each weekdayNameArray as weekdayName }
                     <div class="weekday">{ weekdayName }</div>
                 { /each }
                 { #each getDayArray( monthDate.getFullYear(), monthDate.getMonth() ) as day }
-                    <div class="day-button"
-                        class:in-range={ isDateInRange( day.date, $dateArray[ 0 ], $dateArray[ 1 ] ) }
-                        class:selected={ day.date.getTime() === $dateArray[ dateIndex ]?.getTime() }
+                    <div class="day"
+                        class:in-range={ dateCount === 2 && isDateInRange( day.date, dateArray[ 0 ], dateArray[ 1 ] ) }
+                        class:selected={ day.date.getTime() === dateArray[ dateIndex ]?.getTime() }
                         class:is-grayed={ day.isGrayed }
                         on:click={ () => selectDay( day, dateIndex ) }
                     >

@@ -3,25 +3,14 @@
 .date-picker
 {
     display: flex;
-    container-type: inline-size;
 }
 
 .date-picker .calendar-grid
 {
-    border: 1px solid inputBorderColor;
-    border-radius: inputBorderRadius;
-    padding: 0.5rem;
-
     display: flex;
-    gap: 0.5rem;
     gap: 2rem;
 
     user-select: none;
-    +media( smaller-32em )
-    {
-        flex-direction: column;
-        gap: 1rem;
-    }
 }
 
 .date-picker .calendar
@@ -33,6 +22,9 @@
 
 .date-picker .month-grid
 {
+    border-bottom: 1px solid grayColor700;
+    padding-bottom: 0.5rem;
+
     display: grid;
     grid-template-rows: 1.5rem;
     grid-template-columns: auto 1fr auto;
@@ -59,6 +51,20 @@
 .date-picker .month-button:hover
 {
     color: datePickerMonthHoverColor;
+}
+
+.date-picker .prior-month-button
+{
+    padding-right: 1rem;
+}
+
+.date-picker .next-month-button
+{
+    padding-left: 1rem;
+}
+
+.date-picked .month
+{
 }
 
 .date-picker .day-grid

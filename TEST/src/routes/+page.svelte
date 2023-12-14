@@ -9,6 +9,17 @@
     // -- IMPORTS
 
     @import '../constant.styl';
+
+    // -- CLASSES
+
+    .frame
+    {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        border: 1px solid grayColor700;
+        border-radius: 0.5rem;
+        padding: 0.5rem;
+    }
 </style>
 
 <div class="padding-100 padding-lateral-200-large">
@@ -49,11 +60,34 @@
         </select>
     </div>
 
-    <ValuePicker valueSuffix=" €" onChange={ ( valueArray ) => console.log( valueArray ) }/>
-    <DatePicker dateArray={ [ null ] } onChange={ ( dateArray ) => console.log( dateArray ) }/>
-    <DatePicker dateArray={ [ null, null ] } onChange={ ( dateArray ) => console.log( dateArray ) }/>
-    <DatePicker dateArray={ [ null ] } monthCount={ 2 } onChange={ ( dateArray ) => console.log( dateArray ) }/>
-    <DatePicker dateArray={ [ null, null ] } monthCount={ 2 } onChange={ ( dateArray ) => console.log( dateArray ) }/>
-    <DatePicker dateArray={ [ null ] } monthCount={ 3 } onChange={ ( dateArray ) => console.log( dateArray ) }/>
-    <DatePicker dateArray={ [ null, null ] } monthCount={ 3 } onChange={ ( dateArray ) => console.log( dateArray ) }/>
+    <p class="frame">
+        <ValuePicker value={ 100 } valuePrecision={ 10 } valueSuffix=" €" limitArray={ [ 5, 95 ] } onChange={ ( value ) => console.log( value ) }/>
+    </p>
+    <p class="frame">
+        <ValuePicker valueArray={ [ 0, 100 ] } valuePrecision={ 10 } valueSuffix=" €" limitArray={ [ 5, 95 ] } onChange={ ( valueArray ) => console.log( valueArray ) }/>
+    </p>
+    <p class="frame">
+        <ValuePicker value={ 50 } valuePrecision={ 5 } valueSuffix=" €" limitArray={ [ 0, 100 ] } onChange={ ( value ) => console.log( value ) }/>
+    </p>
+    <p class="frame">
+        <ValuePicker valueArray={ [ 0, 50 ] } valuePrecision={ 5 } valueSuffix=" €" limitArray={ [ 0, 100 ] } onChange={ ( valueArray ) => console.log( valueArray ) }/>
+    </p>
+    <p class="frame">
+        <DatePicker dateArray={ [ null ] } onChange={ ( dateArray ) => console.log( dateArray ) }/>
+    </p>
+    <p class="frame">
+        <DatePicker dateArray={ [ null, null ] } onChange={ ( dateArray ) => console.log( dateArray ) }/>
+    </p>
+    <p class="frame">
+        <DatePicker dateArray={ [ null ] } monthCount={ 2 } onChange={ ( dateArray ) => console.log( dateArray ) }/>
+    </p>
+    <p class="frame">
+        <DatePicker dateArray={ [ null, null ] } monthCount={ 2 } onChange={ ( dateArray ) => console.log( dateArray ) }/>
+    </p>
+    <p class="frame">
+        <DatePicker dateArray={ [ null ] } monthCount={ 3 } onChange={ ( dateArray ) => console.log( dateArray ) }/>
+    </p>
+    <p class="frame">
+        <DatePicker dateArray={ [ null, null ] } monthCount={ 3 } onChange={ ( dateArray ) => console.log( dateArray ) }/>
+    </p>
 </div>

@@ -32,7 +32,7 @@
 {
     position: absolute;
     top: 0.5rem;
-    transform: translate( 0.5rem, -50% );
+    transform: translateY( -50% );
 
     height: 0.5rem;
     border-radius: 0.25rem;
@@ -45,7 +45,6 @@
     position: absolute;
     top: 0.5rem;
     transform: translateY( -50% );
-
     height: 1rem;
     width: 1rem;
     border: 2px solid valuePickerSliderBorderColor;
@@ -56,12 +55,13 @@
     cursor: pointer;
 }
 
-.value-picker .legend
+.value-picker .text
 {
+    margin-top: 0.15rem;
     width: 100%;
 
     display: flex;
     justify-content: space-between;
 
-    color: valuePickerLegendColor;
+    color: valuePickerTextColor;
 }

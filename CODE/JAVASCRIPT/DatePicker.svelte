@@ -278,9 +278,9 @@
         { #each monthDateArray as monthDate, monthIndex }
             <div class="calendar">
                 <div class="month-grid">
-                    <div class="month-button" on:click={ () => updateMonth( -1 ) }>&lt;</div>
-                    <div>{ monthNameArray[ monthDate.getMonth() ] } { monthDate.getFullYear() }</div>
-                    <div class="month-button" on:click={ () => updateMonth( 1 ) }>&gt;</div>
+                    <div class="month-button prior-month-button" on:click={ () => updateMonth( -1 ) }>&lt;</div>
+                    <div class="month">{ monthNameArray[ monthDate.getMonth() ] } { monthDate.getFullYear() }</div>
+                    <div class="month-button next-month-button" on:click={ () => updateMonth( 1 ) }>&gt;</div>
                 </div>
                 <div class="day-grid">
                     { #each weekdayNameArray as weekdayName }

@@ -5,20 +5,29 @@
 
     // -- EXPORTS
 
-    export let limitArray = [ 0, 100 ];
-    export let valueArray = [ 0, 50 ];
+    export let value = undefined;
+    export let valuePrecision = 1;
     export let valuePrefix = '';
     export let valueSuffix = '';
-    export let valuePrecision = 1;
+    export let limitArray = [ 0, 100 ];
+    export let limitTextArray = [ valuePrefix + limitArray[ 0 ] + valueSuffix, valuePrefix + limitArray[ 1 ] + valueSuffix ];
+    export let valueArray = [ limitArray[ 0 ], value ];
+    export let hasText = true;
     export let onChange = () => {};
+    export let getValueText
+        = ( valueArray ) =>
+          ( value === undefined )
+          ? valuePrefix + valueArray[ 0 ] + valueSuffix + ' - ' + valuePrefix + valueArray[ 1 ] + valueSuffix
+          : valuePrefix + valueArray[ 1 ] + valueSuffix;
 
     // -- VARIABLES
 
-    let valuePicker;
-    let firstSlider;
-    let secondSlider;
+    let valuePickerElement;
+    let firstSliderElement;
+    let secondSliderElement;
     let isDraggingFirstSlider = false;
     let isDraggingSecondSlider = false;
+    let isRange = ( value === undefined );
 
     // -- STATEMENTS
 
@@ -34,11 +43,53 @@
 
     // -- FUNCTIONS
 
-    function getRoundValue(
+    function getLimitedValue(
         value
         )
     {
-        return Math.floor( value / valuePrecision ) * valuePrecision;
+        if ( value <= limitArray[ 0 ] )
+        {
+            return limitArray[ 0 ];
+        }
+        else if ( value >= limitArray[ 1 ] )
+        {
+            return limitArray[ 1 ];
+        }
+        else
+        {
+            return value;
+        }
+    }
+
+    // ~~
+
+    function getRoundedValue(
+        value
+        )
+    {
+        if ( value <= limitArray[ 0 ] )
+        {
+            return limitArray[ 0 ];
+        }
+        else if ( value >= limitArray[ 1 ] )
+        {
+            return limitArray[ 1 ];
+        }
+        else
+        {
+            value = Math.floor( value / valuePrecision ) * valuePrecision;
+
+            return getLimitedValue( value );
+        }
+    }
+
+    // ~~
+
+    function getRoundedValueArray(
+        valueArray
+        )
+    {
+        return [ getRoundedValue( valueArray[ 0 ] ), getRoundedValue( valueArray[ 1 ] ) ];
     }
 
     // ~~
@@ -47,12 +98,27 @@
         event
         )
     {
-        let clientRectangle = valuePicker.getBoundingClientRect();
-        let clientXPosition = event.clientX || event.touches[ 0 ].clientX;
+        let clientRectangle = valuePickerElement.getBoundingClientRect();
 
-        let ratio = ( clientXPosition - clientRectangle.left ) / clientRectangle.width;
+        let clientXPosition = event.clientX;
 
-        return Math.max( 0, Math.min( 1, ratio ) );
+        if ( clientXPosition === undefined
+             && event.touches !== undefined
+             && event.touches.length > 0 )
+        {
+            clientXPosition = event.touches[ 0 ].clientX;
+        }
+
+        if ( clientXPosition === undefined )
+        {
+            return 0;
+        }
+        else
+        {
+            let ratio = ( clientXPosition - clientRectangle.left ) / clientRectangle.width;
+
+            return Math.max( 0, Math.min( 1, ratio ) );
+        }
     }
 
     // ~~
@@ -61,7 +127,7 @@
         value
         )
     {
-        return 100 * ( value - limitArray[ 0 ] ) / ( limitArray[ 1 ] - limitArray[ 0 ] );
+        return 100 * ( getLimitedValue( value ) - limitArray[ 0 ] ) / ( limitArray[ 1 ] - limitArray[ 0 ] );
     }
 
     // ~~
@@ -93,17 +159,26 @@
              || isDraggingSecondSlider )
         {
             let ratio = getLeftPositionRatio( event );
+            let value = limitArray[ 0 ] + ratio * ( limitArray[ 1 ] - limitArray[ 0 ] );
 
             if ( isDraggingFirstSlider )
             {
-                valueArray = [ Math.min( ratio * limitArray[ 1 ], valueArray[ 1 ] ), valueArray[ 1 ] ];
+                valueArray = [ Math.min( value, valueArray[ 1 ] ), valueArray[ 1 ] ];
             }
             else
             {
-                valueArray = [ valueArray[ 0 ], Math.max( ratio * limitArray[ 1 ], valueArray[ 0 ] ) ];
+                valueArray = [ valueArray[ 0 ], Math.max( value, valueArray[ 0 ] ) ];
             }
 
-            onChange( valueArray );
+            if ( isRange )
+            {
+                onChange( getRoundedValueArray( valueArray ) );
+            }
+            else
+            {
+                value = valueArray[ 1 ];
+                onChange( getRoundedValue( value ) );
+            }
         }
     }
 
@@ -123,37 +198,46 @@
         )
     {
         handleMouseMove( event );
+
         event.preventDefault();
     }
 </script>
 
-<div bind:this={ valuePicker } class="value-picker">
+<div
+    bind:this={ valuePickerElement }
+    class="value-picker"
+    class:is-range={ isRange }
+>
     <div
         class="track"
     ></div>
     <div class="frame">
         <div
             class="range"
-            style="left: { getLeftPosition( valueArray[ 0 ] ) }%; width: { getLeftPosition( valueArray[ 1 ] ) - getLeftPosition( valueArray[ 0 ] ) }%"
+            style="left: { getLeftPosition( valueArray[ 0 ] ) }%; width: calc( 8px + { getLeftPosition( valueArray[ 1 ] ) - getLeftPosition( valueArray[ 0 ] ) }% )"
         ></div>
+        { #if isRange }
+            <div
+                bind:this={ firstSliderElement }
+                class="slider"
+                style="left: { getLeftPosition( valueArray[ 0 ] ) }%"
+                on:mousedown={ ( event ) => handleMouseDown( event, true ) }
+                on:touchstart={ ( event ) => handleMouseDown( event, true ) }
+            ></div>
+        { /if }
         <div
-            bind:this={ firstSlider }
-            class="slider"
-            style="left: { getLeftPosition( valueArray[ 0 ] ) }%"
-            on:mousedown={ ( event ) => handleMouseDown( event, true ) }
-            on:touchstart={ ( event ) => handleMouseDown( event, true ) }
-        ></div>
-        <div
-            bind:this={ secondSlider }
+            bind:this={ secondSliderElement }
             class="slider"
             style="left: { getLeftPosition( valueArray[ 1 ] ) }%"
             on:mousedown={ ( event ) => handleMouseDown( event, false ) }
             on:touchstart={ ( event ) => handleMouseDown( event, false ) }
         ></div>
     </div>
-    <div class="legend">
-        <span>{ valuePrefix }{ getRoundValue( limitArray[ 0 ] ) }{ valueSuffix }</span>
-        <span>{ valuePrefix }{ getRoundValue( valueArray[ 0 ] ) }{ valueSuffix } - { valuePrefix }{ getRoundValue( valueArray[ 1 ] ) }{ valueSuffix }</span>
-        <span>{ valuePrefix }{ getRoundValue( limitArray[ 1 ] ) }{ valueSuffix }</span>
-    </div>
+    { #if hasText }
+        <div class="text">
+            <span>{ limitTextArray[ 0 ] }</span>
+            <span>{ getValueText( getRoundedValueArray( valueArray ) ) }</span>
+            <span>{ limitTextArray[ 1 ] }</span>
+        </div>
+    { /if }
 </div>

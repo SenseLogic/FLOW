@@ -3,7 +3,7 @@
 
     import { writable } from 'svelte/store';
 
-    // -- EXPORTS
+    // -- VARIABLES
 
     export let date = undefined;
     export let dateArray = [ date ];
@@ -13,11 +13,11 @@
     export let monthNameArray = [ 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December' ];
     export let onChange = () => {};
 
-    // -- VARIABLES
-
     let dateCount = dateArray.length;
     let todayDate = getTimelessDate( new Date() );
     let monthDateArray;
+    
+    // -- STATEMENTS
 
     if ( dateCount === 1 )
     {

@@ -3,7 +3,7 @@
 
     import { createEventDispatcher, onMount } from 'svelte';
 
-    // -- EXPORTS
+    // -- VARIABLES
 
     export let value = undefined;
     export let valuePrecision = 1;
@@ -19,8 +19,6 @@
           ( value === undefined )
           ? valuePrefix + valueArray[ 0 ] + valueSuffix + ' - ' + valuePrefix + valueArray[ 1 ] + valueSuffix
           : valuePrefix + valueArray[ 1 ] + valueSuffix;
-
-    // -- VARIABLES
 
     let valueCount = ( value === undefined ) ? 2 : 1;
     let valuePickerElement;

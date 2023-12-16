@@ -3,6 +3,8 @@
     import DatePicker from '../../../CODE/JAVASCRIPT/DatePicker.svelte';
     //import ValuePicker from 'senselogic-flow/ValuePicker.svelte';
     import ValuePicker from '../../../CODE/JAVASCRIPT/ValuePicker.svelte';
+    //import Switch from 'senselogic-flow/Switch.svelte';
+    import Switch from '../../../CODE/JAVASCRIPT/Switch.svelte';
 </script>
 
 <style lang="stylus">
@@ -40,6 +42,25 @@
                 <span class="switch-slider">
                 </span>
             </span>
+            <span>Switch</span>
+        </div>
+
+        <div class="display-flex gap-50">
+            <span class="switch-container">
+                <input class="switch" type="checkbox" checked/>
+                <span class="switch-slider">
+                </span>
+            </span>
+            <span>Switch</span>
+        </div>
+
+        <div class="display-flex gap-50">
+            <Switch value={ false } onChange={ ( value ) => console.log( value ) } />
+            <span>Switch</span>
+        </div>
+
+        <div class="display-flex gap-50">
+            <Switch value={ true } onChange={ ( value ) => console.log( value ) } />
             <span>Switch</span>
         </div>
 

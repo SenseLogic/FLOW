@@ -1,10 +1,24 @@
 <script>
+    // -- IMPORTS
+    
     //import DatePicker from 'senselogic-flow/DatePicker.svelte';
     import DatePicker from '../../../CODE/JAVASCRIPT/DatePicker.svelte';
     //import ValuePicker from 'senselogic-flow/ValuePicker.svelte';
     import ValuePicker from '../../../CODE/JAVASCRIPT/ValuePicker.svelte';
     //import Switch from 'senselogic-flow/Switch.svelte';
     import Switch from '../../../CODE/JAVASCRIPT/Switch.svelte';
+    
+    // -- VARIABLES
+    
+    let booleanValue = true;
+    let realValue = 50;
+    let dateValue = new Date( Date.UTC( 2023, 11, 1 ) );    // 2023-12-1
+    
+    // -- STATEMENTS
+    
+    $: console.log( booleanValue );
+    $: console.log( realValue );
+    $: console.log( dateValue );
 </script>
 
 <style lang="stylus">
@@ -37,20 +51,7 @@
 
     <div class="margin-top-100 display-flex flex-direction-column gap-100">
         <div class="display-flex gap-50">
-            <span class="switch-container">
-                <input class="switch" type="checkbox"/>
-                <span class="switch-slider">
-                </span>
-            </span>
-            <span>Switch</span>
-        </div>
-
-        <div class="display-flex gap-50">
-            <span class="switch-container">
-                <input class="switch" type="checkbox" checked/>
-                <span class="switch-slider">
-                </span>
-            </span>
+            <Switch value={ booleanValue } onChange={ ( value ) => booleanValue = value } />
             <span>Switch</span>
         </div>
 
@@ -82,32 +83,49 @@
     </div>
 
     <p class="frame">
+        <ValuePicker value={ realValue } valuePrecision={ 10 } valueSuffix=" €" limitArray={ [ 5, 95 ] } onChange={ ( value ) => realValue = value }/>
+    </p>
+    
+    <p class="frame">
         <ValuePicker value={ 100 } valuePrecision={ 10 } valueSuffix=" €" limitArray={ [ 5, 95 ] } onChange={ ( value ) => console.log( value ) }/>
     </p>
+    
     <p class="frame">
         <ValuePicker valueArray={ [ 0, 100 ] } valuePrecision={ 10 } valueSuffix=" €" limitArray={ [ 5, 95 ] } onChange={ ( valueArray ) => console.log( valueArray ) }/>
     </p>
+    
     <p class="frame">
         <ValuePicker value={ 50 } valuePrecision={ 5 } valueSuffix=" €" limitArray={ [ 0, 100 ] } onChange={ ( value ) => console.log( value ) }/>
     </p>
+    
     <p class="frame">
         <ValuePicker valueArray={ [ 0, 50 ] } valuePrecision={ 5 } valueSuffix=" €" limitArray={ [ 0, 100 ] } onChange={ ( valueArray ) => console.log( valueArray ) }/>
     </p>
+    
+    <p class="frame">
+        <DatePicker date={ dateValue } onChange={ ( date ) => dateValue = date }/>
+    </p>
+    
     <p class="frame">
         <DatePicker date={ null } onChange={ ( date ) => console.log( date ) }/>
     </p>
+    
     <p class="frame">
         <DatePicker dateArray={ [ null, null ] } onChange={ ( dateArray ) => console.log( dateArray ) }/>
     </p>
+    
     <p class="frame">
         <DatePicker date={ null } monthCount={ 2 } onChange={ ( date ) => console.log( date ) }/>
     </p>
+    
     <p class="frame">
         <DatePicker dateArray={ [ null, null ] } monthCount={ 2 } onChange={ ( dateArray ) => console.log( dateArray ) }/>
     </p>
+    
     <p class="frame">
         <DatePicker date={ new Date( '2023-3-15' ) } monthCount={ 3 } onChange={ ( date ) => console.log( date ) }/>
     </p>
+    
     <p class="frame">
         <DatePicker dateArray={ [ new Date( '2023-3-5' ), new Date( '2023-4-25' ) ] } monthCount={ 3 } onChange={ ( dateArray ) => console.log( dateArray ) }/>
     </p>

@@ -35,9 +35,9 @@
 
     <div class="margin-top-100 display-flex flex-direction-column gap-100">
         <div class="display-flex gap-50">
-            <span class="switch-input-container">
-                <input class="switch-input" type="checkbox"/>
-                <span class="switch-input-slider">
+            <span class="switch-container">
+                <input class="switch" type="checkbox"/>
+                <span class="switch-slider">
                 </span>
             </span>
             <span>Switch</span>
@@ -45,16 +45,16 @@
 
         <input class="input" type="text"/>
 
-        <textarea class="text-input"></textarea>
+        <textarea class="textarea"></textarea>
 
-        <select class="enumeration-input">
-            <option class="enumeration-input-option">
+        <select class="select">
+            <option class="select-option">
                 First option
             </option>
-            <option class="enumeration-input-option">
+            <option class="select-option">
                 Second option
             </option>
-            <option class="enumeration-input-option">
+            <option class="select-option">
                 Third option
             </option>
         </select>
@@ -73,21 +73,21 @@
         <ValuePicker valueArray={ [ 0, 50 ] } valuePrecision={ 5 } valueSuffix=" €" limitArray={ [ 0, 100 ] } onChange={ ( valueArray ) => console.log( valueArray ) }/>
     </p>
     <p class="frame">
-        <DatePicker dateArray={ [ null ] } onChange={ ( dateArray ) => console.log( dateArray ) }/>
+        <DatePicker date={ null } onChange={ ( date ) => console.log( date ) }/>
     </p>
     <p class="frame">
         <DatePicker dateArray={ [ null, null ] } onChange={ ( dateArray ) => console.log( dateArray ) }/>
     </p>
     <p class="frame">
-        <DatePicker dateArray={ [ null ] } monthCount={ 2 } onChange={ ( dateArray ) => console.log( dateArray ) }/>
+        <DatePicker date={ null } monthCount={ 2 } onChange={ ( date ) => console.log( date ) }/>
     </p>
     <p class="frame">
         <DatePicker dateArray={ [ null, null ] } monthCount={ 2 } onChange={ ( dateArray ) => console.log( dateArray ) }/>
     </p>
     <p class="frame">
-        <DatePicker dateArray={ [ null ] } monthCount={ 3 } onChange={ ( dateArray ) => console.log( dateArray ) }/>
+        <DatePicker date={ new Date( '2023-3-15' ) } monthCount={ 3 } onChange={ ( date ) => console.log( date ) }/>
     </p>
     <p class="frame">
-        <DatePicker dateArray={ [ null, null ] } monthCount={ 3 } onChange={ ( dateArray ) => console.log( dateArray ) }/>
+        <DatePicker dateArray={ [ new Date( '2023-3-5' ), new Date( '2023-4-25' ) ] } monthCount={ 3 } onChange={ ( dateArray ) => console.log( dateArray ) }/>
     </p>
 </div>

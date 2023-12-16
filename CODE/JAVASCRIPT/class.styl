@@ -1,8 +1,8 @@
 // -- CLASSES
 
 .input,
-.text-input,
-.enumeration-input
+.textarea,
+.select
 {
     width: 100%;
     border: 1px solid inputBorderColor;
@@ -17,8 +17,8 @@
 }
 
 .input:focus,
-.text-input:focus,
-.enumeration-input:focus
+.textarea:focus,
+.select:focus
 {
     outline: 1px solid inputFocusOutlineColor;
     border: 1px solid inputFocusBorderColor;
@@ -88,11 +88,11 @@
     right: 0.5rem;
 }
 
-.enumeration-input
+.select
 {
 }
 
-.enumeration-input-option
+.select-option
 {
     padding: 0.5rem;
 }
@@ -157,7 +157,7 @@
 {
 }
 
-.switch-input-container
+.switch-container
 {
     position: relative;
 
@@ -167,7 +167,7 @@
     display: inline-block;
 }
 
-.switch-input
+.switch
 {
     z-index: 1;
     position: relative;
@@ -180,7 +180,7 @@
     opacity: 0;
 }
 
-.switch-input-slider
+.switch-slider
 {
     position: absolute;
     top: 0;
@@ -196,7 +196,7 @@
     transition: .4s;
 }
 
-.switch-input-slider:before
+.switch-slider:before
 {
     position: absolute;
     bottom: switchInputPaddingSize;
@@ -212,12 +212,12 @@
     transition: .4s;
 }
 
-.switch-input:checked + .switch-input-slider
+.switch:checked + .switch-slider
 {
     background: switchInputCheckedBackground;
 }
 
-.switch-input:checked + .switch-input-slider:before
+.switch:checked + .switch-slider:before
 {
     transform: translateX( switchInputSliderSize );
 

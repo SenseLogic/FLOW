@@ -5,7 +5,8 @@
 
     // -- EXPORTS
 
-    export let dateArray = [ null ];
+    export let date = undefined;
+    export let dateArray = [ date ];
     export let dateIndex = 0;
     export let monthCount = 1;
     export let weekdayNameArray = [ 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun' ];
@@ -15,8 +16,18 @@
     // -- VARIABLES
 
     let dateCount = dateArray.length;
-    let todayDate = new Date();
+    let todayDate = getTimelessDate( new Date() );
     let monthDateArray;
+
+    if ( dateCount === 1 )
+    {
+        date = getTimelessDate( date );
+        dateArray = [ date ];
+    }
+    else
+    {
+        dateArray = [ getTimelessDate( dateArray[ 0 ] ), getTimelessDate( dateArray[ 1 ] ) ];
+    }
 
     if ( dateArray[ 0 ] === null )
     {
@@ -36,6 +47,22 @@
 
     // -- FUNCTIONS
 
+    function getTimelessDate(
+        date
+        )
+    {
+        if ( date === null )
+        {
+            return null;
+        }
+        else
+        {
+            return new Date( Date.UTC( date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate() ) );
+        }
+    }
+
+    // ~~
+
     function getMonthDate(
         date,
         monthOffset
@@ -43,24 +70,24 @@
     {
         if ( monthOffset === -1 )
         {
-            if ( date.getMonth() === 0 )
+            if ( date.getUTCMonth() === 0 )
             {
-                return new Date( date.getFullYear() - 1, 11, 1 );
+                return new Date( Date.UTC( date.getUTCFullYear() - 1, 11, 1 ) );
             }
             else
             {
-                return new Date( date.getFullYear(), date.getMonth() - 1, 1 );
+                return new Date( Date.UTC( date.getUTCFullYear(), date.getUTCMonth() - 1, 1 ) );
             }
         }
         else if ( monthOffset === 1 )
         {
-            if ( date.getMonth() === 11 )
+            if ( date.getUTCMonth() === 11 )
             {
-                return new Date( date.getFullYear() + 1, 0, 1 );
+                return new Date( Date.UTC( date.getUTCFullYear() + 1, 0, 1 ) );
             }
             else
             {
-                return new Date( date.getFullYear(), date.getMonth() + 1, 1 );
+                return new Date( Date.UTC( date.getUTCFullYear(), date.getUTCMonth() + 1, 1 ) );
             }
         }
         else
@@ -79,9 +106,9 @@
         return (
             date !== null
             && otherDate !== null
-            && date.getDate() === otherDate.getDate()
-            && date.getMonth() === otherDate.getMonth()
-            && date.getFullYear() === otherDate.getFullYear()
+            && date.getUTCDate() === otherDate.getUTCDate()
+            && date.getUTCMonth() === otherDate.getUTCMonth()
+            && date.getUTCFullYear() === otherDate.getUTCFullYear()
             );
     }
 
@@ -119,9 +146,9 @@
         )
     {
         return (
-            date.getTime() === dateArray[ 0 ]?.getTime()
+            isSameDate( dateArray[ 0 ], date )
             || ( dateCount === 2
-                 && date.getTime() === dateArray[ 1 ]?.getTime() )
+                 && isSameDate( dateArray[ 1 ], date ) )
             );
     }
 
@@ -135,8 +162,8 @@
             dateCount === 2
             && dateArray[ 0 ] !== null
             && dateArray[ 1 ] !== null
-            && date >= dateArray[ 0 ]
-            && date <= dateArray[ 1 ]
+            && date.getTime() >= dateArray[ 0 ].getTime()
+            && date.getTime() <= dateArray[ 1 ].getTime()
             );
     }
 
@@ -159,7 +186,7 @@
         return (
             {
                 date: new Date( date ),
-                text: date.getDate(),
+                text: date.getUTCDate(),
                 weekdayIndex: getWeekdayIndex( date ),
                 isGrayed,
                 isToday: isTodayDate( date ),
@@ -180,36 +207,34 @@
     {
         let dayArray = [];
 
-        let priorDate = new Date( year, month, 1 );
-
+        let priorDate = new Date( Date.UTC( year, month, 1 ) );
         let priorWeekdayIndex = getWeekdayIndex( priorDate );
 
         while ( priorWeekdayIndex > 0 )
         {
-            priorDate.setDate( priorDate.getDate() - 1 );
+            priorDate.setUTCDate( priorDate.getUTCDate() - 1 );
             dayArray.unshift( getDay( priorDate, true ) );
             --priorWeekdayIndex;
         }
 
-        let date = new Date( year, month, 1 );
+        let date = new Date( Date.UTC( year, month, 1 ) );
 
-        while ( date.getMonth() === month )
+        while ( date.getUTCMonth() === month )
         {
             dayArray.push( getDay( date, false ) );
 
-            date.setDate( date.getDate() + 1 );
+            date.setUTCDate( date.getUTCDate() + 1 );
         }
 
-        let nextDate = date;
-
+        let nextDate = new Date( date );
         let nextWeekdayIndex = getWeekdayIndex( nextDate );
 
         if ( nextWeekdayIndex > 0 )
         {
-            while ( nextWeekdayIndex < 7)
+            while ( nextWeekdayIndex < 7 )
             {
                 dayArray.push( getDay( nextDate, true ) );
-                nextDate.setDate( nextDate.getDate() + 1 );
+                nextDate.setUTCDate( nextDate.getUTCDate() + 1 );
                 ++nextWeekdayIndex;
             }
         }
@@ -268,7 +293,16 @@
         if ( !day.isGrayed )
         {
             selectDate( day.date, dateIndex );
-            onChange( dateArray );
+
+            if ( dateCount === 1 )
+            {
+                date = dateArray[ 0 ];
+                onChange( date );
+            }
+            else
+            {
+                onChange( dateArray );
+            }
         }
     }
 </script>
@@ -279,14 +313,14 @@
             <div class="calendar">
                 <div class="month-grid">
                     <div class="month-button prior-month-button" on:click={ () => updateMonth( -1 ) }>&lt;</div>
-                    <div class="month">{ monthNameArray[ monthDate.getMonth() ] } { monthDate.getFullYear() }</div>
+                    <div class="month">{ monthNameArray[ monthDate.getUTCMonth() ] } { monthDate.getUTCFullYear() }</div>
                     <div class="month-button next-month-button" on:click={ () => updateMonth( 1 ) }>&gt;</div>
                 </div>
                 <div class="day-grid">
                     { #each weekdayNameArray as weekdayName }
                         <div class="weekday">{ weekdayName }</div>
                     { /each }
-                    { #each getDayArray( monthDate.getFullYear(), monthDate.getMonth() ) as day }
+                    { #each getDayArray( monthDate.getUTCFullYear(), monthDate.getUTCMonth() ) as day }
                         <div class="day"
                             class:is-grayed={ day.isGrayed }
                             class:is-today={ day.isToday }

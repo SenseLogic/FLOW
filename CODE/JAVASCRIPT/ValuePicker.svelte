@@ -22,12 +22,12 @@
 
     // -- VARIABLES
 
+    let valueCount = ( value === undefined ) ? 2 : 1;
     let valuePickerElement;
     let firstSliderElement;
     let secondSliderElement;
     let isDraggingFirstSlider = false;
     let isDraggingSecondSlider = false;
-    let isRange = ( value === undefined );
 
     // -- STATEMENTS
 
@@ -170,14 +170,14 @@
                 valueArray = [ valueArray[ 0 ], Math.max( value, valueArray[ 0 ] ) ];
             }
 
-            if ( isRange )
-            {
-                onChange( getRoundedValueArray( valueArray ) );
-            }
-            else
+            if ( valueCount === 1 )
             {
                 value = valueArray[ 1 ];
                 onChange( getRoundedValue( value ) );
+            }
+            else
+            {
+                onChange( getRoundedValueArray( valueArray ) );
             }
         }
     }
@@ -206,7 +206,7 @@
 <div
     bind:this={ valuePickerElement }
     class="value-picker"
-    class:is-range={ isRange }
+    class:is-range={ valueCount === 2 }
 >
     <div
         class="track"
@@ -216,7 +216,7 @@
             class="range"
             style="left: { getLeftPosition( valueArray[ 0 ] ) }%; width: calc( 8px + { getLeftPosition( valueArray[ 1 ] ) - getLeftPosition( valueArray[ 0 ] ) }% )"
         ></div>
-        { #if isRange }
+        { #if valueCount === 2 }
             <div
                 bind:this={ firstSliderElement }
                 class="slider"

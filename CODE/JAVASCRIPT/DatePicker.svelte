@@ -9,14 +9,14 @@
     export let dateArray = [ date ];
     export let dateIndex = 0;
     export let monthCount = 1;
-    export let weekdayNameArray = [ 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun' ];
     export let monthNameArray = [ 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December' ];
+    export let weekdayNameArray = [ 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun' ];
     export let onChange = () => {};
 
     let dateCount = dateArray.length;
     let todayDate = getTimelessDate( new Date() );
     let monthDateArray;
-    
+
     // -- STATEMENTS
 
     if ( dateCount === 1 )
@@ -308,12 +308,12 @@
 </script>
 
 <div class="date-picker">
-    <div class="calendar-grid">
+    <div class="calendar-list">
         { #each monthDateArray as monthDate, monthIndex }
             <div class="calendar">
                 <div class="month-grid">
                     <div class="month-button prior-month-button" on:click={ () => updateMonth( -1 ) }>&lt;</div>
-                    <div class="month">{ monthNameArray[ monthDate.getUTCMonth() ] } { monthDate.getUTCFullYear() }</div>
+                    <div class="month-name">{ monthNameArray[ monthDate.getUTCMonth() ] } { monthDate.getUTCFullYear() }</div>
                     <div class="month-button next-month-button" on:click={ () => updateMonth( 1 ) }>&gt;</div>
                 </div>
                 <div class="day-grid">

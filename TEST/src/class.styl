@@ -27,3 +27,37 @@ defineFontWeightClasses( 500 700 900 );
 defineColorClass( 'red', 'red' );
 defineColorClasses( 'green', 'green', 300 500 );
 defineColorHoverClasses( 'green', 'green', 500 );
+
+// ~~
+
+.date-picker
+{
+    container-type: inline-size;
+
+    justify-content: center;
+
+    overflow: auto;
+}
+
+@container ( max-width: 36em )
+{
+    .date-picker .calendar:nth-child(2),
+    .date-picker .calendar:nth-child(3)
+    {
+        display: none;
+    }
+}
+
+@container ( max-width: 54em )
+{
+    .date-picker
+    {
+        display: flex;
+        justify-content: center;
+    }
+
+    .date-picker .calendar:nth-child(3)
+    {
+        display: none;
+    }
+}

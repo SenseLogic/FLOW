@@ -10,12 +10,12 @@
 .value-picker .track
 {
     position: absolute;
-    top: 0.5rem;
+    top: ( valuePickerSliderSize * 0.5 );
     transform: translateY( -50% );
 
-    height: 0.5rem;
+    height: valuePickerTrackHeight;
     width: 100%;
-    border-radius: 0.25rem;
+    border-radius: ( valuePickerTrackHeight / 2 );
 
     background: valuePickerTrackBackgroundColor;
 }
@@ -24,18 +24,18 @@
 {
     position: relative;
 
-    margin-right: 1rem;
-    height: 1rem;
+    margin-right: valuePickerSliderSize;
+    height: valuePickerSliderSize;
 }
 
 .value-picker .range
 {
     position: absolute;
-    top: 0.5rem;
+    top: ( valuePickerSliderSize * 0.5 );
     transform: translateY( -50% );
 
-    height: 0.5rem;
-    border-radius: 0.25rem;
+    height: valuePickerTrackHeight;
+    border-radius: ( valuePickerTrackHeight / 2 );
 
     background: valuePickerRangeBackgroundColor;
 }
@@ -43,12 +43,12 @@
 .value-picker .slider
 {
     position: absolute;
-    top: 0.5rem;
+    top: ( valuePickerSliderSize * 0.5 );
     transform: translateY( -50% );
 
-    height: 1rem;
-    width: 1rem;
-    border: 2px solid valuePickerSliderBorderColor;
+    height: valuePickerSliderSize;
+    width: valuePickerSliderSize;
+    border: valuePickerSliderBorderWidth solid valuePickerSliderBorderColor;
     border-radius: 50%;
 
     background: valuePickerSliderBackgroundColor;
@@ -58,11 +58,30 @@
 
 .value-picker .text
 {
-    margin-top: 0.15rem;
+    position: relative;
+
+    margin-top: valuePickerTextMarginTop;
     width: 100%;
 
     display: flex;
     justify-content: space-between;
 
+    font-size: valuePickerTextFontSize;
+    font-weight: valuePickerTextFontWeight;
     color: valuePickerTextColor;
+}
+
+.value-picker .left-text
+{
+}
+
+.value-picker .middle-text
+{
+    position: absolute;
+    left: 50%;
+    transform: translateX( -50% );
+}
+
+.value-picker .right-text
+{
 }

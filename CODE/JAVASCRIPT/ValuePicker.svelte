@@ -233,9 +233,9 @@
     </div>
     { #if hasText }
         <div class="text">
-            <span>{ limitTextArray[ 0 ] }</span>
-            <span>{ getValueText( getRoundedValueArray( valueArray ) ) }</span>
-            <span>{ limitTextArray[ 1 ] }</span>
+            <span class="left-text">{ limitTextArray[ 0 ] }</span>
+            <span class="middle-text">{ getValueText( getRoundedValueArray( valueArray ) ) }</span>
+            <span class="right-text">{ limitTextArray[ 1 ] }</span>
         </div>
     { /if }
 </div>

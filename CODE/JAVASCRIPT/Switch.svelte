@@ -3,19 +3,19 @@
 
     export let value = false;
     export let onChange = () => {};
-    
+
     // -- STATEMENTS
-    
+
     $: checked = value;
-    
+
     // -- FUNCTIONS
-    
+
     function handleChange(
         event
-        ) 
+        )
     {
         value = event.target.checked;
-        
+
         onChange( value);
     }
 </script>

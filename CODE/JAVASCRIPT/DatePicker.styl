@@ -5,7 +5,7 @@
     display: flex;
 }
 
-.date-picker .calendar-grid
+.date-picker .calendar-list
 {
     display: flex;
     gap: 2rem;
@@ -22,7 +22,7 @@
 
 .date-picker .month-grid
 {
-    border-bottom: 1px solid grayColor700;
+    border-bottom: datePickerMonthBorderWidth solid datePickerMonthBorderColor;
     padding-bottom: 0.5rem;
 
     display: grid;
@@ -32,9 +32,14 @@
     justify-content: center;
     align-items: center;
 
-    font-weight: datePickerMonthFontWeight;
     text-align: center;
-    color: datePickerMonthColor;
+}
+
+.date-picker .month-name
+{
+    font-size: datePickerMonthNameFontSize;
+    font-weight: datePickerMonthNameFontWeight;
+    color: datePickerMonthNameColor;
 }
 
 .date-picker .month-button
@@ -43,14 +48,16 @@
 
     background-color: transparent;
 
-    font-size: 1rem;
+    font-size: datePickerMonthButtonFontSize;
+    font-weight: datePickerMonthButtonFontWeight;
+    color: datePickerMonthButtonColor;
 
     cursor: pointer;
 }
 
 .date-picker .month-button:hover
 {
-    color: datePickerMonthHoverColor;
+    color: datePickerMonthButtonHoverColor;
 }
 
 .date-picker .prior-month-button
@@ -88,7 +95,7 @@
 .date-picker .day
 {
     width: 1.8rem;
-    border: 2px solid transparent;
+    border: datePickerSelectedDayBorderWidth solid transparent;
     border-radius: 50%;
 
     font-weight: datePickerDayFontWeight;
@@ -114,7 +121,7 @@
 
 .date-picker .day.is-selected:not(.is-grayed)
 {
-    border: 2px solid datePickerSelectedDayBorderColor;
+    border: datePickerSelectedDayBorderWidth solid datePickerSelectedDayBorderColor;
     border-radius: 50%;
 
     font-weight: datePickerSelectedDayFontWeight;

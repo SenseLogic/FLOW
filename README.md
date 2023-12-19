@@ -2,7 +2,7 @@
 
 # Flow
 
-Stylus and Svelte UI framework.
+Stylable UI framework.
 
 ## Features
 

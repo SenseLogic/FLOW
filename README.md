@@ -2,7 +2,19 @@
 
 # Flow
 
-Stylable UI components.
+Stylus and Svelte UI framework.
+
+## Features
+
+*   Stylus framework
+    *   Utility classes
+    *   Media queries
+*   Svelte UI components
+    *   Switch
+    *   Value picker
+    *   Value range picker
+    *   Date picker
+    *   Date range picker
 
 ## Version
 

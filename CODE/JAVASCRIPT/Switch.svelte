@@ -10,7 +10,7 @@
 
     // -- FUNCTIONS
 
-    function handleChange(
+    function handleChangeEvent(
         event
         )
     {
@@ -20,12 +20,12 @@
     }
 </script>
 
-<div class="switch-container">
+<div class="switch">
     <input
-        class="switch"
+        class="input"
         type="checkbox"
         bind:checked
-        on:change={ handleChange }
+        on:change={ handleChangeEvent }
     />
-    <span class="switch-slider"></span>
+    <span class="slider"></span>
 </div>

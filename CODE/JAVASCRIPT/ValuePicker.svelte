@@ -32,10 +32,10 @@
     onMount(
         () =>
         {
-            document.addEventListener( 'mousemove', handleMouseMove );
-            document.addEventListener( 'mouseup', handleMouseUp );
-            document.addEventListener( 'touchmove', handleTouchMove, { passive: false } );
-            document.addEventListener( 'touchend', handleMouseUp );
+            document.addEventListener( 'mousemove', handleMouseMoveEvent );
+            document.addEventListener( 'mouseup', handleMouseUpEvent );
+            document.addEventListener( 'touchmove', handleTouchMoveEvent, { passive: false } );
+            document.addEventListener( 'touchend', handleMouseUpEvent );
         }
         );
 
@@ -130,7 +130,7 @@
 
     // ~~
 
-    function handleMouseDown(
+    function handleMouseDownEvent(
         event,
         isFirstSlider
         )
@@ -149,7 +149,7 @@
 
     // ~~
 
-    function handleMouseMove(
+    function handleMouseMoveEvent(
         event
         )
     {
@@ -182,7 +182,7 @@
 
     // ~~
 
-    function handleMouseUp(
+    function handleMouseUpEvent(
         )
     {
         isDraggingFirstSlider = false;
@@ -191,11 +191,11 @@
 
     // ~~
 
-    function handleTouchMove(
+    function handleTouchMoveEvent(
         event
         )
     {
-        handleMouseMove( event );
+        handleMouseMoveEvent( event );
 
         event.preventDefault();
     }
@@ -219,16 +219,16 @@
                 bind:this={ firstSliderElement }
                 class="slider"
                 style="left: { getLeftPosition( valueArray[ 0 ] ) }%"
-                on:mousedown={ ( event ) => handleMouseDown( event, true ) }
-                on:touchstart={ ( event ) => handleMouseDown( event, true ) }
+                on:mousedown={ ( event ) => handleMouseDownEvent( event, true ) }
+                on:touchstart={ ( event ) => handleMouseDownEvent( event, true ) }
             ></div>
         { /if }
         <div
             bind:this={ secondSliderElement }
             class="slider"
             style="left: { getLeftPosition( valueArray[ 1 ] ) }%"
-            on:mousedown={ ( event ) => handleMouseDown( event, false ) }
-            on:touchstart={ ( event ) => handleMouseDown( event, false ) }
+            on:mousedown={ ( event ) => handleMouseDownEvent( event, false ) }
+            on:touchstart={ ( event ) => handleMouseDownEvent( event, false ) }
         ></div>
     </div>
     { #if hasText }

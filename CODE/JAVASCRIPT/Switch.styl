@@ -1,6 +1,6 @@
 // -- CLASSES
 
-.switch-container
+.switch
 {
     position: relative;
 
@@ -10,7 +10,7 @@
     display: inline-block;
 }
 
-.switch
+.switch .input
 {
     z-index: 1;
     position: relative;
@@ -23,7 +23,7 @@
     opacity: 0;
 }
 
-.switch-slider
+.switch .slider
 {
     position: absolute;
     top: 0;
@@ -39,7 +39,7 @@
     transition: .4s;
 }
 
-.switch-slider:before
+.switch .slider:before
 {
     position: absolute;
     bottom: switchInputPaddingSize;
@@ -55,12 +55,12 @@
     transition: .4s;
 }
 
-.switch:checked + .switch-slider
+.switch .input:checked + .slider
 {
     background: switchInputCheckedBackground;
 }
 
-.switch:checked + .switch-slider:before
+.switch .input:checked + .slider:before
 {
     transform: translateX( switchInputSliderSize );
 

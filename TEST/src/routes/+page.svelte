@@ -3,16 +3,20 @@
 
     //import DatePicker from 'senselogic-flow/DatePicker.svelte';
     import DatePicker from '../../../CODE/JAVASCRIPT/DatePicker.svelte';
-    //import ValuePicker from 'senselogic-flow/ValuePicker.svelte';
-    import ValuePicker from '../../../CODE/JAVASCRIPT/ValuePicker.svelte';
     //import Switch from 'senselogic-flow/Switch.svelte';
     import Switch from '../../../CODE/JAVASCRIPT/Switch.svelte';
+    //import SortableList from 'senselogic-flow/SortableList.svelte';
+    import SortableList from '../../../CODE/JAVASCRIPT/SortableList.svelte';
+    //import ValuePicker from 'senselogic-flow/ValuePicker.svelte';
+    import ValuePicker from '../../../CODE/JAVASCRIPT/ValuePicker.svelte';
 
     // -- VARIABLES
 
     let booleanValue = true;
     let realValue = 50;
     let dateValue = new Date( Date.UTC( 2023, 11, 1 ) );    // 2023-12-1
+    let firstNameArray = [ "John", "Mike", "Adam", "Noah", "Jack", "Carl", "Theo" ];
+    let secondNameArray = [ "John", "Mike", "Adam", "Noah", "Jack", "Carl", "Theo" ];
 
     // -- STATEMENTS
 
@@ -42,12 +46,37 @@
     <h1 class="font-size-200 font-weight-700 color-red">
         Welcome to SvelteKit
     </h1>
+
     <p class="margin-top-100 color-green-500">
         Visit <a class="color-green-300 color-green-500-hover" href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation
     </p>
 
     <div class="size-200 green-map-pin-icon">
     </div>
+
+    <p class="frame">
+        <SortableList
+            elementArray={ firstNameArray }
+            let:element
+            onChange={ ( elementArray ) => console.log( elementArray ) }
+        >
+            <div>
+                  { element }
+            </div>
+        </SortableList>
+    </p>
+
+    <p class="frame">
+        <SortableList
+            elementArray={ secondNameArray }
+            let:element
+            onChange={ ( elementArray ) => console.log( elementArray ) }
+        >
+            <div>
+                  { element }
+            </div>
+        </SortableList>
+    </p>
 
     <div class="margin-top-100 display-flex flex-direction-column gap-100">
         <div class="display-flex gap-50">

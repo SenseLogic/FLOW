@@ -1,0 +1,68 @@
+// -- CLASSES
+
+.switch-container
+{
+    position: relative;
+
+    height: switchInputSliderSize + switchInputPaddingSize * 2;
+    width: switchInputSliderSize * 2 + switchInputPaddingSize * 2;
+
+    display: inline-block;
+}
+
+.switch
+{
+    z-index: 1;
+    position: relative;
+
+    height: 100%;
+    width: 100%;
+
+    display: block;
+
+    opacity: 0;
+}
+
+.switch-slider
+{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    border-radius: switchInputSliderSize;
+
+    background: switchInputUncheckedBackground;
+
+    cursor: pointer;
+    transition: .4s;
+}
+
+.switch-slider:before
+{
+    position: absolute;
+    bottom: switchInputPaddingSize;
+    left: switchInputPaddingSize;
+
+    height: switchInputSliderSize;
+    width: switchInputSliderSize;
+    border-radius: 50%;
+
+    content: "";
+    background: switchInputUncheckedSliderBackground;
+
+    transition: .4s;
+}
+
+.switch:checked + .switch-slider
+{
+    background: switchInputCheckedBackground;
+}
+
+.switch:checked + .switch-slider:before
+{
+    transform: translateX( switchInputSliderSize );
+
+    background: switchInputCheckedSliderBackground;
+}

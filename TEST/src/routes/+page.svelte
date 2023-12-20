@@ -61,7 +61,7 @@
             onChange={ ( elementArray ) => console.log( elementArray ) }
         >
             <div>
-                  { element }
+                { element }
             </div>
         </SortableList>
     </p>
@@ -73,7 +73,7 @@
             onChange={ ( elementArray ) => console.log( elementArray ) }
         >
             <div>
-                  { element }
+                { element }
             </div>
         </SortableList>
     </p>

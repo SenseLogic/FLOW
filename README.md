@@ -6,7 +6,7 @@ UI toolkit.
 
 ## Features
 
-*   Stylus
+*   Stylus CSS
     *   Utility classes
     *   Media queries
 *   Svelte UI

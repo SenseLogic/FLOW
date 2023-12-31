@@ -2,20 +2,20 @@
 
 # Flow
 
-Stylable UI framework.
+Stylable UI.
 
 ## Features
 
-*   Stylus framework
+*   Stylus
     *   Utility classes
     *   Media queries
-*   Svelte UI components
+*   Svelte UI
     *   Switch
     *   Value picker
     *   Value range picker
     *   Date picker
     *   Date range picker
-*   Unity UI components
+*   Unity UI
     *   Element extensions
     *   Responsive document
 

@@ -2,7 +2,7 @@
 
 # Flow
 
-Stylable UI.
+UI toolkit.
 
 ## Features
 

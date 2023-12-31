@@ -8,7 +8,7 @@ using UnityEngine.UIElements;
 namespace FLOW
 {
     [ RequireComponent( typeof( UIDocument ) ) ]
-    public class SCREEN : MonoBehaviour
+    public class DOCUMENT : MonoBehaviour
     {
         // -- ATTRIBUTES
 

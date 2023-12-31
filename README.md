@@ -15,6 +15,9 @@ Stylable UI framework.
     *   Value range picker
     *   Date picker
     *   Date range picker
+*   Unity UI components
+    *   Element extensions
+    *   Responsive document
 
 ## Version
 

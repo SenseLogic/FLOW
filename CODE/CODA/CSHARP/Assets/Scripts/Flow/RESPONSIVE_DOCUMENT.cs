@@ -15,48 +15,70 @@ namespace FLOW
         public UIDocument
             Document;
         public float
+            ScreenWidth,
+            ScreenHeight,
+            ScreenRatio,
             DocumentWidth,
-            DocumentHeight;
+            DocumentHeight,
+            DocumentRatio;
         public VisualElement
-            RootElement;
-        public float
-            AspectRatio;
+            DocumentElement;
 
         // -- OPERATIONS
 
-        public void HandleGeometryChangedEvent(
-            GeometryChangedEvent event_
+        public virtual void HandleDocumentSizeEvent(
             )
         {
-            DocumentWidth = event_.newRect.width;
-            DocumentHeight = event_.newRect.height;
-
-            if ( DocumentWidth != 0
-                 && DocumentHeight != 0 )
+            if ( DocumentWidth != 0.0f
+                 && DocumentHeight != 0.0f )
             {
-                AspectRatio = DocumentWidth / DocumentHeight;
-
-                RootElement.EnableInClassList( "portrait-screen-1-2", AspectRatio <= 0.5f );
-                RootElement.EnableInClassList( "portrait-screen-9-16", AspectRatio <= 0.57f );
-                RootElement.EnableInClassList( "portrait-screen-2-3", AspectRatio <= 0.67f );
-                RootElement.EnableInClassList( "portrait-screen-3-4", AspectRatio <= 0.75f );
-                RootElement.EnableInClassList( "portrait-screen", AspectRatio < 1.0f );
-                RootElement.EnableInClassList( "landscape-screen", AspectRatio >= 1.0f );
-                RootElement.EnableInClassList( "landscape-screen-4-3", AspectRatio >= 1.33f );
-                RootElement.EnableInClassList( "landscape-screen-3-2", AspectRatio >= 1.5f );
-                RootElement.EnableInClassList( "landscape-screen-16-9", AspectRatio >= 1.77f );
-                RootElement.EnableInClassList( "landscape-screen-2-1", AspectRatio >= 2.0f );
+                DocumentRatio = DocumentWidth / DocumentHeight;
+            }
+            else
+            {
+                DocumentRatio = 0.0f;
             }
         }
 
         // ~~
 
-        public void OnEnable(
+        public virtual void HandleDocumentResizeEvent(
+            )
+        {
+        }
+
+        // ~~
+
+        public virtual void OnEnable(
             )
         {
             Document = GetComponent<UIDocument>();
-            RootElement = Document.rootVisualElement;
-            RootElement.RegisterCallback<GeometryChangedEvent>( HandleGeometryChangedEvent );
+            DocumentElement = Document.rootVisualElement;
+            DocumentElement.RegisterCallback<GeometryChangedEvent>( HandleGeometryChangedEvent );
+
+            ScreenWidth = Screen.width;
+            ScreenHeight = Screen.height;
+
+            DocumentWidth = ScreenWidth;
+            DocumentHeight = ScreenHeight;
+
+            HandleDocumentSizeEvent();
+        }
+
+        // ~~
+
+        public virtual void HandleGeometryChangedEvent(
+            GeometryChangedEvent event_
+            )
+        {
+            ScreenWidth = Screen.width;
+            ScreenHeight = Screen.height;
+
+            DocumentWidth = event_.newRect.width;
+            DocumentHeight = event_.newRect.height;
+
+            HandleDocumentSizeEvent();
+            HandleDocumentResizeEvent();
         }
 
         // ~~
@@ -64,7 +86,7 @@ namespace FLOW
         public void OnDisable(
             )
         {
-            RootElement.UnregisterCallback<GeometryChangedEvent>( HandleGeometryChangedEvent );
+            DocumentElement.UnregisterCallback<GeometryChangedEvent>( HandleGeometryChangedEvent );
         }
     }
 }

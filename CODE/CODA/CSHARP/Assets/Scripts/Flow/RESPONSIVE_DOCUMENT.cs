@@ -1,9 +1,15 @@
 // -- IMPORTS
 
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
 // -- TYPES
+
+using Element = UnityEngine.UIElements.VisualElement;
+
+// ~~
 
 namespace FLOW
 {
@@ -17,20 +23,68 @@ namespace FLOW
         public float
             ScreenWidth,
             ScreenHeight,
+            ScreenMinimumSize,
+            ScreenMaximumSize,
             ScreenRatio,
             DocumentWidth,
             DocumentHeight,
+            DocumentMinimumSize,
+            DocumentMaximumSize,
             DocumentRatio;
-        public VisualElement
+        public Element
             DocumentElement;
+        public List<Element>
+            ResizeElementList;
+        public List<Action<Element>>
+            ResizeFunctionList;
 
         // -- OPERATIONS
 
-        public virtual void HandleDocumentSizeEvent(
+        public void ResizeElement(
+            Element element,
+            Action<Element> resize_function
             )
         {
-            if ( DocumentWidth != 0.0f
-                 && DocumentHeight != 0.0f )
+            ResizeElementList.Add( element );
+            ResizeFunctionList.Add( resize_function );
+
+            if ( element.panel != null )
+            {
+                resize_function( element );
+            }
+        }
+
+        // ~~
+
+        public void UpdateScreenSize(
+            )
+        {
+            ScreenWidth = Screen.width;
+            ScreenHeight = Screen.height;
+            ScreenMinimumSize = Mathf.Min( ScreenWidth, ScreenHeight );
+            ScreenMaximumSize = Mathf.Max( ScreenWidth, ScreenHeight );
+
+            if ( ScreenHeight != 0.0f )
+            {
+                ScreenRatio = ScreenWidth / ScreenHeight;
+            }
+            else
+            {
+                ScreenRatio = 0.0f;
+            }
+        }
+
+        // ~~
+
+        public void UpdateDocumentSize(
+            )
+        {
+            DocumentWidth = DocumentElement.worldBound.width;
+            DocumentHeight = DocumentElement.worldBound.height;
+            DocumentMinimumSize = Mathf.Min( DocumentWidth, DocumentHeight );
+            DocumentMaximumSize = Mathf.Max( DocumentWidth, DocumentHeight );
+
+            if ( DocumentHeight != 0.0f )
             {
                 DocumentRatio = DocumentWidth / DocumentHeight;
             }
@@ -42,9 +96,43 @@ namespace FLOW
 
         // ~~
 
+        public virtual void HandleDocumentSizeEvent(
+            )
+        {
+        }
+
+        // ~~
+
         public virtual void HandleDocumentResizeEvent(
             )
         {
+            int
+                resize_element_index;
+            Element
+                resize_element;
+
+            for ( resize_element_index = 0;
+                  resize_element_index < ResizeElementList.Count;
+                  ++resize_element_index )
+            {
+                resize_element = ResizeElementList[ resize_element_index ];
+
+                if ( resize_element.panel != null )
+                {
+                    ResizeFunctionList[ resize_element_index ]( resize_element );
+                }
+            }
+        }
+
+        // ~~
+
+        public virtual void Clear(
+            )
+        {
+            DocumentElement.Clear();
+
+            ResizeElementList = new List<Element>();
+            ResizeFunctionList = new List<Action<Element>>();
         }
 
         // ~~
@@ -56,11 +144,10 @@ namespace FLOW
             DocumentElement = Document.rootVisualElement;
             DocumentElement.RegisterCallback<GeometryChangedEvent>( HandleGeometryChangedEvent );
 
-            ScreenWidth = Screen.width;
-            ScreenHeight = Screen.height;
+            Clear();
 
-            DocumentWidth = ScreenWidth;
-            DocumentHeight = ScreenHeight;
+            UpdateScreenSize();
+            UpdateDocumentSize();
 
             HandleDocumentSizeEvent();
         }
@@ -68,14 +155,11 @@ namespace FLOW
         // ~~
 
         public virtual void HandleGeometryChangedEvent(
-            GeometryChangedEvent event_
+            GeometryChangedEvent geometry_changed_event
             )
         {
-            ScreenWidth = Screen.width;
-            ScreenHeight = Screen.height;
-
-            DocumentWidth = event_.newRect.width;
-            DocumentHeight = event_.newRect.height;
+            UpdateScreenSize();
+            UpdateDocumentSize();
 
             HandleDocumentSizeEvent();
             HandleDocumentResizeEvent();

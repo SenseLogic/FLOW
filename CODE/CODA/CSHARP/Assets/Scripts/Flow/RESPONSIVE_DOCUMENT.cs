@@ -126,6 +126,19 @@ namespace FLOW
 
         // ~~
 
+        public virtual void HandleGeometryChangedEvent(
+            GeometryChangedEvent geometry_changed_event
+            )
+        {
+            UpdateScreenSize();
+            UpdateDocumentSize();
+
+            HandleDocumentSizeEvent();
+            HandleDocumentResizeEvent();
+        }
+
+        // ~~
+
         public virtual void Clear(
             )
         {
@@ -150,19 +163,6 @@ namespace FLOW
             UpdateDocumentSize();
 
             HandleDocumentSizeEvent();
-        }
-
-        // ~~
-
-        public virtual void HandleGeometryChangedEvent(
-            GeometryChangedEvent geometry_changed_event
-            )
-        {
-            UpdateScreenSize();
-            UpdateDocumentSize();
-
-            HandleDocumentSizeEvent();
-            HandleDocumentResizeEvent();
         }
 
         // ~~

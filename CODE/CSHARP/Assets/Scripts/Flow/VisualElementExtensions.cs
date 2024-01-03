@@ -8,7 +8,7 @@ using Element = UnityEngine.UIElements.VisualElement;
 
 // ~~
 
-public static class ELEMENT_EXTENSIONS
+public static class VisualElementExtensions
 {
     // -- OPERATIONS
 

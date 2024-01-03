@@ -11,10 +11,10 @@ using Element = UnityEngine.UIElements.VisualElement;
 
 // ~~
 
-namespace FLOW
+namespace Flow
 {
     [ RequireComponent( typeof( UIDocument ) ) ]
-    public class RESPONSIVE_DOCUMENT : MonoBehaviour
+    public class ResponsiveDocument : MonoBehaviour
     {
         // -- ATTRIBUTES
 

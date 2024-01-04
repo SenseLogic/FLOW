@@ -7,7 +7,7 @@ using UnityEngine.Video;
 
 // -- TYPES
 
-public class VideoView : VisualElement, IDisposable
+public class VIDEO_VIEW : VisualElement, IDisposable
 {
     // -- ATTRIBUTES
 
@@ -31,7 +31,7 @@ public class VideoView : VisualElement, IDisposable
 
     // -- CONSTRUCTORS
 
-    public VideoView(
+    public VIDEO_VIEW(
         )
     {
         Player_ = null;
@@ -44,7 +44,7 @@ public class VideoView : VisualElement, IDisposable
 
     // -- DESTRUCTOR
 
-    ~VideoView(
+    ~VIDEO_VIEW(
         )
     {
         ReleaseResources( false );

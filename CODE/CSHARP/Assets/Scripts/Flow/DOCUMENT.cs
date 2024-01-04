@@ -11,10 +11,10 @@ using Element = UnityEngine.UIElements.VisualElement;
 
 // ~~
 
-namespace Flow
+namespace FLOW
 {
     [ RequireComponent( typeof( UIDocument ) ) ]
-    public class ResponsiveDocument : MonoBehaviour
+    public class DOCUMENT : MonoBehaviour
     {
         // -- ATTRIBUTES
 
@@ -34,29 +34,13 @@ namespace Flow
         public Element
             DocumentElement;
         public List<Element>
-            ResizeElementList;
+            ResizeElementList = new List<Element>();
         public List<Action<Element>>
-            ResizeFunctionList;
+            ResizeFunctionList = new List<Action<Element>>();
 
         // -- OPERATIONS
 
-        public void ResizeElement(
-            Element element,
-            Action<Element> resize_function
-            )
-        {
-            ResizeElementList.Add( element );
-            ResizeFunctionList.Add( resize_function );
-
-            if ( element.panel != null )
-            {
-                resize_function( element );
-            }
-        }
-
-        // ~~
-
-        public void UpdateScreenSize(
+        public virtual void UpdateSize(
             )
         {
             ScreenWidth = Screen.width;
@@ -72,13 +56,7 @@ namespace Flow
             {
                 ScreenRatio = 0.0f;
             }
-        }
 
-        // ~~
-
-        public void UpdateDocumentSize(
-            )
-        {
             DocumentWidth = DocumentElement.worldBound.width;
             DocumentHeight = DocumentElement.worldBound.height;
             DocumentMinimumSize = Mathf.Min( DocumentWidth, DocumentHeight );
@@ -96,14 +74,23 @@ namespace Flow
 
         // ~~
 
-        public virtual void HandleDocumentSizeEvent(
+        public virtual void ResizeElement(
+            Element element,
+            Action<Element> resize_function
             )
         {
+            ResizeElementList.Add( element );
+            ResizeFunctionList.Add( resize_function );
+
+            if ( element.panel != null )
+            {
+                resize_function( element );
+            }
         }
 
         // ~~
 
-        public virtual void HandleDocumentResizeEvent(
+        public virtual void ResizeElements(
             )
         {
             int
@@ -126,26 +113,29 @@ namespace Flow
 
         // ~~
 
-        public virtual void HandleGeometryChangedEvent(
-            GeometryChangedEvent geometry_changed_event
-            )
-        {
-            UpdateScreenSize();
-            UpdateDocumentSize();
-
-            HandleDocumentSizeEvent();
-            HandleDocumentResizeEvent();
-        }
-
-        // ~~
-
-        public virtual void Clear(
+        public virtual void ClearDocument(
             )
         {
             DocumentElement.Clear();
 
             ResizeElementList = new List<Element>();
             ResizeFunctionList = new List<Action<Element>>();
+        }
+
+        // ~~
+
+        public virtual void BuildDocument(
+            )
+        {
+            ClearDocument();
+        }
+
+        // ~~
+
+        public virtual void ResizeDocument(
+            )
+        {
+            ResizeElements();
         }
 
         // ~~
@@ -157,17 +147,24 @@ namespace Flow
             DocumentElement = Document.rootVisualElement;
             DocumentElement.RegisterCallback<GeometryChangedEvent>( HandleGeometryChangedEvent );
 
-            Clear();
-
-            UpdateScreenSize();
-            UpdateDocumentSize();
-
-            HandleDocumentSizeEvent();
+            UpdateSize();
+            BuildDocument();
+            ResizeDocument();
         }
 
         // ~~
 
-        public void OnDisable(
+        public virtual void HandleGeometryChangedEvent(
+            GeometryChangedEvent geometry_changed_event
+            )
+        {
+            UpdateSize();
+            ResizeDocument();
+        }
+
+        // ~~
+
+        public virtual void OnDisable(
             )
         {
             DocumentElement.UnregisterCallback<GeometryChangedEvent>( HandleGeometryChangedEvent );

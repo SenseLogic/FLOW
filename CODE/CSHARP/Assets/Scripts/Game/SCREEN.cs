@@ -18,6 +18,14 @@ namespace GAME
     {
         // -- OPERATIONS
 
+        public void Start(
+            )
+        {
+            Screen.orientation = ScreenOrientation.Portrait;
+        }
+
+        // ~~
+
         public override void UpdateSize(
             )
         {

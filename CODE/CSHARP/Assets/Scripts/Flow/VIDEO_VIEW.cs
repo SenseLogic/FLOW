@@ -11,6 +11,8 @@ public class VIDEO_VIEW : VisualElement, IDisposable
 {
     // -- ATTRIBUTES
 
+    public GameObject
+        ParentGameObject;
     public string
         FilePath;
     public bool
@@ -24,8 +26,8 @@ public class VIDEO_VIEW : VisualElement, IDisposable
         Player_;
     public RenderTexture
         RenderTexture_;
-    public IMGUIContainer
-        Container;
+    public Image
+        VideoImage;
     public bool
         IsDisposed;
 
@@ -36,7 +38,7 @@ public class VIDEO_VIEW : VisualElement, IDisposable
     {
         Player_ = null;
         RenderTexture_ = null;
-        Container = null;
+        VideoImage = null;
         IsDisposed = false;
 
         style.overflow = Overflow.Hidden;
@@ -52,31 +54,11 @@ public class VIDEO_VIEW : VisualElement, IDisposable
 
     // -- OPERATIONS
 
-    public void RenderVideo(
+    public void SetParentGameObject(
+        GameObject parent_game_object
         )
     {
-        float
-            container_height,
-            container_width,
-            video_height,
-            video_x_offset,
-            video_y_offset,
-            video_width;
-
-        container_width = resolvedStyle.width;
-        container_height = resolvedStyle.height;
-
-        video_width = container_height * AspectRatio;
-        video_height = container_height;
-        video_x_offset = ( video_width - container_width ) * -0.5f;
-        video_y_offset = -21.0f;
-
-        Container.style.translate = new Translate( video_x_offset, video_y_offset, 0 );
-
-        if ( RenderTexture_ != null )
-        {
-            GUI.DrawTexture( new Rect( 0, 0, video_width, video_height ), RenderTexture_ );
-        }
+        ParentGameObject = parent_game_object;
     }
 
     // ~~
@@ -99,33 +81,26 @@ public class VIDEO_VIEW : VisualElement, IDisposable
         if ( Player_ == null )
         {
             Player_ = new GameObject( "VideoPlayer" ).AddComponent<VideoPlayer>();
+            Player_.transform.SetParent( ParentGameObject.transform );
             Player_.source = VideoSource.Url;
             Player_.url = FilePath;
             Player_.playOnAwake = IsPlayed;
             Player_.isLooping = IsLooping;
+            Player_.aspectRatio = VideoAspectRatio.Stretch;
 
             RenderTexture_ = new RenderTexture( width, height, 24 );
             Player_.targetTexture = RenderTexture_;
 
-            Container = new IMGUIContainer( RenderVideo );
+            VideoImage = new Image();
+            VideoImage.image = RenderTexture_;
+            VideoImage.scaleMode = ScaleMode.ScaleAndCrop;
+            VideoImage.style.position = Position.Absolute;
+            VideoImage.style.left = 0;
+            VideoImage.style.right = 0;
+            VideoImage.style.top = 0;
+            VideoImage.style.bottom = 0;
 
-            /*
-            Container.style.position = Position.Absolute;
-            Container.style.left = 0;
-            Container.style.top = 0;
-            Container.style.width = new Length( 100, LengthUnit.Percent );
-            Container.style.height = new Length( 100, LengthUnit.Percent );
-            Container.style.unityBackgroundImageTintColor = Color.clear;
-            */
-
-            Container.style.position = Position.Absolute;
-            Container.style.left = 0;
-            Container.style.right = 0;
-            Container.style.top = 0;
-            Container.style.bottom = 0;
-            Container.style.transformOrigin = new TransformOrigin( 0, 0 );
-
-            Add( Container );
+            Add( VideoImage );
         }
         else
         {

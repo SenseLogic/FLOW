@@ -7,15 +7,13 @@
 {
     height: 80px;
     width: 80px;
+    border-width: 1px;
+    border-color: #FFFF00;
 }
 
 .play-video-button
 {
     position: absolute;
-    bottom: 5px;
-    left: 5px;
-    height: 15px;
-    width: 15px;
 
     background-color: #00FF00;
 }
@@ -23,10 +21,6 @@
 .pause-video-button
 {
     position: absolute;
-    bottom: 5px;
-    right: 5px;
-    height: 15px;
-    width: 15px;
 
     background-color: #FF0000;
 }

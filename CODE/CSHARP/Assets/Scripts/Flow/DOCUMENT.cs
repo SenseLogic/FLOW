@@ -26,11 +26,13 @@ namespace FLOW
             ScreenMinimumSize,
             ScreenMaximumSize,
             ScreenRatio,
+            DocumentResolution,
             DocumentWidth,
             DocumentHeight,
             DocumentMinimumSize,
             DocumentMaximumSize,
-            DocumentRatio;
+            DocumentRatio,
+            DocumentPixel;
         public Element
             DocumentElement;
         public List<Element>
@@ -39,6 +41,57 @@ namespace FLOW
             ResizeFunctionList = new List<Action<Element>>();
 
         // -- OPERATIONS
+
+        public void SetDocumentResolution(
+            float reference_width
+            )
+        {
+            DocumentResolution = reference_width;
+        }
+
+        // ~~
+
+        public UQueryBuilder<VisualElement> FindByClass(
+            string class_name
+            )
+        {
+            return DocumentElement.Query<VisualElement>().Class( class_name );
+        }
+
+        // ~~
+
+        public void SetBottom(
+            Element element,
+            float bottom
+            )
+        {
+            element.style.bottom = bottom;
+        }
+
+        // ~~
+
+        public void SetBottom(
+            UQueryBuilder<VisualElement> query_builder,
+            float bottom
+            )
+        {
+            foreach ( var element in query_builder.Build() )
+            {
+                element.style.bottom = bottom;
+            }
+        }
+
+        // ~~
+
+        public void SetBottom(
+            string class_name,
+            float bottom
+            )
+        {
+            SetBottom( DocumentElement.Query<VisualElement>().Class( class_name ), bottom );
+        }
+
+        // ~~
 
         public void SetBorderBottomLeftRadius(
             Element element,
@@ -948,8 +1001,21 @@ namespace FLOW
                 ScreenRatio = 0.0f;
             }
 
+            if ( DocumentResolution == 0.0f )
+            {
+                DocumentResolution = ScreenWidth;
+            }
+
             DocumentWidth = DocumentElement.worldBound.width;
             DocumentHeight = DocumentElement.worldBound.height;
+
+            if ( float.IsNaN( DocumentWidth )
+                 || float.IsNaN( DocumentHeight ) )
+            {
+                DocumentWidth = ScreenWidth;
+                DocumentHeight = ScreenHeight;
+            }
+
             DocumentMinimumSize = Mathf.Min( DocumentWidth, DocumentHeight );
             DocumentMaximumSize = Mathf.Max( DocumentWidth, DocumentHeight );
 
@@ -961,6 +1027,8 @@ namespace FLOW
             {
                 DocumentRatio = 0.0f;
             }
+
+            DocumentPixel = DocumentWidth / DocumentResolution;
         }
 
         // ~~

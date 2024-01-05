@@ -14,14 +14,14 @@ using Element = UnityEngine.UIElements.VisualElement;
 namespace GAME
 {
     [ RequireComponent( typeof( UIDocument ) ) ]
-    public class TEST_SCREEN : SCREEN
+    public class HOME_SCREEN : SCREEN
     {
         // -- ATTRIBUTES
 
-        public static TEST_SCREEN
+        public static HOME_SCREEN
             Instance;
         public Element
-            ScreenPanelElement,
+            HomeScreenElement,
             ListViewPanelElement,
             GridViewPanelElement;
 
@@ -61,7 +61,7 @@ namespace GAME
         public void CreateListViewPanel(
             )
         {
-            ListViewPanelElement = ScreenPanelElement.Create<Element>( "list-view-panel" );
+            ListViewPanelElement = HomeScreenElement.Create<Element>( "list-view-panel" );
 
             CreateVideoView( Application.dataPath + "/Resources/Videos/Nature1.mp4" );
             CreateVideoView( Application.dataPath + "/Resources/Videos/Nature2.mp4" );
@@ -74,7 +74,7 @@ namespace GAME
         public void CreateGridViewPanel(
             )
         {
-            GridViewPanelElement = ScreenPanelElement.Create<Element>( "grid-view-panel" );
+            GridViewPanelElement = HomeScreenElement.Create<Element>( "grid-view-panel" );
         }
 
         // ~~
@@ -82,7 +82,7 @@ namespace GAME
         public override void BuildDocument(
             )
         {
-            ScreenPanelElement = DocumentElement.Create<Element>( "screen-panel" );
+            HomeScreenElement = Element.Create<Element>( "home-screen" );
 
             CreateListViewPanel();
             CreateGridViewPanel();
@@ -95,16 +95,8 @@ namespace GAME
         {
             base.ResizeDocument();
 
-            SetHeight( "video-view", 200 * DocumentPixel );
-            SetWidth( "video-view", 200 * DocumentPixel );
-            SetBottom( "play-video-button", 5 * DocumentPixel );
-            SetLeft( "play-video-button", 5 * DocumentPixel );
-            SetHeight( "play-video-button", 100 * DocumentPixel );
-            SetWidth( "play-video-button", 100 * DocumentPixel );
-            SetBottom( "pause-video-button", 5 * DocumentPixel );
-            SetRight( "pause-video-button", 5 * DocumentPixel );
-            SetHeight( "pause-video-button", 40 * DocumentPixel );
-            SetWidth( "pause-video-button", 40 * DocumentPixel );
+            Element.SetHeight( "video-view", 200 * Pixel );
+            Element.SetWidth( "video-view", Width / 4 );
         }
     }
 }

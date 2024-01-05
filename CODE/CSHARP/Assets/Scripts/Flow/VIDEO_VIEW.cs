@@ -23,11 +23,11 @@ public class VIDEO_VIEW : VisualElement, IDisposable
         Height,
         AspectRatio;
     public VideoPlayer
-        Player_;
+        Player;
     public RenderTexture
         RenderTexture_;
     public Image
-        VideoImage;
+        RenderImage;
     public bool
         IsDisposed;
 
@@ -36,9 +36,9 @@ public class VIDEO_VIEW : VisualElement, IDisposable
     public VIDEO_VIEW(
         )
     {
-        Player_ = null;
+        Player = null;
         RenderTexture_ = null;
-        VideoImage = null;
+        RenderImage = null;
         IsDisposed = false;
 
         style.overflow = Overflow.Hidden;
@@ -78,33 +78,33 @@ public class VIDEO_VIEW : VisualElement, IDisposable
         Height = height;
         AspectRatio = Width / Height;
 
-        if ( Player_ == null )
+        if ( Player == null )
         {
-            Player_ = new GameObject( "VideoPlayer" ).AddComponent<VideoPlayer>();
-            Player_.transform.SetParent( ParentGameObject.transform );
-            Player_.source = VideoSource.Url;
-            Player_.url = FilePath;
-            Player_.playOnAwake = IsPlayed;
-            Player_.isLooping = IsLooping;
-            Player_.aspectRatio = VideoAspectRatio.Stretch;
+            Player = new GameObject( "VideoPlayer" ).AddComponent<VideoPlayer>();
+            Player.transform.SetParent( ParentGameObject.transform );
+            Player.source = VideoSource.Url;
+            Player.url = FilePath;
+            Player.playOnAwake = IsPlayed;
+            Player.isLooping = IsLooping;
+            Player.aspectRatio = VideoAspectRatio.Stretch;
 
             RenderTexture_ = new RenderTexture( width, height, 24 );
-            Player_.targetTexture = RenderTexture_;
+            Player.targetTexture = RenderTexture_;
 
-            VideoImage = new Image();
-            VideoImage.image = RenderTexture_;
-            VideoImage.scaleMode = ScaleMode.ScaleAndCrop;
-            VideoImage.style.position = Position.Absolute;
-            VideoImage.style.left = 0;
-            VideoImage.style.right = 0;
-            VideoImage.style.top = 0;
-            VideoImage.style.bottom = 0;
+            RenderImage = new Image();
+            RenderImage.image = RenderTexture_;
+            RenderImage.scaleMode = ScaleMode.ScaleAndCrop;
+            RenderImage.style.position = Position.Absolute;
+            RenderImage.style.left = 0;
+            RenderImage.style.right = 0;
+            RenderImage.style.top = 0;
+            RenderImage.style.bottom = 0;
 
-            Add( VideoImage );
+            Add( RenderImage );
         }
         else
         {
-            Player_.source = VideoSource.Url;
+            Player.source = VideoSource.Url;
         }
     }
 
@@ -113,9 +113,9 @@ public class VIDEO_VIEW : VisualElement, IDisposable
     public void Play(
         )
     {
-        if ( Player_ != null )
+        if ( Player != null )
         {
-            Player_.Play();
+            Player.Play();
         }
     }
 
@@ -124,9 +124,9 @@ public class VIDEO_VIEW : VisualElement, IDisposable
     public void Pause(
         )
     {
-        if ( Player_ != null )
+        if ( Player != null )
         {
-            Player_.Pause();
+            Player.Pause();
         }
     }
 
@@ -134,9 +134,9 @@ public class VIDEO_VIEW : VisualElement, IDisposable
 
     public void SetTime( double seconds )
     {
-        if ( Player_ != null )
+        if ( Player != null )
         {
-            Player_.time = seconds;
+            Player.time = seconds;
         }
     }
 
@@ -166,10 +166,10 @@ public class VIDEO_VIEW : VisualElement, IDisposable
                 }
             }
 
-            if ( Player_ != null )
+            if ( Player != null )
             {
-                GameObject.Destroy( Player_.gameObject );
-                Player_ = null;
+                GameObject.Destroy( Player.gameObject );
+                Player = null;
             }
 
             IsDisposed = true;

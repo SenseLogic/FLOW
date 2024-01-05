@@ -1,3 +1,11 @@
+.home-screen
+{
+    height: 100%;
+
+    background-image: url( "../Images/HomeBackground.png" );
+    background-size: cover;
+}
+
 .list-view-panel
 {
     flex-direction: row;
@@ -7,13 +15,15 @@
 {
     height: 80px;
     width: 80px;
-    border-width: 1px;
-    border-color: #FFFF00;
 }
 
 .play-video-button
 {
     position: absolute;
+    bottom: 5px;
+    left: 5px;
+    height: 50px;
+    width: 50px;
 
     background-color: #00FF00;
 }
@@ -21,6 +31,10 @@
 .pause-video-button
 {
     position: absolute;
+    bottom: 5px;
+    right: 5px;
+    height: 50px;
+    width: 50px;
 
     background-color: #FF0000;
 }

@@ -277,7 +277,7 @@ GameObject:
   - component: {fileID: 1879013050}
   - component: {fileID: 1879013052}
   m_Layer: 5
-  m_Name: TestScreen
+  m_Name: HomeScreen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -332,13 +332,13 @@ MonoBehaviour:
   ScreenMinimumSize: 0
   ScreenMaximumSize: 0
   ScreenRatio: 0
-  DocumentWidth: 0
-  DocumentHeight: 0
-  DocumentMinimumSize: 0
-  DocumentMaximumSize: 0
-  DocumentRatio: 0
-  DocumentResolution: 960
-  DocumentPixel: 0
+  Resolution: 960
+  Width: 0
+  Height: 0
+  MinimumSize: 0
+  MaximumSize: 0
+  Ratio: 0
+  Pixel: 0
 --- !u!1 &2084115972
 GameObject:
   m_ObjectHideFlags: 0

@@ -18,27 +18,19 @@ namespace GAME
     {
         // -- OPERATIONS
 
-        public void Start(
-            )
-        {
-            Screen.orientation = ScreenOrientation.Portrait;
-        }
-
-        // ~~
-
         public override void UpdateSize(
             )
         {
             base.UpdateSize();
 
-            DocumentElement.EnableInClassList( "aspect-ratio-below-9-16", DocumentRatio <= 0.57f );
-            DocumentElement.EnableInClassList( "aspect-ratio-below-2-3", DocumentRatio <= 0.67f );
-            DocumentElement.EnableInClassList( "aspect-ratio-below-3-4", DocumentRatio <= 0.75f );
-            DocumentElement.EnableInClassList( "aspect-ratio-below-1", DocumentRatio <= 1.0f );
-            DocumentElement.EnableInClassList( "aspect-ratio-above-1", DocumentRatio >= 1.0f );
-            DocumentElement.EnableInClassList( "aspect-ratio-above-4-3", DocumentRatio >= 1.33f );
-            DocumentElement.EnableInClassList( "aspect-ratio-above-3-2", DocumentRatio <= 1.5f );
-            DocumentElement.EnableInClassList( "aspect-ratio-above-16-9", DocumentRatio >= 1.77f );
+            Element.EnableInClassList( "aspect-ratio-below-9-16", Ratio <= 0.57f );
+            Element.EnableInClassList( "aspect-ratio-below-2-3", Ratio <= 0.67f );
+            Element.EnableInClassList( "aspect-ratio-below-3-4", Ratio <= 0.75f );
+            Element.EnableInClassList( "aspect-ratio-below-1", Ratio <= 1.0f );
+            Element.EnableInClassList( "aspect-ratio-above-1", Ratio >= 1.0f );
+            Element.EnableInClassList( "aspect-ratio-above-4-3", Ratio >= 1.33f );
+            Element.EnableInClassList( "aspect-ratio-above-3-2", Ratio <= 1.5f );
+            Element.EnableInClassList( "aspect-ratio-above-16-9", Ratio >= 1.77f );
         }
 
         // ~~

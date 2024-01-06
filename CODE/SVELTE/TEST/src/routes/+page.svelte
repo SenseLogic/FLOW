@@ -2,13 +2,13 @@
     // -- IMPORTS
 
     //import DatePicker from 'senselogic-flow/DatePicker.svelte';
-    import DatePicker from '../../../CODE/JAVASCRIPT/DatePicker.svelte';
+    import DatePicker from '../../../PACKAGE/DatePicker.svelte';
     //import Switch from 'senselogic-flow/Switch.svelte';
-    import Switch from '../../../CODE/JAVASCRIPT/Switch.svelte';
+    import Switch from '../../../PACKAGE/Switch.svelte';
     //import SortableList from 'senselogic-flow/SortableList.svelte';
-    import SortableList from '../../../CODE/JAVASCRIPT/SortableList.svelte';
+    import SortableList from '../../../PACKAGE/SortableList.svelte';
     //import ValuePicker from 'senselogic-flow/ValuePicker.svelte';
-    import ValuePicker from '../../../CODE/JAVASCRIPT/ValuePicker.svelte';
+    import ValuePicker from '../../../PACKAGE/ValuePicker.svelte';
 
     // -- VARIABLES
 

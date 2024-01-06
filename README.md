@@ -6,18 +6,20 @@ UI toolkit.
 
 ## Features
 
-*   Stylus CSS
+*   Stylus
     *   Utility classes
     *   Media queries
-*   Svelte UI
+*   Svelte
     *   Switch
     *   Value picker
     *   Value range picker
     *   Date picker
     *   Date range picker
-*   Unity UI
-    *   Element extensions
+*   Unity
     *   Responsive document
+    *   Element extensions
+    *   Query builder extensions
+    *   Video view
 
 ## Version
 

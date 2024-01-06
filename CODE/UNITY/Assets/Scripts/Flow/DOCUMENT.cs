@@ -21,12 +21,15 @@ namespace FLOW
         public UIDocument
             Document;
         public float
+            CanvasWidth,
+            CanvasHeight,
+            CanvasHeightFactor,
+            CanvasRatio,
             ScreenWidth,
             ScreenHeight,
             ScreenMinimumSize,
             ScreenMaximumSize,
             ScreenRatio,
-            Resolution,
             Width,
             Height,
             MinimumSize,
@@ -59,9 +62,28 @@ namespace FLOW
                 ScreenRatio = 0.0f;
             }
 
-            if ( Resolution == 0.0f )
+            if ( CanvasRatio == 0.0f )
             {
-                Resolution = ScreenWidth;
+                CanvasRatio = ScreenRatio;
+            }
+
+            if ( CanvasWidth == 0.0f
+                 && CanvasHeight == 0.0f )
+            {
+                CanvasWidth = ScreenWidth;
+                CanvasHeight = ScreenHeight;
+            }
+            else if ( CanvasWidth == 0.0f )
+            {
+                CanvasWidth = CanvasHeight * CanvasRatio;
+            }
+            else if ( CanvasHeight == 0.0f )
+            {
+                CanvasHeight = CanvasWidth / CanvasRatio;
+            }
+            else
+            {
+                CanvasRatio = CanvasWidth / CanvasHeight;
             }
 
             Width = Element.worldBound.width;
@@ -86,7 +108,7 @@ namespace FLOW
                 Ratio = 0.0f;
             }
 
-            Pixel = Width / Resolution;
+            Pixel = Mathf.Lerp( Width / CanvasWidth, Height / CanvasHeight, Mathf.Clamp01( CanvasHeightFactor ) );
         }
 
         // ~~

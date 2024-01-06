@@ -68,7 +68,8 @@ public class VIDEO_VIEW : VisualElement, IDisposable
         bool is_played = false,
         bool is_looping = true,
         int width = 1920,
-        int height = 1080
+        int height = 1080,
+        VideoAspectRatio video_aspect_ratio = VideoAspectRatio.Stretch
         )
     {
         FilePath = file_path;
@@ -86,7 +87,7 @@ public class VIDEO_VIEW : VisualElement, IDisposable
             Player.url = FilePath;
             Player.playOnAwake = IsPlayed;
             Player.isLooping = IsLooping;
-            Player.aspectRatio = VideoAspectRatio.Stretch;
+            Player.aspectRatio = video_aspect_ratio;
 
             RenderTexture_ = new RenderTexture( width, height, 24 );
             Player.targetTexture = RenderTexture_;

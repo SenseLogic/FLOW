@@ -327,12 +327,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Document: {fileID: 0}
+  CanvasWidth: 960
+  CanvasHeight: 0
+  CanvasHeightFactor: 0
+  CanvasRatio: 0.5625
   ScreenWidth: 0
   ScreenHeight: 0
   ScreenMinimumSize: 0
   ScreenMaximumSize: 0
   ScreenRatio: 0
-  Resolution: 960
   Width: 0
   Height: 0
   MinimumSize: 0

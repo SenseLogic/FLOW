@@ -9,6 +9,19 @@
 .list-view-panel
 {
     flex-direction: row;
+    overflow: hidden;
+    height: 200px;
+    width: 700px;
+}
+
+.list-view-strip
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+    flex-direction: row;
+    flex-grow: 0;
+    flex-shrink: 0;
 }
 
 .video-view

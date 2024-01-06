@@ -21,8 +21,11 @@ namespace GAME
         public static HOME_SCREEN
             Instance;
         public Element
-            HomeScreenElement,
-            ListViewPanelElement,
+            HomeScreenElement;
+        public DRAG_VIEW
+            ListViewPanelElement;
+        public Element
+            ListViewStripElement,
             GridViewPanelElement;
 
         // -- OPERATIONS
@@ -45,7 +48,7 @@ namespace GAME
             VIDEO_VIEW
                 video_view_element;
 
-            video_view_element = ListViewPanelElement.Create<VIDEO_VIEW>( "video-view" );
+            video_view_element = ListViewStripElement.Create<VIDEO_VIEW>( "video-view" );
             video_view_element.SetParentGameObject( gameObject );
             video_view_element.SetVideo( video_file_path, true );
 
@@ -61,7 +64,10 @@ namespace GAME
         public void CreateListViewPanel(
             )
         {
-            ListViewPanelElement = HomeScreenElement.Create<Element>( "list-view-panel" );
+            ListViewPanelElement = HomeScreenElement.Create<DRAG_VIEW>( "list-view-panel" );
+            ListViewPanelElement.IsHorizontal = true;
+
+            ListViewStripElement = ListViewPanelElement.Create<Element>( "list-view-strip" );
 
             CreateVideoView( Application.dataPath + "/Resources/Videos/Nature1.mp4" );
             CreateVideoView( Application.dataPath + "/Resources/Videos/Nature2.mp4" );

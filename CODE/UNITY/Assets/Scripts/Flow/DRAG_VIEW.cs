@@ -11,10 +11,11 @@ public class DRAG_VIEW : VisualElement
         IsHorizontal,
         IsVertical,
         IsDragging,
-        IsDampening;
+        IsStopping;
     public float
         MinimumPixelDistance = 5,
-        DampeningFactor = 0.95f,
+        DraggingDampeningFactor = 0.5f,
+        StoppingDampeningFactor = 0.95f,
         MinimumInertiaSpeed = 20.0f;
     public Vector2
         MousePositionVector;
@@ -31,7 +32,7 @@ public class DRAG_VIEW : VisualElement
         DragMousePositionVector,
         DragVelocityVector;
     public IVisualElementScheduledItem
-        InertiaScheduleItem;
+        UpdateDragScheduleItem;
     public float
         InertiaTime;
 
@@ -40,8 +41,8 @@ public class DRAG_VIEW : VisualElement
     public DRAG_VIEW(
         )
     {
-        InertiaScheduleItem = schedule.Execute( ApplyInertia ).Every( 1000 / 60 );
-        InertiaScheduleItem.Pause();
+        UpdateDragScheduleItem = schedule.Execute( UpdateDrag ).Every( 1000 / 60 );
+        UpdateDragScheduleItem.Pause();
 
         RegisterCallback<MouseDownEvent>( OnMouseDown );
         RegisterCallback<MouseMoveEvent>( OnMouseMove );
@@ -67,18 +68,26 @@ public class DRAG_VIEW : VisualElement
 
     // ~~
 
-    public void ApplyInertia(
+    public void UpdateDrag(
         )
     {
-        StripPositionVector += DragVelocityVector * Time.deltaTime;
-        DragVelocityVector *= DampeningFactor;
-
-        if ( DragVelocityVector.magnitude <= MinimumInertiaSpeed )
+        if ( IsDragging )
         {
-            InertiaScheduleItem.Pause();
+            DragVelocityVector *= DraggingDampeningFactor;
         }
 
-        SetStripPosition( StripPositionVector );
+        if ( IsStopping )
+        {
+            StripPositionVector += DragVelocityVector * Time.deltaTime;
+            DragVelocityVector *= StoppingDampeningFactor;
+
+            if ( DragVelocityVector.magnitude <= MinimumInertiaSpeed )
+            {
+                UpdateDragScheduleItem.Pause();
+            }
+
+            SetStripPosition( StripPositionVector );
+        }
     }
 
     // ~~
@@ -92,6 +101,7 @@ public class DRAG_VIEW : VisualElement
             this.CaptureMouse();
 
             IsDragging = false;
+            IsStopping = false;
             MousePositionVector = mouse_move_event.localMousePosition;
             DragMousePositionVector = MousePositionVector;
 
@@ -109,7 +119,7 @@ public class DRAG_VIEW : VisualElement
             MaximumStripPositionVector.x = 0.0f;
             MaximumStripPositionVector.y = 0.0f;
 
-            InertiaScheduleItem.Pause();
+            UpdateDragScheduleItem.Resume();
         }
     }
 
@@ -133,6 +143,7 @@ public class DRAG_VIEW : VisualElement
                  && mouse_offset_vector.magnitude > MinimumPixelDistance )
             {
                 IsDragging = true;
+                IsStopping = false;
             }
 
             if ( IsDragging )
@@ -142,8 +153,6 @@ public class DRAG_VIEW : VisualElement
                 mouse_offset_vector = mouse_position_vector - DragMousePositionVector;
                 DragVelocityVector = mouse_offset_vector / Time.deltaTime;
                 DragMousePositionVector = mouse_position_vector;
-
-                InertiaScheduleItem.Pause();
             }
         }
     }
@@ -160,9 +169,8 @@ public class DRAG_VIEW : VisualElement
         }
 
         IsDragging = false;
+        IsStopping = true;
         StripPositionVector.x = StripElement.resolvedStyle.left;
         StripPositionVector.y = StripElement.resolvedStyle.top;
-
-        InertiaScheduleItem.Resume();
     }
 }

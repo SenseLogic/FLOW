@@ -1,0 +1,69 @@
+.acme-font-regular
+{
+    -unity-font-definition: url( "../Fonts/Acme-Regular SDF.asset" );
+}
+
+.fresca-font-regular
+{
+    -unity-font-definition: url( "../Fonts/Fresca-Regular SDF.asset" );
+}
+
+.roboto-font-thin
+{
+    -unity-font-definition: url( "../Fonts/Roboto-Thin SDF.asset" );
+}
+
+.roboto-font-thin-italic
+{
+    -unity-font-definition: url( "../Fonts/Roboto-ThinItalic SDF.asset" );
+}
+
+.roboto-font-light
+{
+    -unity-font-definition: url( "../Fonts/Roboto-Light SDF.asset" );
+}
+
+.roboto-font-light-italic
+{
+    -unity-font-definition: url( "../Fonts/Roboto-LightItalic SDF.asset" );
+}
+
+.roboto-font-regular
+{
+    -unity-font-definition: url( "../Fonts/Roboto-Regular SDF.asset" );
+}
+
+.roboto-font-regular-italic
+{
+    -unity-font-definition: url( "../Fonts/Roboto-RegularItalic SDF.asset" );
+}
+
+.roboto-font-medium
+{
+    -unity-font-definition: url( "../Fonts/Roboto-Medium SDF.asset" );
+}
+
+.roboto-font-medium-italic
+{
+    -unity-font-definition: url( "../Fonts/Roboto-MediumItalic SDF.asset" );
+}
+
+.roboto-font-bold
+{
+    -unity-font-definition: url( "../Fonts/Roboto-Bold SDF.asset" );
+}
+
+.roboto-font-bold-italic
+{
+    -unity-font-definition: url( "../Fonts/Roboto-BoldItalic SDF.asset" );
+}
+
+.roboto-font-black
+{
+    -unity-font-definition: url( "../Fonts/Roboto-Black SDF.asset" );
+}
+
+.roboto-font-black-italic
+{
+    -unity-font-definition: url( "../Fonts/Roboto-BlackItalic SDF.asset" );
+}

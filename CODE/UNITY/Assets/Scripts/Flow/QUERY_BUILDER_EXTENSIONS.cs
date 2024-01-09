@@ -1,5 +1,6 @@
 // -- IMPORTS
 
+using UnityEngine;
 using UnityEngine.UIElements;
 
 // -- TYPES
@@ -7,6 +8,42 @@ using UnityEngine.UIElements;
 public static class QUERY_BUILDER_EXTENSIONS
 {
     // -- OPERATIONS
+
+    public static void SetBackgroundImage(
+        this UQueryBuilder<VisualElement> query_builder,
+        string background_image_file_path
+        )
+    {
+        StyleBackground
+            style_background;
+
+        style_background = new StyleBackground( Resources.Load<Texture2D>( background_image_file_path ) );
+
+        foreach ( var query_element in query_builder.Build() )
+        {
+            query_element.style.backgroundImage = style_background;
+        }
+    }
+
+    // ~~
+
+    public static void SetBackgroundSizeType(
+        this UQueryBuilder<VisualElement> query_builder,
+        BackgroundSizeType background_size_type
+        )
+    {
+        BackgroundSize
+            background_size;
+
+        background_size = new BackgroundSize( background_size_type );
+
+        foreach ( var query_element in query_builder.Build() )
+        {
+            query_element.style.backgroundSize = background_size;
+        }
+    }
+
+    // ~~
 
     public static void SetBottom(
         this UQueryBuilder<VisualElement> query_builder,

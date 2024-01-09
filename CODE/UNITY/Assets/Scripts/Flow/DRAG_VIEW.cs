@@ -8,8 +8,10 @@ using UnityEngine.UIElements;
 public class DRAG_VIEW : VisualElement
 {
     public bool
+        IsTranslated,
         IsHorizontal,
         IsVertical,
+        IsTracking,
         IsDragging,
         IsStopping;
     public float
@@ -44,25 +46,61 @@ public class DRAG_VIEW : VisualElement
         UpdateDragScheduleItem = schedule.Execute( UpdateDrag ).Every( 1000 / 60 );
         UpdateDragScheduleItem.Pause();
 
-        RegisterCallback<MouseDownEvent>( OnMouseDown );
-        RegisterCallback<MouseMoveEvent>( OnMouseMove );
-        RegisterCallback<MouseUpEvent>( OnMouseUp );
+        RegisterCallback<MouseDownEvent>( HandleMouseDownEvent );
+        RegisterCallback<MouseMoveEvent>( HandleMouseMoveEvent );
+        RegisterCallback<MouseUpEvent>( HandleMouseUpEvent );
     }
 
     // -- OPERATIONS
+
+    public Vector2 GetStripSize(
+        )
+    {
+        return new Vector2( StripElement.resolvedStyle.width, StripElement.resolvedStyle.height );
+    }
+
+    // ~~
+
+    public Vector2 GetStripPosition(
+        )
+    {
+        if ( IsTranslated )
+        {
+            return StripElement.resolvedStyle.translate;
+        }
+        else
+        {
+            return new Vector2( StripElement.resolvedStyle.left, StripElement.resolvedStyle.top );
+        }
+    }
+
+    // ~~
 
     public void SetStripPosition(
         Vector2 strip_position_vector
         )
     {
-        if ( IsHorizontal )
+        if ( IsTranslated )
         {
-            StripElement.style.left = Mathf.Clamp( strip_position_vector.x, MinimumStripPositionVector.x, MaximumStripPositionVector.x );
+            StripElement.style.translate
+                = new StyleTranslate(
+                      new Translate(
+                          new Length( Mathf.Clamp( strip_position_vector.x, MinimumStripPositionVector.x, MaximumStripPositionVector.x ), LengthUnit.Pixel ),
+                          new Length( Mathf.Clamp( strip_position_vector.y, MinimumStripPositionVector.y, MaximumStripPositionVector.y ), LengthUnit.Pixel )
+                          )
+                      );
         }
-
-        if ( IsVertical )
+        else
         {
-            StripElement.style.top = Mathf.Clamp( strip_position_vector.y, MinimumStripPositionVector.y, MaximumStripPositionVector.y );
+            if ( IsHorizontal )
+            {
+                StripElement.style.left = Mathf.Clamp( strip_position_vector.x, MinimumStripPositionVector.x, MaximumStripPositionVector.x );
+            }
+
+            if ( IsVertical )
+            {
+                StripElement.style.top = Mathf.Clamp( strip_position_vector.y, MinimumStripPositionVector.y, MaximumStripPositionVector.y );
+            }
         }
     }
 
@@ -92,14 +130,18 @@ public class DRAG_VIEW : VisualElement
 
     // ~~
 
-    public void OnMouseDown(
+    public void HandleMouseDownEvent(
         MouseDownEvent mouse_move_event
         )
     {
         if ( childCount > 0 )
         {
-            this.CaptureMouse();
+            if ( this.HasMouseCapture() )
+            {
+                this.ReleaseMouse();
+            }
 
+            IsTracking = true;
             IsDragging = false;
             IsStopping = false;
             MousePositionVector = mouse_move_event.localMousePosition;
@@ -109,10 +151,8 @@ public class DRAG_VIEW : VisualElement
             ViewSizeVector.y = resolvedStyle.height;
 
             StripElement = this[ 0 ];
-            StripSizeVector.x = StripElement.resolvedStyle.width;
-            StripSizeVector.y = StripElement.resolvedStyle.height;
-            StripPositionVector.x = StripElement.resolvedStyle.left;
-            StripPositionVector.y = StripElement.resolvedStyle.top;
+            StripSizeVector = GetStripSize();
+            StripPositionVector = GetStripPosition();
 
             MinimumStripPositionVector.x = ViewSizeVector.x - StripSizeVector.x;
             MinimumStripPositionVector.y = ViewSizeVector.y - StripSizeVector.y;
@@ -125,7 +165,7 @@ public class DRAG_VIEW : VisualElement
 
     // ~~
 
-    public void OnMouseMove(
+    public void HandleMouseMoveEvent(
         MouseMoveEvent mouse_move_event
         )
     {
@@ -133,7 +173,7 @@ public class DRAG_VIEW : VisualElement
             mouse_offset_vector,
             mouse_position_vector;
 
-        if ( this.HasMouseCapture()
+        if ( IsTracking
              && StripElement != null )
         {
             mouse_position_vector = mouse_move_event.localMousePosition;
@@ -142,8 +182,14 @@ public class DRAG_VIEW : VisualElement
             if ( !IsDragging
                  && mouse_offset_vector.magnitude > MinimumPixelDistance )
             {
+                if ( !this.HasMouseCapture() )
+                {
+                    this.CaptureMouse();
+                }
+
                 IsDragging = true;
                 IsStopping = false;
+
             }
 
             if ( IsDragging )
@@ -159,8 +205,8 @@ public class DRAG_VIEW : VisualElement
 
     // ~~
 
-    public void OnMouseUp(
-        MouseUpEvent mouse_move_event
+    public void HandleMouseUpEvent(
+        MouseUpEvent mouse_up_event
         )
     {
         if ( this.HasMouseCapture() )
@@ -168,9 +214,9 @@ public class DRAG_VIEW : VisualElement
             this.ReleaseMouse();
         }
 
+        IsTracking = false;
         IsDragging = false;
         IsStopping = true;
-        StripPositionVector.x = StripElement.resolvedStyle.left;
-        StripPositionVector.y = StripElement.resolvedStyle.top;
+        StripPositionVector = GetStripPosition();
     }
 }

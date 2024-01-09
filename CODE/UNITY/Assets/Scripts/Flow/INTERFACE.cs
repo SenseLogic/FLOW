@@ -39,9 +39,9 @@ namespace FLOW
         public Element
             Element;
         public List<Element>
-            ResizeElementList = new List<Element>();
+            HandleResizeElementList = new List<Element>();
         public List<Action<Element>>
-            ResizeFunctionList = new List<Action<Element>>();
+            HandleResizeActionList = new List<Action<Element>>();
 
         // -- OPERATIONS
 
@@ -122,17 +122,17 @@ namespace FLOW
 
         // ~~
 
-        public virtual void Resize(
+        public virtual void HandleResize(
             Element element,
-            Action<Element> resize_function
+            Action<Element> action
             )
         {
-            ResizeElementList.Add( element );
-            ResizeFunctionList.Add( resize_function );
+            HandleResizeElementList.Add( element );
+            HandleResizeActionList.Add( action );
 
             if ( element.panel != null )
             {
-                resize_function( element );
+                action( element );
             }
         }
 
@@ -143,8 +143,8 @@ namespace FLOW
         {
             Element.Clear();
 
-            ResizeElementList = new List<Element>();
-            ResizeFunctionList = new List<Action<Element>>();
+            HandleResizeElementList = new List<Element>();
+            HandleResizeActionList = new List<Action<Element>>();
         }
 
         // ~~
@@ -161,19 +161,19 @@ namespace FLOW
             )
         {
             int
-                resize_element_index;
+                element_index;
             Element
-                resize_element;
+                element;
 
-            for ( resize_element_index = 0;
-                  resize_element_index < ResizeElementList.Count;
-                  ++resize_element_index )
+            for ( element_index = 0;
+                  element_index < HandleResizeElementList.Count;
+                  ++element_index )
             {
-                resize_element = ResizeElementList[ resize_element_index ];
+                element = HandleResizeElementList[ element_index ];
 
-                if ( resize_element.panel != null )
+                if ( element.panel != null )
                 {
-                    ResizeFunctionList[ resize_element_index ]( resize_element );
+                    HandleResizeActionList[ element_index ]( element );
                 }
             }
         }

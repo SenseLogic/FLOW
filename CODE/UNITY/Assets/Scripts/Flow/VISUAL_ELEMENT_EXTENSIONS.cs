@@ -1,6 +1,7 @@
 // -- IMPORTS
 
 using System;
+using UnityEngine;
 using UnityEngine.UIElements;
 
 // -- TYPES
@@ -721,6 +722,48 @@ public static class VISUAL_ELEMENT_EXTENSIONS
         {
             action( element );
         }
+    }
+
+    // ~~
+
+    public static void SetBackgroundImage(
+        this Element element,
+        string background_image_file_path
+        )
+    {
+        element.style.backgroundImage = new StyleBackground( Resources.Load<Texture2D>( background_image_file_path ) );
+    }
+
+    // ~~
+
+    public static void SetBackgroundImage(
+        this Element element,
+        string class_name,
+        string background_image_file_path
+        )
+    {
+        element.Query<VisualElement>().Class( class_name ).SetBackgroundImage( background_image_file_path );
+    }
+
+    // ~~
+
+    public static void SetBackgroundSizeType(
+        this Element element,
+        BackgroundSizeType background_size_type
+        )
+    {
+        element.style.backgroundSize = new BackgroundSize( background_size_type );
+    }
+
+    // ~~
+
+    public static void SetBackgroundSizeType(
+        this Element element,
+        string class_name,
+        BackgroundSizeType background_size_type
+        )
+    {
+        element.Query<VisualElement>().Class( class_name ).SetBackgroundSizeType( background_size_type );
     }
 
     // ~~

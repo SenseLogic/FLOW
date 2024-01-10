@@ -1,0 +1,14 @@
+.is-hidden
+{
+    display: none;
+}
+
+.is-fullscreen
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    height: 100%;
+    width: 100%;
+}

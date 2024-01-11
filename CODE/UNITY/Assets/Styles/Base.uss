@@ -1,3 +1,32 @@
+.slider-bar
+{
+    height: 20px;
+    border-radius: 10px;
+
+    background-color: #F0F0F0;
+}
+
+.slider-progress
+{
+    height: 20px;
+    border-radius: 10px;
+
+    background-color: #00FFFF;
+    background-image: url( "../Images/SliderProgressBackground.png" );
+}
+
+.slider-handle
+{
+    height: 20px;
+    width: 20px;
+    border-radius: 10px;
+
+    background-color: #00E3FE;
+    translate: -10px 0;
+    scale: 3;
+    -unity-background-scale-mode: stretch-to-fill;
+}
+
 .is-hidden
 {
     display: none;

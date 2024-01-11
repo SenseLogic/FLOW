@@ -4,10 +4,11 @@ using System;
 using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.Video;
+using Element = UnityEngine.UIElements.VisualElement;
 
 // -- TYPES
 
-public class VIDEO_VIEW : VisualElement, IDisposable
+public class VIDEO : Element, IDisposable
 {
     // -- ATTRIBUTES
 
@@ -33,7 +34,7 @@ public class VIDEO_VIEW : VisualElement, IDisposable
 
     // -- CONSTRUCTORS
 
-    public VIDEO_VIEW(
+    public VIDEO(
         )
     {
         Player = null;
@@ -46,7 +47,7 @@ public class VIDEO_VIEW : VisualElement, IDisposable
 
     // -- DESTRUCTOR
 
-    ~VIDEO_VIEW(
+    ~VIDEO(
         )
     {
         ReleaseResources( false );
@@ -88,6 +89,16 @@ public class VIDEO_VIEW : VisualElement, IDisposable
             Player.playOnAwake = IsPlayed;
             Player.isLooping = IsLooping;
             Player.aspectRatio = video_aspect_ratio;
+            Player.Prepare();
+
+            if ( IsPlayed )
+            {
+                Player.Play();
+            }
+            else
+            {
+                Player.Pause();
+            }
 
             RenderTexture_ = new RenderTexture( width, height, 24 );
             Player.targetTexture = RenderTexture_;
@@ -106,38 +117,6 @@ public class VIDEO_VIEW : VisualElement, IDisposable
         else
         {
             Player.source = VideoSource.Url;
-        }
-    }
-
-    // ~~
-
-    public void Play(
-        )
-    {
-        if ( Player != null )
-        {
-            Player.Play();
-        }
-    }
-
-    // ~~
-
-    public void Pause(
-        )
-    {
-        if ( Player != null )
-        {
-            Player.Pause();
-        }
-    }
-
-    // ~~
-
-    public void SetTime( double seconds )
-    {
-        if ( Player != null )
-        {
-            Player.time = seconds;
         }
     }
 

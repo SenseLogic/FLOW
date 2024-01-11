@@ -6,7 +6,7 @@
     background-size: cover;
 }
 
-.list-view-panel
+.drag-view
 {
     overflow: hidden;
     height: 200px;
@@ -15,7 +15,7 @@
     flex-direction: row;
 }
 
-.list-view-strip
+.drag-view-strip
 {
     position: absolute;
     top: 0;
@@ -26,7 +26,7 @@
     flex-shrink: 0;
 }
 
-.video-view
+.video
 {
     height: 80px;
     width: 80px;
@@ -56,6 +56,12 @@
     background-color: #FF0000;
 }
 
-.grid-view-panel
+.slider
 {
+    position: absolute;
+    top: 300px;
+    left: 10%;
+    right: 10%;
+
+    height: 20px;
 }

@@ -2,10 +2,11 @@
 
 using UnityEngine;
 using UnityEngine.UIElements;
+using Element = UnityEngine.UIElements.VisualElement;
 
 // -- TYPES
 
-public class DRAG_VIEW : VisualElement
+public class DRAG_VIEW : Element
 {
     public bool
         IsTranslated,
@@ -24,7 +25,7 @@ public class DRAG_VIEW : VisualElement
     public Vector2
         ViewSizeVector,
         StripSizeVector;
-    public VisualElement
+    public Element
         StripElement;
     public Vector2
         StripPositionVector,

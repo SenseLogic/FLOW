@@ -23,10 +23,11 @@ namespace GAME
         public Element
             ScreenElement;
         public DRAG_VIEW
-            VideoListPanelElement;
+            DragView;
         public Element
-            VideoListStripElement,
-            GridViewPanelElement;
+            DragViewStripElement;
+        public SLIDER
+            Slider;
 
         // -- OPERATIONS
 
@@ -38,41 +39,59 @@ namespace GAME
 
         // ~~
 
-        public void CreateVideoView(
+        public void CreateVideo(
+            Element parent_element,
             string video_file_path
             )
         {
             Button
                 pause_video_button,
                 play_video_button;
-            VIDEO_VIEW
-                video_view;
+            VIDEO
+                video;
 
-            video_view = VideoListStripElement.Create<VIDEO_VIEW>( "video-view" );
-            video_view.SetParentGameObject( gameObject );
-            video_view.SetVideo( video_file_path, true );
+            video = parent_element.Create<VIDEO>( "video" );
+            video.SetParentGameObject( gameObject );
+            video.SetVideo( video_file_path, true );
 
-            pause_video_button = video_view.Create<Button>( "pause-video-button" );
-            pause_video_button.clicked += () => video_view.Pause();
+            pause_video_button = video.Create<Button>( "pause-video-button" );
+            pause_video_button.clicked += () => video.Player.Pause();
 
-            play_video_button = video_view.Create<Button>( "play-video-button" );
-            play_video_button.clicked += () => video_view.Play();
+            play_video_button = video.Create<Button>( "play-video-button" );
+            play_video_button.clicked += () => video.Player.Play();
         }
 
         // ~~
 
-        public void CreateVideoListPanel(
+        public void CreateDragView(
+            Element parent_element
             )
         {
-            VideoListPanelElement = ScreenElement.Create<DRAG_VIEW>( "list-view-panel" );
-            VideoListPanelElement.IsHorizontal = true;
+            DragView = ScreenElement.Create<DRAG_VIEW>( "drag-view" );
+            DragView.IsHorizontal = true;
 
-            VideoListStripElement = VideoListPanelElement.Create<Element>( "list-view-strip" );
+            DragViewStripElement = DragView.Create<Element>( "drag-view-strip" );
 
-            CreateVideoView( Application.dataPath + "/Resources/Videos/Nature1.mp4" );
-            CreateVideoView( Application.dataPath + "/Resources/Videos/Nature2.mp4" );
-            CreateVideoView( Application.dataPath + "/Resources/Videos/Waterfall1.mp4" );
-            CreateVideoView( Application.dataPath + "/Resources/Videos/Waterfall2.mp4" );
+            CreateVideo( DragViewStripElement, Application.dataPath + "/Resources/Videos/Nature1.mp4" );
+            CreateVideo( DragViewStripElement, Application.dataPath + "/Resources/Videos/Nature2.mp4" );
+            CreateVideo( DragViewStripElement, Application.dataPath + "/Resources/Videos/Waterfall1.mp4" );
+            CreateVideo( DragViewStripElement, Application.dataPath + "/Resources/Videos/Waterfall2.mp4" );
+        }
+
+        // ~~
+
+        public void CreateSlider(
+            Element parent_element
+            )
+        {
+            Slider = parent_element.Create<SLIDER>( "slider" );
+            Slider.SetMinimumValue( 0.0f );
+            Slider.SetMaximumValue( 100.0f );
+            Slider.SetValue( 0.0f );
+            Slider.HandleValueChangedAction += value => Debug.Log( "Changed value : " + value );
+            Slider.HandleValueMovedAction += value => Debug.Log( "Moved value : " + value );
+
+            Slider.SetValue( 50.0f );
         }
 
         // ~~
@@ -82,7 +101,8 @@ namespace GAME
         {
             ScreenElement = Element.Create<Element>( "home-screen" );
 
-            CreateVideoListPanel();
+            CreateDragView( Element );
+            CreateSlider( Element );
         }
 
         // ~~
@@ -92,8 +112,8 @@ namespace GAME
         {
             base.ResizeDocument();
 
-            Element.SetHeight( "video-view", 200 * Pixel );
-            Element.SetWidth( "video-view", Width / 4 );
+            Element.SetHeight( "video", 200 * Pixel );
+            Element.SetWidth( "video", Width / 4 );
         }
     }
 }

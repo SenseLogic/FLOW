@@ -4,12 +4,9 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
-
-// -- TYPES
-
 using Element = UnityEngine.UIElements.VisualElement;
 
-// ~~
+// -- TYPES
 
 namespace FLOW
 {

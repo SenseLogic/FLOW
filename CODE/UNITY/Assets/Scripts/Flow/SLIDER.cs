@@ -34,19 +34,21 @@ public class SLIDER : VisualElement
         MaximumValue = 100;
         Value = 50;
 
+        this.AddClass( "flow-slider" );
+
         BarElement = new Element();
-        BarElement.AddClass( "slider-bar" );
+        BarElement.AddClass( "flow-slider-bar" );
         BarElement.style.width = new Length( 100, LengthUnit.Percent );
         Add( BarElement );
 
         ProgressElement = new Element();
-        ProgressElement.AddClass( "slider-progress" );
+        ProgressElement.AddClass( "flow-slider-progress" );
         ProgressElement.style.position = Position.Absolute;
         ProgressElement.style.width = new Length( 0, LengthUnit.Percent );
         Add( ProgressElement );
 
         HandleElement = new Element();
-        HandleElement.AddClass( "slider-handle" );
+        HandleElement.AddClass( "flow-slider-handle" );
         HandleElement.style.position = Position.Absolute;
         Add( HandleElement );
 

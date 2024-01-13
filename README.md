@@ -16,10 +16,14 @@ UI toolkit.
     *   Date picker
     *   Date range picker
 *   Unity
-    *   Responsive document
+    *   Responsive interface
     *   Element extensions
     *   Query builder extensions
-    *   Video view
+    *   Custom elements
+        *   Button
+        *   Slider
+        *   Video
+        *   Drag view
 
 ## Version
 

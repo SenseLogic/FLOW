@@ -19,7 +19,7 @@ UI toolkit.
     *   Responsive interface
     *   Element extensions
     *   Query builder extensions
-    *   Custom elements
+    *   Unstyled elements
         *   Button
         *   Slider
         *   Video

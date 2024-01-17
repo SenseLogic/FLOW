@@ -1,5 +1,6 @@
 // -- IMPORTS
 
+using System;
 using UnityEngine;
 using UnityEngine.UIElements;
 using Element = UnityEngine.UIElements.VisualElement;
@@ -38,6 +39,14 @@ public class DRAG_VIEW : Element
         UpdateDragScheduleItem;
     public float
         InertiaTime;
+    public Action<MouseMoveEvent>
+        HandleBeginDragAction;
+    public Action
+        HandleDragAction;
+    public Action<MouseUpEvent>
+        HandleEndDragAction;
+    public Action<int>
+        HandleClickAction;
 
     // -- CONSTRUCTORS
 
@@ -113,6 +122,8 @@ public class DRAG_VIEW : Element
         if ( IsDragging )
         {
             DragVelocityVector *= DraggingDampeningFactor;
+
+            HandleDragAction?.Invoke();
         }
 
         if ( IsStopping )
@@ -132,7 +143,7 @@ public class DRAG_VIEW : Element
     // ~~
 
     public void HandleMouseDownEvent(
-        MouseDownEvent mouse_move_event
+        MouseDownEvent mouse_down_event
         )
     {
         if ( childCount > 0 )
@@ -145,7 +156,7 @@ public class DRAG_VIEW : Element
             IsTracking = true;
             IsDragging = false;
             IsStopping = false;
-            MousePositionVector = mouse_move_event.localMousePosition;
+            MousePositionVector = mouse_down_event.localMousePosition;
             DragMousePositionVector = MousePositionVector;
 
             ViewSizeVector.x = resolvedStyle.width;
@@ -183,6 +194,8 @@ public class DRAG_VIEW : Element
             if ( !IsDragging
                  && mouse_offset_vector.magnitude > MinimumPixelDistance )
             {
+                HandleBeginDragAction?.Invoke( mouse_move_event );
+
                 if ( !this.HasMouseCapture() )
                 {
                     this.CaptureMouse();
@@ -190,11 +203,12 @@ public class DRAG_VIEW : Element
 
                 IsDragging = true;
                 IsStopping = false;
-
             }
 
             if ( IsDragging )
             {
+                HandleDragAction?.Invoke();
+
                 SetStripPosition( StripPositionVector + mouse_offset_vector );
 
                 mouse_offset_vector = mouse_position_vector - DragMousePositionVector;
@@ -206,6 +220,34 @@ public class DRAG_VIEW : Element
 
     // ~~
 
+    public int GetClickedStripChildElementIndex(
+        MouseUpEvent mouse_up_event
+        )
+    {
+        int
+            strip_child_element_index;
+        Vector2
+            local_mouse_position_vector;
+
+        local_mouse_position_vector = StripElement.WorldToLocal( mouse_up_event.mousePosition );
+
+        strip_child_element_index = 0;
+
+        foreach ( var strip_child_element in StripElement.Children() )
+        {
+            if ( strip_child_element.layout.Contains( local_mouse_position_vector) )
+            {
+                return strip_child_element_index;
+            }
+
+            ++strip_child_element_index;
+        }
+
+        return -1;
+    }
+
+    // ~~
+
     public void HandleMouseUpEvent(
         MouseUpEvent mouse_up_event
         )
@@ -213,6 +255,15 @@ public class DRAG_VIEW : Element
         if ( this.HasMouseCapture() )
         {
             this.ReleaseMouse();
+        }
+
+        if ( IsDragging )
+        {
+            HandleEndDragAction?.Invoke( mouse_up_event );
+        }
+        else
+        {
+            HandleClickAction?.Invoke( GetClickedStripChildElementIndex( mouse_up_event ) );
         }
 
         IsTracking = false;

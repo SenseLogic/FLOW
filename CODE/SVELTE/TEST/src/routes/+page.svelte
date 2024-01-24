@@ -54,6 +54,14 @@
     <div class="size-200 green-map-pin-icon">
     </div>
 
+    <p class="title">
+        Title
+    </p>
+
+    <p class="title.is-subtitle">
+        Subtitle
+    </p>
+
     <p class="frame">
         <SortableList
             elementArray={ firstNameArray }

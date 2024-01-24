@@ -11,6 +11,8 @@
     export let monthCount = 1;
     export let monthNameArray = [ 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December' ];
     export let weekdayNameArray = [ 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun' ];
+    export let isFordiddenDate = ( date ) => false;
+    export let isUnavailableDate = ( date ) => false;
     export let onChange = () => {};
 
     let dateCount = dateArray.length;
@@ -189,6 +191,8 @@
                 text: date.getUTCDate(),
                 weekdayIndex: getWeekdayIndex( date ),
                 isGrayed,
+                isForbidden: isFordiddenDate( date ),
+                isUnavailable: isUnavailableDate( date ),
                 isToday: isTodayDate( date ),
                 isFirst: isFirstDate( date ),
                 isLast: isLastDate( date ),
@@ -290,7 +294,9 @@
         day
         )
     {
-        if ( !day.isGrayed )
+        if ( !day.isGrayed
+             && !day.isForbidden
+             && !day.isUnavailable )
         {
             selectDate( day.date, dateIndex );
 
@@ -323,6 +329,8 @@
                     { #each getDayArray( monthDate.getUTCFullYear(), monthDate.getUTCMonth() ) as day }
                         <div class="day"
                             class:is-grayed={ day.isGrayed }
+                            class:is-forbidden={ day.isForbidden }
+                            class:is-unavailable={ day.isUnavailable }
                             class:is-today={ day.isToday }
                             class:is-first={ day.isFirst }
                             class:is-last={ day.isLast }

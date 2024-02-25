@@ -14,6 +14,7 @@
     export let isFordiddenDate = ( date ) => false;
     export let isUnavailableDate = ( date ) => false;
     export let onChange = () => {};
+    export let ariaLabel = "Date picker";
 
     let dateCount = dateArray.length;
     let todayDate = getTimelessDate( new Date() );
@@ -311,20 +312,50 @@
             }
         }
     }
+
+    // ~~
+
+    function getAccessibleDayLabel(
+        day
+        )
+    {
+        let date = day.date.toISOString().slice( 0, 10 );
+        let status = day.isForbidden ? 'forbidden' : day.isUnavailable ? 'unavailable' : 'selectable';
+
+        return `${ date }, ${ status }, ${ day.isToday ? 'Today, ' : '' }${ day.isFirst ? 'Start date, ' : '' }${ day.isLast ? 'End date, ' : '' }`;
+    }
 </script>
 
-<div class="date-picker">
+<div class="date-picker" aria-label="{ ariaLabel }">
     <div class="calendar-list">
         { #each monthDateArray as monthDate, monthIndex }
-            <div class="calendar">
-                <div class="month-grid">
-                    <div class="month-button prior-month-button" on:click={ () => updateMonth( -1 ) }>&lt;</div>
-                    <div class="month-name">{ monthNameArray[ monthDate.getUTCMonth() ] } { monthDate.getUTCFullYear() }</div>
-                    <div class="month-button next-month-button" on:click={ () => updateMonth( 1 ) }>&gt;</div>
+            <div class="calendar" role="grid" aria-labelledby="monthName-{ monthIndex }">
+                <div class="month-grid" role="presentation">
+                    <div class="month-button prior-month-button"
+                        on:click={ () => updateMonth( -1 ) }
+                        on:keydown={ event => event.key === 'Enter' && updateMonth( -1 ) }
+                        tabindex="0"
+                        role="button"
+                        aria-label="Previous month"
+                    >
+                        &lt;
+                    </div>
+                    <div class="month-name">
+                        { monthNameArray[ monthDate.getUTCMonth() ] } { monthDate.getUTCFullYear() }
+                    </div>
+                    <div class="month-button next-month-button"
+                        on:click={ () => updateMonth( 1 ) }
+                        on:keydown={ event => event.key === 'Enter' && updateMonth( 1 ) }
+                        tabindex="0"
+                        role="button"
+                        aria-label="Next month"
+                    >
+                        &gt;
+                    </div>
                 </div>
-                <div class="day-grid">
+                <div class="day-grid" role="rowgroup">
                     { #each weekdayNameArray as weekdayName }
-                        <div class="weekday">{ weekdayName }</div>
+                        <div class="weekday" role="columnheader" aria-label={ weekdayName }>{ weekdayName }</div>
                     { /each }
                     { #each getDayArray( monthDate.getUTCFullYear(), monthDate.getUTCMonth() ) as day }
                         <div class="day"
@@ -337,6 +368,11 @@
                             class:is-selected={ day.isSelected }
                             class:is-inside={ day.isInside }
                             on:click={ () => selectDay( day ) }
+                            on:keydown={ event => event.key === 'Enter' && selectDay( day ) }
+                            tabindex="0"
+                            role="button"
+                            aria-label={ getAccessibleDayLabel( day ) }
+                            aria-disabled={ day.isForbidden || day.isUnavailable ? 'true' : 'false' }
                         >
                             { day.text }
                         </div>

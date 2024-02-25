@@ -19,6 +19,7 @@
           ( value === undefined )
           ? valuePrefix + valueArray[ 0 ] + valueSuffix + ' - ' + valuePrefix + valueArray[ 1 ] + valueSuffix
           : valuePrefix + valueArray[ 1 ] + valueSuffix;
+    export let ariaLabel = "Value picker";
 
     let valueCount = ( value === undefined ) ? 2 : 1;
     let valuePickerElement;
@@ -149,6 +150,33 @@
 
     // ~~
 
+    function updateSliderValue(
+        sliderValue,
+        isFirstSlider
+        )
+    {
+        if ( isFirstSlider )
+        {
+            valueArray = [ Math.min( sliderValue, valueArray[ 1 ] ), valueArray[ 1 ] ];
+        }
+        else
+        {
+            valueArray = [ valueArray[ 0 ], Math.max( sliderValue, valueArray[ 0 ] ) ];
+        }
+
+        if ( valueCount === 1 )
+        {
+            value = valueArray[ 1 ];
+            onChange( getRoundedValue( value ) );
+        }
+        else
+        {
+            onChange( getRoundedValueArray( valueArray ) );
+        }
+    }
+
+    // ~~
+
     function handleMouseMoveEvent(
         event
         )
@@ -157,26 +185,9 @@
              || isDraggingSecondSlider )
         {
             let ratio = getLeftPositionRatio( event );
-            let value = limitArray[ 0 ] + ratio * ( limitArray[ 1 ] - limitArray[ 0 ] );
+            let sliderValue = limitArray[ 0 ] + ratio * ( limitArray[ 1 ] - limitArray[ 0 ] );
 
-            if ( isDraggingFirstSlider )
-            {
-                valueArray = [ Math.min( value, valueArray[ 1 ] ), valueArray[ 1 ] ];
-            }
-            else
-            {
-                valueArray = [ valueArray[ 0 ], Math.max( value, valueArray[ 0 ] ) ];
-            }
-
-            if ( valueCount === 1 )
-            {
-                value = valueArray[ 1 ];
-                onChange( getRoundedValue( value ) );
-            }
-            else
-            {
-                onChange( getRoundedValueArray( valueArray ) );
-            }
+            updateSliderValue( sliderValue, isDraggingFirstSlider );
         }
     }
 
@@ -199,12 +210,49 @@
 
         event.preventDefault();
     }
+
+    // ~~
+
+    function handleKeyDownEvent(
+        event,
+        isFirstSlider
+        )
+    {
+        let sliderValue = isFirstSlider ? valueArray[ 0 ] : valueArray[ 1 ];
+
+        if ( event.key == 'ArrowLeft' )
+        {
+            updateSliderValue( sliderValue - valuePrecision, isFirstSlider );
+        }
+        else if ( event.key == 'ArrowRight' )
+        {
+            updateSliderValue( sliderValue + valuePrecision, isFirstSlider );
+        }
+        else if ( event.key == 'ArrowDown' )
+        {
+            updateSliderValue( sliderValue - 5 * valuePrecision, isFirstSlider );
+        }
+        else if ( event.key == 'ArrowUp' )
+        {
+            updateSliderValue( sliderValue + 5 * valuePrecision, isFirstSlider );
+        }
+        else if ( event.key == 'Home' )
+        {
+            updateSliderValue( limitArray[ 0 ], isFirstSlider );
+        }
+        else if ( event.key == 'End' )
+        {
+            updateSliderValue( limitArray[ 1 ], isFirstSlider );
+        }
+    }
 </script>
 
 <div
     bind:this={ valuePickerElement }
     class="value-picker"
     class:is-range={ valueCount === 2 }
+    role="group"
+    aria-label="{ ariaLabel }"
 >
     <div
         class="track"
@@ -219,16 +267,32 @@
                 bind:this={ firstSliderElement }
                 class="slider"
                 style="left: { getLeftPosition( valueArray[ 0 ] ) }%"
+                tabindex="0"
+                role="slider"
+                aria-valuemin={ limitArray[ 0 ]}
+                aria-valuemax={ limitArray[ 1 ] }
+                aria-valuenow={ valueArray[ 0 ] }
+                aria-valuetext={ getValueText( valueArray ) }
+                aria-label="First value"
                 on:mousedown={ ( event ) => handleMouseDownEvent( event, true ) }
                 on:touchstart={ ( event ) => handleMouseDownEvent( event, true ) }
+                on:keydown={ ( event ) => handleKeyDownEvent( event, true ) }
             ></div>
         { /if }
         <div
             bind:this={ secondSliderElement }
             class="slider"
             style="left: { getLeftPosition( valueArray[ 1 ] ) }%"
+            tabindex="0"
+            role="slider"
+            aria-valuemin={ limitArray[ 0 ]}
+            aria-valuemax={ limitArray[ 1 ] }
+            aria-valuenow={ valueArray[ 1 ] }
+            aria-valuetext={ getValueText( valueArray ) }
+            aria-label="Second value"
             on:mousedown={ ( event ) => handleMouseDownEvent( event, false ) }
             on:touchstart={ ( event ) => handleMouseDownEvent( event, false ) }
+            on:keydown={ ( event ) => handleKeyDownEvent( event, false ) }
         ></div>
     </div>
     { #if hasText }

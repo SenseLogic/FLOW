@@ -3,8 +3,7 @@
 
     export let value = false;
     export let onChange = () => {};
-
-    // -- STATEMENTS
+    export let ariaLabel = "Switch";
 
     $: checked = value;
 
@@ -20,12 +19,13 @@
     }
 </script>
 
-<div class="switch">
+<div class="switch" role="switch" aria-checked={ checked.toString() } aria-label="{ ariaLabel }">
     <input
         class="input"
         type="checkbox"
         bind:checked
         on:change={ handleChangeEvent }
+        aria-hidden="true"
     />
     <span class="slider"></span>
 </div>

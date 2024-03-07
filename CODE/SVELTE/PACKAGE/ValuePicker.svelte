@@ -1,7 +1,7 @@
 <script>
     // -- IMPORTS
 
-    import { createEventDispatcher, onMount } from 'svelte';
+    import { createEventDispatcher, onDestroy, onMount } from 'svelte';
 
     // -- VARIABLES
 
@@ -37,6 +37,16 @@
             document.addEventListener( 'mouseup', handleMouseUpEvent );
             document.addEventListener( 'touchmove', handleTouchMoveEvent, { passive: false } );
             document.addEventListener( 'touchend', handleMouseUpEvent );
+
+            return (
+                () =>
+                {
+                    document.removeEventListener( 'mousemove', handleMouseMoveEvent );
+                    document.removeEventListener( 'mouseup', handleMouseUpEvent );
+                    document.removeEventListener( 'touchmove', handleTouchMoveEvent );
+                    document.removeEventListener( 'touchend', handleMouseUpEvent );
+                }
+                );
         }
         );
 
@@ -188,6 +198,8 @@
             let sliderValue = limitArray[ 0 ] + ratio * ( limitArray[ 1 ] - limitArray[ 0 ] );
 
             updateSliderValue( sliderValue, isDraggingFirstSlider );
+
+            event.preventDefault();
         }
     }
 
@@ -207,8 +219,6 @@
         )
     {
         handleMouseMoveEvent( event );
-
-        event.preventDefault();
     }
 
     // ~~

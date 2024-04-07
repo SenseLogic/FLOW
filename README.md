@@ -24,7 +24,7 @@ UI toolkit.
         *   Slider
         *   Video
         *   Drag view
-    *   Serialization
+    *   Custom serialization
 
 ## Version
 

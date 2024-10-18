@@ -1,14 +1,19 @@
 <script>
     // -- IMPORTS
 
+    //import Carousel from 'senselogic-flow/Carousel.svelte';
+    import Carousel from '../../../PACKAGE/Carousel.svelte';
     //import DatePicker from 'senselogic-flow/DatePicker.svelte';
     import DatePicker from '../../../PACKAGE/DatePicker.svelte';
-    //import Switch from 'senselogic-flow/Switch.svelte';
-    import Switch from '../../../PACKAGE/Switch.svelte';
+    //import MultiSelect from 'senselogic-flow/MultiSelect.svelte';
+    import MultiSelect from '../../../PACKAGE/MultiSelect.svelte';
     //import SortableList from 'senselogic-flow/SortableList.svelte';
     import SortableList from '../../../PACKAGE/SortableList.svelte';
+    //import Switch from 'senselogic-flow/Switch.svelte';
+    import Switch from '../../../PACKAGE/Switch.svelte';
     //import ValuePicker from 'senselogic-flow/ValuePicker.svelte';
     import ValuePicker from '../../../PACKAGE/ValuePicker.svelte';
+    import CalendarDay from '$lib/CalendarDay.svelte';
 
     // -- VARIABLES
 
@@ -17,6 +22,13 @@
     let dateValue = new Date( Date.UTC( 2023, 11, 1 ) );    // 2023-12-1
     let firstNameArray = [ "John", "Mike", "Adam", "Noah", "Jack", "Carl", "Theo" ];
     let secondNameArray = [ "John", "Mike", "Adam", "Noah", "Jack", "Carl", "Theo" ];
+    let optionArray =
+        [
+            { value : 'apple', label : 'Apple' },
+            { value : 'banana', label : 'Banana' },
+            { value : 'orange', label : 'Orange' },
+            { value : 'grape', label : 'Grape' }
+        ];
 
     // -- STATEMENTS
 
@@ -165,5 +177,38 @@
 
     <p class="frame">
         <DatePicker dateArray={ [ new Date( '2023-3-5' ), new Date( '2023-4-25' ) ] } monthCount={ 3 } onChange={ ( dateArray ) => console.log( dateArray ) }/>
+    </p>
+
+    <p class="frame">
+        <DatePicker dateArray={ [ new Date( '2023-3-5' ), new Date( '2023-4-25' ) ] } monthCount={ 3 } getDayComponent={ ( day ) => CalendarDay } onChange={ ( dateArray ) => console.log( dateArray ) }/>
+    </p>
+
+    <p class="frame">
+        <MultiSelect { optionArray }/>
+    </p>
+
+    <p class="frame">
+        <Carousel columnCount={ 1 } hasCount hasDots hasButtons isAutomatic stayDuration={ 2000 } transitionDuration={ 700 } resumeDuration={ 3000 }>
+            <div class="carousel-slide">Slide 1</div>
+        </Carousel>
+    </p>
+
+    <p class="frame">
+        <Carousel columnCount={ 1 } hasCount hasDots hasButtons isAutomatic stayDuration={ 2000 } transitionDuration={ 700 } resumeDuration={ 3000 }>
+            <div class="carousel-slide">Slide 1</div>
+            <div class="carousel-slide">Slide 2</div>
+            <div class="carousel-slide">Slide 3</div>
+        </Carousel>
+    </p>
+
+    <p class="frame">
+        <Carousel columnCount={ 3 } hasCount hasDots hasButtons isAutomatic stayDuration={ 2000 } transitionDuration={ 700 } resumeDuration={ 3000 }>
+            <div class="carousel-slide">Slide 1</div>
+            <div class="carousel-slide">Slide 2</div>
+            <div class="carousel-slide">Slide 3</div>
+            <div class="carousel-slide">Slide 4</div>
+            <div class="carousel-slide">Slide 5</div>
+            <div class="carousel-slide">Slide 6</div>
+        </Carousel>
     </p>
 </div>

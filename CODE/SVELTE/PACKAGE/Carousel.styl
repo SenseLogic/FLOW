@@ -1,0 +1,103 @@
+.carousel
+{
+    position: relative;
+
+    overflow: hidden;
+    width: 100%;
+
+    display: flex;
+}
+
+.carousel:focus
+{
+    outline: none;
+}
+
+.carousel-strip
+{
+    width: 100%;
+
+    display: flex;
+    column-gap: 0.5rem;
+
+    transition: transform 0.5s ease-in-out;
+}
+
+.carousel-slide
+{
+    box-sizing: border-box;
+    width: 100%;
+
+    flex: 0 0 100%;
+}
+
+.carousel-count
+{
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+
+    border-radius: 0.25rem;
+    padding: 0 0.25rem;
+
+    background-color: rgba( 0, 0, 0, 0.5 );
+
+    font-size: 1rem;
+    color: whiteColor;
+}
+
+.carousel-dot-container
+{
+    position: absolute;
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX( -50% );
+
+    display: flex;
+    gap: 0.5rem;
+}
+
+.carousel-dot
+{
+    height: 0.5rem;
+    width: 0.5rem;
+    border-radius: 50%;
+
+    background-color: rgba( 0, 0, 0, 0.5 );
+
+    transition: transform 0.3s ease-in-out;
+}
+
+.carousel-dot.active
+{
+    transform: scale( 1.2 );
+
+    background-color: whiteColor;
+}
+
+.carousel-button
+{
+    position: absolute;
+    top: 50%;
+    transform: translateY( -50% );
+
+    border: none;
+    padding: 0 0.25rem;
+
+    background-color: rgba( 0, 0, 0, 0.5 );
+
+    font-size: 1.5rem;
+    color: whiteColor;
+
+    cursor: pointer;
+}
+
+.carousel-button.carousel-prior-slide-button
+{
+    left: 1rem;
+}
+
+.carousel-button.carousel-next-slide-button
+{
+    right: 1rem;
+}

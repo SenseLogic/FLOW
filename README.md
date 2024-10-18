@@ -15,6 +15,8 @@ UI toolkit.
     *   Value range picker
     *   Date picker
     *   Date range picker
+    *   Multi-select
+    *   Carousel
 *   Unity
     *   Responsive interface
     *   Element extensions

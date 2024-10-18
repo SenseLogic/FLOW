@@ -1,0 +1,82 @@
+.multi-select
+{
+    position: relative;
+
+    box-sizing: border-box;
+    width: 100%;
+    border: 1px solid grayColor700;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+}
+
+.multi-select-selected
+{
+    margin-bottom: 0.5rem;
+
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.selected-tag
+{
+    border-radius: 0.5rem;
+    padding: 0.5rem 0.5rem;
+
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+
+    background-color: grayColor700;
+
+    font-size: 1rem;
+}
+
+.selected-tag button
+{
+    border: none;
+
+    background: none;
+
+    font-size: 1rem;
+
+    cursor: pointer;
+}
+
+.multi-select-dropdown
+{
+    z-index: 1;
+    position: absolute;
+    top: 100%;
+    left: 0;
+
+    overflow-y: auto;
+    max-height: 10rem;
+    width: 100%;
+    border: 1px solid grayColor700;
+    border-radius: 0.5rem;
+
+    background-color: grayColor900;
+}
+
+.multi-select-item
+{
+    padding: 0.5rem;
+
+    cursor: pointer;
+}
+
+.multi-select-item:hover
+{
+    background-color: grayColor800;
+}
+
+.multi-select-input
+{
+    outline: none;
+    width: 100%;
+    border: none;
+    padding: 0.5rem;
+
+    font-size: 1rem;
+}

@@ -13,6 +13,9 @@
     export let weekdayNameArray = [ 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun' ];
     export let isFordiddenDate = ( date ) => false;
     export let isUnavailableDate = ( date ) => false;
+    export let handleDayClickEvent = ( day ) => selectDay( day );
+    export let getDayComponent = undefined;
+    export let getDayContent = ( day ) => day.text;
     export let onChange = () => {};
     export let ariaLabel = "Date picker";
 
@@ -367,14 +370,21 @@
                             class:is-last={ day.isLast }
                             class:is-selected={ day.isSelected }
                             class:is-inside={ day.isInside }
-                            on:click={ () => selectDay( day ) }
-                            on:keydown={ event => event.key === 'Enter' && selectDay( day ) }
+                            on:click={ () => handleDayClickEvent( day ) }
+                            on:keydown={ event => { if ( event.key === 'Enter' ) handleDayClickEvent( day ); } }
                             tabindex="0"
                             role="button"
                             aria-label={ getAccessibleDayLabel( day ) }
                             aria-disabled={ day.isForbidden || day.isUnavailable ? 'true' : 'false' }
                         >
-                            { day.text }
+                            { #if getDayComponent !== undefined }
+                                <svelte:component
+                                    this={ getDayComponent( day ) }
+                                    { day }
+                                />
+                            { :else }
+                                { getDayContent( day ) }
+                            { /if }
                         </div>
                     { /each }
                 </div>

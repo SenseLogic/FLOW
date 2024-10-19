@@ -71,6 +71,11 @@
     {
         slideCount = stripElement.children.length / 3;
 
+        if ( columnCount > slideCount )
+        {
+            columnCount = slideCount;
+        }
+
         let columnGapWidth = getColumnGapWidth();
         let slideWidth = getSlideWidth( columnGapWidth );
         stripElement.style.width = ( slideCount * slideWidth + ( slideCount - 1 ) * columnGapWidth ) + 'px';
@@ -258,7 +263,7 @@
     { /if }
 
     { #if hasDots }
-        <div class="carousel-dot-container">
+        <div class="carousel-dot-list">
             { #each { length: slideCount } as _, dotIndex }
                 <div class="carousel-dot { dotIndex === ( slideIndex % slideCount ) ? 'active' : '' }"></div>
             { /each }

@@ -24,16 +24,35 @@
 
     // ~~
 
+    function hasSelectedOption(
+        searchedOption
+        )
+    {
+        return (
+            $selectedOptionArrayStore.findIndex(
+                ( selectedOption ) =>
+                selectedOption.value === searchedOption.value
+                )
+            >= 0
+            );
+    }
+
+    // ~~
+
     function addSelectedOption(
-        selectedOption
+        addedOption
         )
     {
         selectedOptionArrayStore.update(
             ( currentSelectedOptionArray ) =>
             {
-                if ( !currentSelectedOptionArray.find( ( currentOption ) => currentOption.value === selectedOption.value ) )
+                if ( currentSelectedOptionArray.findIndex(
+                         ( currentOption ) =>
+                         currentOption.value === addedOption.value
+                         )
+                     < 0 )
                 {
-                    return [ ...currentSelectedOptionArray, selectedOption ];
+                    return [ ...currentSelectedOptionArray, addedOption ];
                 }
 
                 return currentSelectedOptionArray;
@@ -47,13 +66,14 @@
     // ~~
 
     function removeSelectedOption(
-        optionToRemove
+        removedOption
         )
     {
         selectedOptionArrayStore.update(
-            ( currentSelectedOptionArray ) =>
-            currentSelectedOptionArray.filter(
-                ( currentOption ) => currentOption.value !== optionToRemove.value
+            ( selectedOptionArray ) =>
+            selectedOptionArray.filter(
+                ( selectedOption ) =>
+                selectedOption.value !== removedOption.value
                 )
             );
     }
@@ -111,9 +131,9 @@
 </script>
 
 <div class="multi-select">
-    <div class="multi-select-selected">
+    <div class="multi-select-selected-option-list">
         { #each $selectedOptionArrayStore as selectedOption ( selectedOption.value ) }
-            <div class="selected-tag">
+            <div class="multi-select-selected-option">
                 { selectedOption.label }
                 <button on:click={ () => removeSelectedOption( selectedOption ) }>×</button>
             </div>
@@ -132,7 +152,9 @@
     { #if isDropdownOpen }
         <div class="multi-select-dropdown" bind:this={ dropdownElement }>
             { #each availableOptionArray as availableOption ( availableOption.value ) }
-                <div class="multi-select-item" on:click={ () => addSelectedOption( availableOption ) }>
+                <div
+                    class="multi-select-available-option { hasSelectedOption( availableOption ) ? 'is-selected' : ''}"
+                    on:click={ () => addSelectedOption( availableOption ) }>
                     { availableOption.label }
                 </div>
             { /each }

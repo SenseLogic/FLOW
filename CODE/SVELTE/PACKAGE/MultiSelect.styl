@@ -9,7 +9,7 @@
     padding: 0.5rem;
 }
 
-.multi-select-selected
+.multi-select-selected-option-list
 {
     margin-bottom: 0.5rem;
 
@@ -18,7 +18,7 @@
     gap: 0.5rem;
 }
 
-.selected-tag
+.multi-select-selected-option
 {
     border-radius: 0.5rem;
     padding: 0.5rem 0.5rem;
@@ -32,7 +32,7 @@
     font-size: 1rem;
 }
 
-.selected-tag button
+.multi-select-selected-option button
 {
     border: none;
 
@@ -51,7 +51,7 @@
     left: 0;
 
     overflow-y: auto;
-    max-height: 10rem;
+    max-height: 16rem;
     width: 100%;
     border: 1px solid grayColor700;
     border-radius: 0.5rem;
@@ -59,16 +59,21 @@
     background-color: grayColor900;
 }
 
-.multi-select-item
+.multi-select-available-option
 {
     padding: 0.5rem;
 
     cursor: pointer;
 }
 
-.multi-select-item:hover
+.multi-select-available-option:hover
 {
     background-color: grayColor800;
+}
+
+.multi-select-available-option.is-selected
+{
+    font-weight: 700;
 }
 
 .multi-select-input

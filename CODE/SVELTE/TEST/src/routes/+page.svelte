@@ -24,10 +24,26 @@
     let secondNameArray = [ "John", "Mike", "Adam", "Noah", "Jack", "Carl", "Theo" ];
     let optionArray =
         [
-            { value : 'apple', label : 'Apple' },
-            { value : 'banana', label : 'Banana' },
-            { value : 'orange', label : 'Orange' },
-            { value : 'grape', label : 'Grape' }
+            { value: 'apple', label: 'Apple' },
+            { value: 'apricot', label: 'Apricot' },
+            { value: 'banana', label: 'Banana' },
+            { value: 'blueberry', label: 'Blueberry' },
+            { value: 'cherry', label: 'Cherry' },
+            { value: 'grape', label: 'Grape' },
+            { value: 'kiwi', label: 'Kiwi' },
+            { value: 'lemon', label: 'Lemon' },
+            { value: 'lime', label: 'Lime' },
+            { value: 'mango', label: 'Mango' },
+            { value: 'orange', label: 'Orange' },
+            { value: 'papaya', label: 'Papaya' },
+            { value: 'peach', label: 'Peach' },
+            { value: 'pear', label: 'Pear' },
+            { value: 'pineapple', label: 'Pineapple' },
+            { value: 'plum', label: 'Plum' },
+            { value: 'pomegranate', label: 'Pomegranate' },
+            { value: 'raspberry', label: 'Raspberry' },
+            { value: 'strawberry', label: 'Strawberry' },
+            { value: 'watermelon', label: 'Watermelon' }
         ];
 
     // -- STATEMENTS
@@ -209,6 +225,18 @@
             <div class="carousel-slide">Slide 4</div>
             <div class="carousel-slide">Slide 5</div>
             <div class="carousel-slide">Slide 6</div>
+        </Carousel>
+    </p>
+
+    <p class="frame">
+        <Carousel columnCount={ 3 } hasCount hasDots hasButtons isAutomatic stayDuration={ 2000 } transitionDuration={ 700 } resumeDuration={ 3000 }>
+            <div class="carousel-slide">Slide 1</div>
+            <div class="carousel-slide">Slide 2</div>
+        </Carousel>
+    </p>
+
+    <p class="frame">
+        <Carousel columnCount={ 3 } hasCount hasDots hasButtons isAutomatic stayDuration={ 2000 } transitionDuration={ 700 } resumeDuration={ 3000 }>
         </Carousel>
     </p>
 </div>

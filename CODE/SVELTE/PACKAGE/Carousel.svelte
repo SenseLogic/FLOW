@@ -69,12 +69,7 @@
 
     function initialize()
     {
-        slideCount = stripElement.children.length / 3;
-
-        if ( columnCount > slideCount )
-        {
-            columnCount = slideCount;
-        }
+        slideCount = stripElement.children.length / 2;
 
         let columnGapWidth = getColumnGapWidth();
         let slideWidth = getSlideWidth( columnGapWidth );
@@ -86,6 +81,16 @@
         }
 
         setSlideIndex( slideIndex );
+
+        if ( slideCount < columnCount )
+        {
+            for ( let slideIndex = slideCount;
+                  slideIndex < slideCount * 2;
+                  ++slideIndex )
+            {
+                stripElement.children[ slideIndex ].style.display = 'none';
+            }
+        }
     }
 
     // ~~
@@ -93,7 +98,7 @@
     function showPriorSlide(
         )
     {
-        if ( slideCount > 1
+        if ( slideCount > columnCount
              && !isTransitioning )
         {
             isTransitioning = true;
@@ -129,7 +134,7 @@
     function showNextSlide(
         )
     {
-        if ( slideCount > 1
+        if ( slideCount > columnCount
              && !isTransitioning )
         {
             isTransitioning = true;
@@ -156,7 +161,7 @@
         action
         )
     {
-        if ( slideCount > 1 )
+        if ( slideCount > columnCount )
         {
             pause();
             action();
@@ -188,7 +193,7 @@
 
     function start()
     {
-        if ( slideCount > 1
+        if ( slideCount > columnCount
              && isAutomatic )
         {
             nextSlideInterval = setInterval( showNextSlide, stayDuration + transitionDuration );
@@ -255,14 +260,13 @@
     <div bind:this={ stripElement } class="carousel-strip" style="transition-duration: { transitionDuration }ms;">
         <slot></slot>
         <slot></slot>
-        <slot></slot>
     </div>
 
-    { #if hasCount }
+    { #if hasCount && slideCount }
         <div class="carousel-count">{ ( slideIndex % slideCount ) + 1 }/{ slideCount }</div>
     { /if }
 
-    { #if hasDots }
+    { #if hasDots && slideCount }
         <div class="carousel-dot-list">
             { #each { length: slideCount } as _, dotIndex }
                 <div class="carousel-dot { dotIndex === ( slideIndex % slideCount ) ? 'active' : '' }"></div>

@@ -204,16 +204,34 @@
     </p>
 
     <p class="frame">
-        <Carousel columnCount={ 1 } hasCount hasDots hasButtons isAutomatic stayDuration={ 2000 } transitionDuration={ 700 } resumeDuration={ 3000 }>
+        <Carousel columnCount={ 1 } hasCount hasDots hasButtons isAutomatic>
             <div class="carousel-slide">Slide 1</div>
         </Carousel>
     </p>
 
     <p class="frame">
-        <Carousel columnCount={ 1 } hasCount hasDots hasButtons isAutomatic stayDuration={ 2000 } transitionDuration={ 700 } resumeDuration={ 3000 }>
+        <Carousel columnCount={ 1 } hasCount hasDots hasButtons isAutomatic>
             <div class="carousel-slide">Slide 1</div>
             <div class="carousel-slide">Slide 2</div>
             <div class="carousel-slide">Slide 3</div>
+        </Carousel>
+    </p>
+
+    <p class="frame">
+        <Carousel columnCount={ 3 } hasCount hasDots hasButtons isAutomatic>
+        </Carousel>
+    </p>
+
+    <p class="frame">
+        <Carousel columnCount={ 3 } hasCount hasDots hasButtons isAutomatic>
+            <div class="carousel-slide">Slide 1</div>
+        </Carousel>
+    </p>
+
+    <p class="frame">
+        <Carousel columnCount={ 3 } hasCount hasDots hasButtons isAutomatic>
+            <div class="carousel-slide">Slide 1</div>
+            <div class="carousel-slide">Slide 2</div>
         </Carousel>
     </p>
 
@@ -225,18 +243,6 @@
             <div class="carousel-slide">Slide 4</div>
             <div class="carousel-slide">Slide 5</div>
             <div class="carousel-slide">Slide 6</div>
-        </Carousel>
-    </p>
-
-    <p class="frame">
-        <Carousel columnCount={ 3 } hasCount hasDots hasButtons isAutomatic stayDuration={ 2000 } transitionDuration={ 700 } resumeDuration={ 3000 }>
-            <div class="carousel-slide">Slide 1</div>
-            <div class="carousel-slide">Slide 2</div>
-        </Carousel>
-    </p>
-
-    <p class="frame">
-        <Carousel columnCount={ 3 } hasCount hasDots hasButtons isAutomatic stayDuration={ 2000 } transitionDuration={ 700 } resumeDuration={ 3000 }>
         </Carousel>
     </p>
 </div>

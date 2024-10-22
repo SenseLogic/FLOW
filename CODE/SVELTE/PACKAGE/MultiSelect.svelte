@@ -19,20 +19,13 @@
     let dropdownElement;
     let multiSelectElement;
     let inputElementWidth = '3em';
-    let newIsDropdownOpen = false;
 
     // -- FUNCTIONS
 
     function hideDropdown(
         )
     {
-console.log( "hideDropdown" );
-        newIsDropdownOpen = false;
-
-        setTimeout(
-            () => isDropdownOpen = newIsDropdownOpen,
-            250
-            );
+        isDropdownOpen = false;
     }
 
     // ~~
@@ -40,9 +33,7 @@ console.log( "hideDropdown" );
     function showDropdown(
         )
     {
-console.log( "showDropdown" );
         isDropdownOpen = true;
-        newIsDropdownOpen = true;
     }
 
     // ~~
@@ -51,7 +42,18 @@ console.log( "showDropdown" );
         )
     {
         isDropdownOpen = !isDropdownOpen;
-        newIsDropdownOpen = isDropdownOpen;
+    }
+
+    // ~~
+
+    function handleDocumentClickEvent(
+        event
+        )
+    {
+        if ( !multiSelectElement.contains( event.target ) )
+        {
+            hideDropdown();
+        }
     }
 
     // ~~
@@ -236,15 +238,6 @@ console.log( "showDropdown" );
 
     // ~~
 
-    function handleInputBlurEvent(
-        event
-        )
-    {
-        hideDropdown();
-    }
-
-    // ~~
-
     function handleInputInputEvent(
         )
     {
@@ -275,6 +268,20 @@ console.log( "showDropdown" );
     // -- STATEMENTS
 
     setSelectedOptionArray();
+
+    onMount(
+        () =>
+        {
+            document.addEventListener( 'click' , handleDocumentClickEvent );
+
+            return (
+                () =>
+                {
+                    document.removeEventListener( 'click', handleDocumentClickEvent );
+                }
+                );
+        }
+        );
 </script>
 
 <div class="multi-select" bind:this={ multiSelectElement } on:click={ handleMultiSelectClickEvent }>
@@ -293,7 +300,6 @@ console.log( "showDropdown" );
             class="multi-select-input"
             on:click|stopPropagation={ handleInputFocusEvent }
             on:focus|stopPropagation={ handleInputFocusEvent }
-            on:blur|stopPropagation={ handleInputBlurEvent }
             placeholder={ placeholder }
             style="width: {inputElementWidth};"
             on:input={ handleInputInputEvent }
@@ -315,17 +321,15 @@ console.log( "showDropdown" );
         </button>
     </div>
 
-    {#if isDropdownOpen && availableOptionArray.length > 0 }
-        <div class="multi-select-dropdown" bind:this={ dropdownElement }>
-            {#each availableOptionArray as availableOption ( availableOption.value ) }
-                <div
-                    class="multi-select-available-option"
-                    on:mousedown={ handleInputFocusEvent }
-                    on:touchstart={ handleInputFocusEvent }
-                    on:click={ () => addSelectedOption( availableOption ) }>
-                    { availableOption.label }
-                </div>
-            {/each}
-        </div>
-    {/if}
+    <div class="multi-select-dropdown { ( isDropdownOpen && availableOptionArray.length > 0 ) ? 'is-open' : '' }" bind:this={ dropdownElement }>
+        {#each availableOptionArray as availableOption ( availableOption.value ) }
+            <div
+                class="multi-select-available-option"
+                on:mousedown={ handleInputFocusEvent }
+                on:touchstart={ handleInputFocusEvent }
+                on:click={ () => addSelectedOption( availableOption ) }>
+                { availableOption.label }
+            </div>
+        {/each}
+    </div>
 </div>

@@ -46,6 +46,7 @@
 
 .multi-select-dropdown
 {
+    display: none;
     z-index: 1;
     position: absolute;
     top: 100%;
@@ -58,6 +59,12 @@
     border-radius: 0.5rem;
 
     background-color: grayColor900;
+}
+
+
+.multi-select-dropdown.is-open
+{
+    display: block;
 }
 
 .multi-select-available-option

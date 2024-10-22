@@ -262,20 +262,20 @@
         <slot></slot>
     </div>
 
-    { #if hasCount && slideCount }
+    {#if hasCount && slideCount }
         <div class="carousel-count">{ ( slideIndex % slideCount ) + 1 }/{ slideCount }</div>
-    { /if }
+    {/if}
 
-    { #if hasDots && slideCount }
+    {#if hasDots && slideCount }
         <div class="carousel-dot-list">
-            { #each { length: slideCount } as _, dotIndex }
+            {#each { length: slideCount } as _, dotIndex }
                 <div class="carousel-dot { dotIndex === ( slideIndex % slideCount ) ? 'active' : '' }"></div>
-            { /each }
+            {/each}
         </div>
-    { /if }
+    {/if}
 
-    { #if hasButtons }
+    {#if hasButtons }
         <button class="carousel-button carousel-prior-slide-button" on:click={ () => resume( showPriorSlide ) }>&#x276E;</button>
         <button class="carousel-button carousel-next-slide-button" on:click={ () => resume( showNextSlide ) }>&#x276F;</button>
-    { /if }
+    {/if}
 </div>

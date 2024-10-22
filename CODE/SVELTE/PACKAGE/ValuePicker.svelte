@@ -272,7 +272,7 @@
             class="range"
             style="left: { getLeftPosition( valueArray[ 0 ] ) }%; width: calc( 8px + { getLeftPosition( valueArray[ 1 ] ) - getLeftPosition( valueArray[ 0 ] ) }% )"
         ></div>
-        { #if valueCount === 2 }
+        {#if valueCount === 2 }
             <div
                 bind:this={ firstSliderElement }
                 class="slider"
@@ -288,7 +288,7 @@
                 on:touchstart={ ( event ) => handleMouseDownEvent( event, true ) }
                 on:keydown={ ( event ) => handleKeyDownEvent( event, true ) }
             ></div>
-        { /if }
+        {/if}
         <div
             bind:this={ secondSliderElement }
             class="slider"
@@ -305,11 +305,11 @@
             on:keydown={ ( event ) => handleKeyDownEvent( event, false ) }
         ></div>
     </div>
-    { #if hasText }
+    {#if hasText }
         <div class="text">
             <span class="left-text">{ limitTextArray[ 0 ] }</span>
             <span class="middle-text">{ getValueText( getRoundedValueArray( valueArray ) ) }</span>
             <span class="right-text">{ limitTextArray[ 1 ] }</span>
         </div>
-    { /if }
+    {/if}
 </div>

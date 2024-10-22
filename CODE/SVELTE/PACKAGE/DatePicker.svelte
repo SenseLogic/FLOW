@@ -331,7 +331,7 @@
 
 <div class="date-picker" aria-label="{ ariaLabel }">
     <div class="calendar-list">
-        { #each monthDateArray as monthDate, monthIndex }
+        {#each monthDateArray as monthDate, monthIndex }
             <div class="calendar" role="grid" aria-labelledby="monthName-{ monthIndex }">
                 <div class="month-grid" role="presentation">
                     <div class="month-button prior-month-button"
@@ -357,10 +357,10 @@
                     </div>
                 </div>
                 <div class="day-grid" role="rowgroup">
-                    { #each weekdayNameArray as weekdayName }
+                    {#each weekdayNameArray as weekdayName }
                         <div class="weekday" role="columnheader" aria-label={ weekdayName }>{ weekdayName }</div>
-                    { /each }
-                    { #each getDayArray( monthDate.getUTCFullYear(), monthDate.getUTCMonth() ) as day }
+                    {/each}
+                    {#each getDayArray( monthDate.getUTCFullYear(), monthDate.getUTCMonth() ) as day }
                         <div class="day"
                             class:is-grayed={ day.isGrayed }
                             class:is-forbidden={ day.isForbidden }
@@ -377,16 +377,16 @@
                             aria-label={ getAccessibleDayLabel( day ) }
                             aria-disabled={ day.isForbidden || day.isUnavailable ? 'true' : 'false' }
                         >
-                            { #if getDayComponent !== undefined }
+                            {#if getDayComponent !== undefined }
                                 <svelte:component
                                     this={ getDayComponent( day ) }
                                     { day }
                                 />
-                            { :else }
+                            {:else}
                                 { getDayContent( day ) }
-                            { /if }
+                            {/if}
                         </div>
-                    { /each }
+                    {/each}
                 </div>
             </div>
         {/each}

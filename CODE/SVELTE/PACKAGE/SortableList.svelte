@@ -74,7 +74,7 @@
 </script>
 
 <div class="sortable-list" aria-label="{ ariaLabel }" bind:this={ listElement }>
-    { #each elementArray as element, elementIndex }
+    {#each elementArray as element, elementIndex }
         <div class="element"
             draggable="true"
             on:dragstart={ ( event ) => handleDragStartEvent( event, elementIndex ) }
@@ -85,5 +85,5 @@
         >
             <slot { element }></slot>
         </div>
-    { /each}
+    {/each}
 </div>

@@ -16,6 +16,7 @@
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem;
+    align-items: center;
 }
 
 .multi-select-selected-option
@@ -71,17 +72,26 @@
     background-color: grayColor800;
 }
 
-.multi-select-available-option.is-selected
-{
-    font-weight: 700;
-}
-
 .multi-select-input
 {
     outline: none;
-    width: 100%;
     border: none;
     padding: 0.5rem;
 
     font-size: 1rem;
+    width: auto;
+
+    flex-grow: 1;
+    min-width: 0;
+}
+
+.multi-select-toggle-button
+{
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    padding: 0.5rem 0;
+
+    flex-shrink: 0;
 }

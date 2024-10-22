@@ -7,34 +7,153 @@
     // -- VARIABLES
 
     export let optionArray = [];
-    let searchedText = "";
-    let selectedOptionArrayStore = writable( [] );
+    export let placeholder = '';
+    export let valueArray = writable( [] );
+    export let onChange = () => {};
+    let searchedText = '';
+    $: lowerCaseSearchText = searchedText.toLowerCase();
+    let availableOptionArray = optionArray;
+    let selectedOptionArray = [];
     let isDropdownOpen = false;
     let inputElement;
     let dropdownElement;
-    let availableOptionArray = [];
+    let multiSelectElement;
+    let inputElementWidth = '3em';
+    let newIsDropdownOpen = false;
 
     // -- FUNCTIONS
+
+    function hideDropdown(
+        )
+    {
+console.log( "hideDropdown" );
+        newIsDropdownOpen = false;
+
+        setTimeout(
+            () => isDropdownOpen = newIsDropdownOpen,
+            250
+            );
+    }
+
+    // ~~
+
+    function showDropdown(
+        )
+    {
+console.log( "showDropdown" );
+        isDropdownOpen = true;
+        newIsDropdownOpen = true;
+    }
+
+    // ~~
 
     function toggleDropdown(
         )
     {
         isDropdownOpen = !isDropdownOpen;
+        newIsDropdownOpen = isDropdownOpen;
+    }
+
+    // ~~
+
+    function hasSelectedValue(
+        value
+        )
+    {
+        return selectedOptionArray.findIndex( ( selectedOption ) => selectedOption.value === value ) >= 0;
     }
 
     // ~~
 
     function hasSelectedOption(
-        searchedOption
+        option
+        )
+    {
+        return hasSelectedValue( option.value );
+    }
+
+    // ~~
+
+    function isAvailableOption(
+        option
         )
     {
         return (
-            $selectedOptionArrayStore.findIndex(
-                ( selectedOption ) =>
-                selectedOption.value === searchedOption.value
-                )
-            >= 0
+            !hasSelectedOption( option )
+            && ( searchedText === ''
+                 || option.label.toLowerCase().includes( lowerCaseSearchText ) )
             );
+    }
+
+    // ~~
+
+    function updateAvailableOptionArray(
+        )
+    {
+        availableOptionArray = optionArray.filter( isAvailableOption );
+    }
+
+    // ~~
+
+    function getTextWidth(
+        text,
+        font
+        )
+    {
+        let canvas = document.createElement( 'canvas' );
+        let context = canvas.getContext( '2d' );
+        context.font = font;
+
+        return context.measureText( text ).width;
+    }
+
+    // ~~
+
+    function updateInputWidth(
+        )
+    {
+        if ( inputElement )
+        {
+            let computedStyle = window.getComputedStyle( inputElement );
+            let textWidth = getTextWidth( inputElement.value, computedStyle.font );
+
+            inputElementWidth = ( textWidth + parseFloat( computedStyle.fontSize ) * 3 ) + 'px';
+        }
+    }
+
+    // ~~
+
+    function findOptionByValue(
+        value
+        )
+    {
+        for ( let option of optionArray )
+        {
+            if ( option.value === value )
+            {
+                return option;
+            }
+        }
+
+        return null;
+    }
+
+    // ~~
+
+    function updateValueArray(
+        )
+    {
+        valueArray = selectedOptionArray.map( option => option.value );
+        onChange( valueArray );
+    }
+
+    // ~~
+
+    function updateSelectedOptionArray(
+        )
+    {
+        updateValueArray();
+        updateAvailableOptionArray();
     }
 
     // ~~
@@ -43,24 +162,17 @@
         addedOption
         )
     {
-        selectedOptionArrayStore.update(
-            ( currentSelectedOptionArray ) =>
-            {
-                if ( currentSelectedOptionArray.findIndex(
-                         ( currentOption ) =>
-                         currentOption.value === addedOption.value
-                         )
-                     < 0 )
-                {
-                    return [ ...currentSelectedOptionArray, addedOption ];
-                }
+        if ( selectedOptionArray.findIndex( ( currentOption ) => currentOption.value === addedOption.value ) < 0 )
+        {
+            selectedOptionArray.push( addedOption );
+            selectedOptionArray = selectedOptionArray;
 
-                return currentSelectedOptionArray;
-            }
-            );
+            updateSelectedOptionArray();
+        }
 
         searchedText = "";
-        isDropdownOpen = false;
+        updateInputWidth();
+        showDropdown();
     }
 
     // ~~
@@ -69,95 +181,151 @@
         removedOption
         )
     {
-        selectedOptionArrayStore.update(
-            ( selectedOptionArray ) =>
+        selectedOptionArray =
             selectedOptionArray.filter(
                 ( selectedOption ) =>
                 selectedOption.value !== removedOption.value
-                )
-            );
+                );
+
+        updateSelectedOptionArray();
     }
 
     // ~~
 
-    function updateAvailableOptionArray()
+    function setSelectedOptionArray(
+        )
     {
-        if ( searchedText === '' )
+        selectedOptionArray = [];
+
+        for ( let value of valueArray )
         {
-            availableOptionArray = optionArray;
+            if ( !hasSelectedValue( value ) )
+            {
+                let selectedOption = findOptionByValue( value );
+
+                if ( selectedOption !== null )
+                {
+                    selectedOptionArray.push( selectedOption );
+                }
+            }
         }
-        else
+
+        selectedOptionArray = selectedOptionArray;
+        updateAvailableOptionArray();
+    }
+
+    // ~~
+
+    function handleMultiSelectClickEvent(
+        )
+    {
+        if ( inputElement )
         {
-            availableOptionArray =
-                optionArray.filter(
-                    ( availableOption ) =>
-                    availableOption.label.toLowerCase().includes( searchedText.toLowerCase() )
-                    );
+            inputElement.focus();
+            showDropdown();
         }
     }
 
     // ~~
 
-    function handleDocumentClickEvent(
+    function handleInputFocusEvent(
+        )
+    {
+        showDropdown();
+    }
+
+    // ~~
+
+    function handleInputBlurEvent(
         event
         )
     {
-        if ( dropdownElement
-             && !dropdownElement.contains( event.target )
-             && inputElement
-             && !inputElement.contains( event.target ) )
+        hideDropdown();
+    }
+
+    // ~~
+
+    function handleInputInputEvent(
+        )
+    {
+        updateAvailableOptionArray();
+        updateInputWidth();
+        showDropdown();
+    }
+
+    // ~~
+
+    function handleInputKeyDownEvent( event )
+    {
+        if ( event.key === 'Enter' )
         {
-            isDropdownOpen = false;
+            event.preventDefault();
+
+            if ( !isDropdownOpen )
+            {
+                showDropdown();
+            }
+            else if ( availableOptionArray.length > 0 )
+            {
+                addSelectedOption( availableOptionArray[ 0 ] );
+            }
         }
     }
 
     // -- STATEMENTS
 
-    $: updateAvailableOptionArray( searchedText );
-
-    onMount(
-        () =>
-        {
-            document.addEventListener( 'click', handleDocumentClickEvent );
-
-            return (
-                () =>
-                {
-                    document.removeEventListener( 'click', handleDocumentClickEvent );
-                }
-                );
-        }
-        );
+    setSelectedOptionArray();
 </script>
 
-<div class="multi-select">
+<div class="multi-select" bind:this={ multiSelectElement } on:click={ handleMultiSelectClickEvent }>
     <div class="multi-select-selected-option-list">
-        { #each $selectedOptionArrayStore as selectedOption ( selectedOption.value ) }
-            <div class="multi-select-selected-option">
+        {#each selectedOptionArray as selectedOption ( selectedOption.value ) }
+            <div class="multi-select-selected-option" on:click|stopPropagation>
                 { selectedOption.label }
                 <button on:click={ () => removeSelectedOption( selectedOption ) }>×</button>
             </div>
-        { /each }
+        {/each}
+
+        <input
+            type="text"
+            bind:this={ inputElement }
+            bind:value={ searchedText }
+            class="multi-select-input"
+            on:click|stopPropagation={ handleInputFocusEvent }
+            on:focus|stopPropagation={ handleInputFocusEvent }
+            on:blur|stopPropagation={ handleInputBlurEvent }
+            placeholder={ placeholder }
+            style="width: {inputElementWidth};"
+            on:input={ handleInputInputEvent }
+            on:keydown={ handleInputKeyDownEvent }
+        />
+
+        <button class="multi-select-toggle-button" on:click={ toggleDropdown } on:click|stopPropagation>
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1"
+                viewBox="0 0 10 10"
+            >
+                <path d="M2 4l3 3 3-3" />
+            </svg>
+        </button>
     </div>
 
-    <input
-        type="text"
-        bind:this={ inputElement }
-        bind:value={ searchedText }
-        class="multi-select-input"
-        on:click={ toggleDropdown }
-        placeholder="Search..."
-    />
-
-    { #if isDropdownOpen }
+    {#if isDropdownOpen && availableOptionArray.length > 0 }
         <div class="multi-select-dropdown" bind:this={ dropdownElement }>
-            { #each availableOptionArray as availableOption ( availableOption.value ) }
+            {#each availableOptionArray as availableOption ( availableOption.value ) }
                 <div
-                    class="multi-select-available-option { hasSelectedOption( availableOption ) ? 'is-selected' : ''}"
+                    class="multi-select-available-option"
+                    on:mousedown={ handleInputFocusEvent }
+                    on:touchstart={ handleInputFocusEvent }
                     on:click={ () => addSelectedOption( availableOption ) }>
                     { availableOption.label }
                 </div>
-            { /each }
+            {/each}
         </div>
-    { /if }
+    {/if}
 </div>

@@ -45,6 +45,8 @@
             { value: 'strawberry', label: 'Strawberry' },
             { value: 'watermelon', label: 'Watermelon' }
         ];
+    let selectedValueArray = [];
+    let alreadySelectedValueArray = [ 'apple', 'watermelon' ];
 
     // -- STATEMENTS
 
@@ -75,22 +77,22 @@
         Welcome to SvelteKit
     </h1>
 
-    <p class="margin-top-100 color-green-500">
+    <div class="margin-top-100 color-green-500">
         Visit <a class="color-green-300 color-green-500-hover" href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation
-    </p>
+    </div>
 
     <div class="size-200 green-map-pin-icon">
     </div>
 
-    <p class="title">
+    <div class="title">
         Title
-    </p>
+    </div>
 
-    <p class="title.is-subtitle">
+    <div class="title.is-subtitle">
         Subtitle
-    </p>
+    </div>
 
-    <p class="frame">
+    <div class="frame">
         <SortableList
             elementArray={ firstNameArray }
             let:element
@@ -100,9 +102,9 @@
                 { element }
             </div>
         </SortableList>
-    </p>
+    </div>
 
-    <p class="frame">
+    <div class="frame">
         <SortableList
             elementArray={ secondNameArray }
             let:element
@@ -112,7 +114,7 @@
                 { element }
             </div>
         </SortableList>
-    </p>
+    </div>
 
     <div class="margin-top-100 display-flex flex-direction-column gap-100">
         <div class="display-flex gap-50">
@@ -147,95 +149,99 @@
         </select>
     </div>
 
-    <p class="frame">
+    <div class="frame">
         <ValuePicker value={ realValue } valuePrecision={ 10 } valueSuffix=" €" limitArray={ [ 5, 95 ] } onChange={ ( value ) => realValue = value }/>
-    </p>
+    </div>
 
-    <p class="frame">
+    <div class="frame">
         <ValuePicker value={ 100 } valuePrecision={ 10 } valueSuffix=" €" limitArray={ [ 5, 95 ] } onChange={ ( value ) => console.log( value ) }/>
-    </p>
+    </div>
 
-    <p class="frame">
+    <div class="frame">
         <ValuePicker valueArray={ [ 0, 100 ] } valuePrecision={ 10 } valueSuffix=" €" limitArray={ [ 5, 95 ] } onChange={ ( valueArray ) => console.log( valueArray ) }/>
-    </p>
+    </div>
 
-    <p class="frame">
+    <div class="frame">
         <ValuePicker value={ 50 } valuePrecision={ 5 } valueSuffix=" €" limitArray={ [ 0, 100 ] } onChange={ ( value ) => console.log( value ) }/>
-    </p>
+    </div>
 
-    <p class="frame">
+    <div class="frame">
         <ValuePicker valueArray={ [ 0, 50 ] } valuePrecision={ 5 } valueSuffix=" €" limitArray={ [ 0, 100 ] } onChange={ ( valueArray ) => console.log( valueArray ) }/>
-    </p>
+    </div>
 
-    <p class="frame">
+    <div class="frame">
         <DatePicker date={ dateValue } onChange={ ( date ) => dateValue = date }/>
-    </p>
+    </div>
 
-    <p class="frame">
+    <div class="frame">
         <DatePicker date={ null } onChange={ ( date ) => console.log( date ) }/>
-    </p>
+    </div>
 
-    <p class="frame">
+    <div class="frame">
         <DatePicker dateArray={ [ null, null ] } onChange={ ( dateArray ) => console.log( dateArray ) }/>
-    </p>
+    </div>
 
-    <p class="frame">
+    <div class="frame">
         <DatePicker date={ null } monthCount={ 2 } onChange={ ( date ) => console.log( date ) }/>
-    </p>
+    </div>
 
-    <p class="frame">
+    <div class="frame">
         <DatePicker dateArray={ [ null, null ] } monthCount={ 2 } onChange={ ( dateArray ) => console.log( dateArray ) }/>
-    </p>
+    </div>
 
-    <p class="frame">
+    <div class="frame">
         <DatePicker date={ new Date( '2023-3-15' ) } monthCount={ 3 } onChange={ ( date ) => console.log( date ) }/>
-    </p>
+    </div>
 
-    <p class="frame">
+    <div class="frame">
         <DatePicker dateArray={ [ new Date( '2023-3-5' ), new Date( '2023-4-25' ) ] } monthCount={ 3 } onChange={ ( dateArray ) => console.log( dateArray ) }/>
-    </p>
+    </div>
 
-    <p class="frame">
+    <div class="frame">
         <DatePicker dateArray={ [ new Date( '2023-3-5' ), new Date( '2023-4-25' ) ] } monthCount={ 3 } getDayComponent={ ( day ) => CalendarDay } onChange={ ( dateArray ) => console.log( dateArray ) }/>
-    </p>
+    </div>
 
-    <p class="frame">
-        <MultiSelect { optionArray }/>
-    </p>
+    <div class="frame">
+        <MultiSelect { optionArray } bind:valueArray={ selectedValueArray } onChange={ ( selectedValueArray ) => console.log( selectedValueArray ) }/>
+    </div>
 
-    <p class="frame">
+    <div class="frame">
+        <MultiSelect { optionArray } bind:valueArray={ alreadySelectedValueArray } onChange={ ( selectedValueArray ) => console.log( selectedValueArray ) }/>
+    </div>
+
+    <div class="frame">
         <Carousel columnCount={ 1 } hasCount hasDots hasButtons isAutomatic>
             <div class="carousel-slide">Slide 1</div>
         </Carousel>
-    </p>
+    </div>
 
-    <p class="frame">
+    <div class="frame">
         <Carousel columnCount={ 1 } hasCount hasDots hasButtons isAutomatic>
             <div class="carousel-slide">Slide 1</div>
             <div class="carousel-slide">Slide 2</div>
             <div class="carousel-slide">Slide 3</div>
         </Carousel>
-    </p>
+    </div>
 
-    <p class="frame">
+    <div class="frame">
         <Carousel columnCount={ 3 } hasCount hasDots hasButtons isAutomatic>
         </Carousel>
-    </p>
+    </div>
 
-    <p class="frame">
+    <div class="frame">
         <Carousel columnCount={ 3 } hasCount hasDots hasButtons isAutomatic>
             <div class="carousel-slide">Slide 1</div>
         </Carousel>
-    </p>
+    </div>
 
-    <p class="frame">
+    <div class="frame">
         <Carousel columnCount={ 3 } hasCount hasDots hasButtons isAutomatic>
             <div class="carousel-slide">Slide 1</div>
             <div class="carousel-slide">Slide 2</div>
         </Carousel>
-    </p>
+    </div>
 
-    <p class="frame">
+    <div class="frame">
         <Carousel columnCount={ 3 } hasCount hasDots hasButtons isAutomatic stayDuration={ 2000 } transitionDuration={ 700 } resumeDuration={ 3000 }>
             <div class="carousel-slide">Slide 1</div>
             <div class="carousel-slide">Slide 2</div>
@@ -244,5 +250,5 @@
             <div class="carousel-slide">Slide 5</div>
             <div class="carousel-slide">Slide 6</div>
         </Carousel>
-    </p>
+    </div>
 </div>

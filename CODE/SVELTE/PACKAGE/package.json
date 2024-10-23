@@ -1,7 +1,7 @@
 {
     "name": "senselogic-flow",
     "description": "Stylable UI components.",
-    "version": "0.0.37",
+    "version": "0.0.38",
     "author": "Eric Pelzer <ecstatic.coder@gmail.com>",
     "license": "LGPL-3.0-only",
     "repository": {

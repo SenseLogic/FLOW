@@ -221,6 +221,8 @@
     function handleMultiSelectClickEvent(
         )
     {
+        event.stopImmediatePropagation();
+
         if ( inputElement )
         {
             inputElement.focus();
@@ -287,7 +289,7 @@
 <div class="multi-select" bind:this={ multiSelectElement } on:click={ handleMultiSelectClickEvent }>
     <div class="multi-select-selected-option-list">
         {#each selectedOptionArray as selectedOption ( selectedOption.value ) }
-            <div class="multi-select-selected-option" on:click|stopPropagation>
+            <div class="multi-select-selected-option">
                 { selectedOption.label }
                 <button on:click={ () => removeSelectedOption( selectedOption ) }>×</button>
             </div>
@@ -298,15 +300,15 @@
             bind:this={ inputElement }
             bind:value={ searchedText }
             class="multi-select-input"
-            on:click|stopPropagation={ handleInputFocusEvent }
-            on:focus|stopPropagation={ handleInputFocusEvent }
+            on:click={ handleInputFocusEvent }
+            on:focus={ handleInputFocusEvent }
             placeholder={ placeholder }
             style="width: {inputElementWidth};"
             on:input={ handleInputInputEvent }
             on:keydown={ handleInputKeyDownEvent }
         />
 
-        <button class="multi-select-toggle-button" on:click={ toggleDropdown } on:click|stopPropagation>
+        <button class="multi-select-toggle-button" on:click|stopPropagation={ toggleDropdown }>
             <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="16"
